@@ -11,7 +11,7 @@
 ## Data science and NLP
 - Python projects
   - basic
-  - ![Basic NLP](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/VISTA%20Vision.ipynb)
+  - [Basic NLP](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/VISTA%20Vision.ipynb)
   - https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/VISTA%20Vision.ipynb
 - NLP projects
 - ML projects
