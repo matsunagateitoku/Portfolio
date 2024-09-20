@@ -1,10 +1,10 @@
 # Scott Lineberger
 
-##UX Process
+## UX Process
 
-##Websites
+## Websites
 
 [News Website](https://matsunagateitoku.github.io/news/)
 
 
-##Data science and NLP
+## Data science and NLP
