@@ -4,7 +4,7 @@
 
 ## Websites
 
-[News Website](https://matsunagateitoku.github.io/news/)
-[Haiku Website](https://matsunagateitoku.github.io/news/)
+- [News Website](https://matsunagateitoku.github.io/news/)
+- [Haiku Website](https://matsunagateitoku.github.io/news/)
 
 ## Data science and NLP
