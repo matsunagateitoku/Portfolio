@@ -1,4 +1,4 @@
-# Scott Lineberger Portfolio
+# Scott Lineberger
 
 ##UX Process
 
