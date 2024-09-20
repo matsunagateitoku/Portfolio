@@ -1,10 +1,11 @@
 # Scott Lineberger
 ## UX Process
 ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
-
+- Scketches
 - Mockups
-![## UX Process](free-website-builder.webp)
+  
 ## Websites
+![## UX Process](free-website-builder.webp)
 
 - [News Website](https://matsunagateitoku.github.io/news/)
 - [Haiku Website](https://matsunagateitoku.github.io/news/)
