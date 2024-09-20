@@ -9,5 +9,6 @@
 
 ## Data science and NLP
 - Python projects
+--basic
 - NLP projects
 - ML projects
