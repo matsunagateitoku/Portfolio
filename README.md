@@ -1,6 +1,7 @@
 # Scott Lineberger
 
-## UX Process       ![Tux, the Linux mascot](/assets/images/tux.png)
+![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
+
 - Mockups
 
 ## Websites
