@@ -1,9 +1,5 @@
 # Scott Lineberger
 
-
-| ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
-|-------------------|----------------------------------------------|
-
 ## UX Process
 ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
 - Scketches
@@ -30,11 +26,9 @@
     
 - ML projects
 
-# Project Title
 
-## Overview
-
-A brief description of your project.
+| ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
+|-------------------|----------------------------------------------|
 
 | Feature          | Description                                  |
 |-------------------|----------------------------------------------|
