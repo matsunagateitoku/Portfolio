@@ -17,7 +17,7 @@
     
 - NLP projects
   - [Basic NLP techniques](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/VISTA%20Vision.ipynb)
-  - NLP Text Processing Pipeline
+  - [NLP Text Processing Pipeline](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Text%20preprocessing%20pipeline.ipynb)
   - [Examples of NLP on Chinese Text](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Chinese%20Vista%20Vision%20for%20export.ipynb)
   - Federated Dictionary Tool
   - Website to Wordcloud
