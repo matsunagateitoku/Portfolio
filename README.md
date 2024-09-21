@@ -24,3 +24,36 @@
   - Fasttext Document Simalarity 
     
 - ML projects
+
+# Project Title
+
+## Overview
+
+A brief description of your project.
+
+| Feature          | Description                                  |
+|-------------------|----------------------------------------------|
+| **Feature 1**     | Description of feature 1                     |
+| **Feature 2**     | Description of feature 2                     |
+| **Feature 3**     | Description of feature 3                     |
+| **Feature 4**     | Description of feature 4                     |
+
+## Installation
+
+Instructions to install the project.
+
+| Step | Command             |
+|------|---------------------|
+| 1    | `git clone <repo>`   |
+| 2    | `cd <project>`      |
+| 3    | `pip install -r requirements.txt` |
+
+## Usage
+
+Examples of how to use the project.
+
+| Command             | Description                      |
+|---------------------|----------------------------------|
+| `python main.py`    | Run the main application         |
+| `python test.py`    | Run the tests                    |
+
