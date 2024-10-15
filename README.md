@@ -22,7 +22,9 @@
   - [Examples of NLP on Chinese Text](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Chinese%20Vista%20Vision%20for%20export.ipynb)
   - Federated Dictionary Tool
   - Website to Wordcloud
-  - Fasttext Document Simalarity 
+  - Dividing datasets into test, training, walidate 
+  - TF-IDF from eCornell
+  - Fasttext Document Simalarity from eCornell
     
 - ML projects
 
