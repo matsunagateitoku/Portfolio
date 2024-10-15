@@ -10,6 +10,8 @@
 
 - [News Website](https://matsunagateitoku.github.io/news/)
 - [Haiku Website](https://matsunagateitoku.github.io/news/)
+- Convert a url to a wordcloud
+- Federated Dictionary Tool
 
 ## Data science and NLP
 - Python projects
