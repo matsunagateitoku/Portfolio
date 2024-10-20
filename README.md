@@ -12,6 +12,9 @@
 - [Haiku Website](https://matsunagateitoku.github.io/news/)
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
+- Class website projects:
+  Dice game
+  qr code
 
 ## Data science and NLP
 - Python projects
