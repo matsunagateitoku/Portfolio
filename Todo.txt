@@ -1,0 +1,2 @@
+1. move notebooks etc to a file
+2. replace news with new news site
