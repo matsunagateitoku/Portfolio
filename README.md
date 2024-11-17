@@ -23,9 +23,9 @@
     
 - NLP projects
 
-[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](YOUR_NOTEBOOK_URL_HERE)
+[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb))
 
-
+https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb
 
   - [Basic NLP techniques](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)      [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)  
   - [NLP Text Processing Pipeline](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Text%20preprocessing%20pipeline%20%281%29.ipynb)
