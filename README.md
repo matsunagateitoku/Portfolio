@@ -31,7 +31,7 @@
 | **[Examples of NLP on Chinese Text](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Chinese%20Vista%20Vision%20for%20export.ipynb)**     | Description of feature 3                     |
 | **Federated Dictionary Tool**     | Description of feature 4                     |
 | **Website to Wordcloud**     | Description of feature 4                     |
-| **Dividing datasets into test, training, walidate **     | Description of feature 4                     |
+| **Dividing datasets into test, training, walidate**     | Description of feature 4                     |
 | **Fasttext Document Simalarity from eCornell**     | Description of feature 4                     |
 
 
