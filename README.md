@@ -22,8 +22,7 @@
   - NBA
     
 - NLP projects
-| ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
-|-------------------|----------------------------------------------|
+
 
 | Feature          | Description                                  |
 |-------------------|----------------------------------------------|
@@ -45,7 +44,8 @@
 - ML projects
 
 
-[![O
+| ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
+|-------------------|----------------------------------------------|
 
 
 
