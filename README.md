@@ -30,16 +30,12 @@
 | **[NLP Text Processing Pipeline](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Text%20preprocessing%20pipeline%20%281%29.ipynb)**     | Description of feature 2                     |
 | **[Examples of NLP on Chinese Text](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Chinese%20Vista%20Vision%20for%20export.ipynb)**     | Description of feature 3                     |
 | **Federated Dictionary Tool**     | Description of feature 4                     |
-| **Feature 4**     | Description of feature 4                     |
-| **Feature 4**     | Description of feature 4                     |
-| **Feature 4**     | Description of feature 4                     |
+| **Website to Wordcloud**     | Description of feature 4                     |
+| **Dividing datasets into test, training, walidate **     | Description of feature 4                     |
+| **Fasttext Document Simalarity from eCornell**     | Description of feature 4                     |
 
 
 
-  - Website to Wordcloud
-  - Dividing datasets into test, training, walidate 
-  - TF-IDF from eCornell
-  - Fasttext Document Simalarity from eCornell
     
 - ML projects
 
