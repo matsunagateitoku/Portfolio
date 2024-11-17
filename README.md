@@ -23,7 +23,6 @@
     
 - NLP projects
 
-[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb))
 
 https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb
 
@@ -44,7 +43,7 @@ https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision
 
 | Feature          | Description                                  |
 |-------------------|----------------------------------------------|
-| **[Basic NLP techniques](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/my-username/my-repo/blob/main/notebooks/example.ipynb)                     |
+| **[Basic NLP techniques](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)                     |
 | **Feature 2**     | Description of feature 2                     |
 | **Feature 3**     | Description of feature 3                     |
 | **Feature 4**     | Description of feature 4                     |
