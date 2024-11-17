@@ -24,7 +24,7 @@
 - NLP projects
 
 
-| Feature          | Description                                  |
+| Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
 | **[Basic NLP techniques](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)                     |
 | **Feature 2**     | Description of feature 2                     |
