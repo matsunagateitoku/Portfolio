@@ -22,10 +22,8 @@
   - NBA
     
 - NLP projects
-[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/your-username/your-repository/blob/main/your-notebook.ipynb)
 
-[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)
+[![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)
 
   - [Basic NLP techniques](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)      [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)  
   - [NLP Text Processing Pipeline](https://nbviewer.org/github/matsunagateitoku/Portfolio/blob/main/Text%20preprocessing%20pipeline%20%281%29.ipynb)
