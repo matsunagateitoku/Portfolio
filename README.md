@@ -18,6 +18,8 @@
 
 ## Data science and NLP
 - Python projects
+ | Notebook          | Colab link                                  |
+|-------------------|----------------------------------------------|
   - Great Schools
   - NBA
     
