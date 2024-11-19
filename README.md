@@ -20,7 +20,8 @@
 - Python projects
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
-  - Great Schools
+|Great Schools    |   |
+|Great Schools    |  
   - NBA
     
 - NLP projects
