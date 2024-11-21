@@ -17,8 +17,6 @@
   qr code
 
 ## Python & Data science 
-- Python projects
-
   
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
@@ -27,7 +25,6 @@
 
 
  ## NLP projects
-
 
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
@@ -42,7 +39,9 @@
 
 
     
-- ML projects
+## Machine Learning projects
+
+## Deep Learning  projects
 
 
 | ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
