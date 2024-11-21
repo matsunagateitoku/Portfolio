@@ -21,7 +21,7 @@
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
 | **Great Schools**                              |  [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)                     |
-| **NBA**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/Text%20preprocessing%20pipeline%20%281%29.ipynb)                      |
+| **NBA Over/Unders Bets Project**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/Text%20preprocessing%20pipeline%20%281%29.ipynb)                      |
 
 
  ## NLP projects
