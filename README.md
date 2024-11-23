@@ -1,5 +1,5 @@
 # Scott Lineberger
-
+My resume: here
 ## UX Process
 ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
 - Sketches
