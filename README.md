@@ -41,8 +41,12 @@
 
     
 ## Machine Learning projects
+| Notebook          | Colab link                                  |
+|-------------------|----------------------------------------------|
 
 ## Deep Learning  projects
+| Notebook          | Colab link                                  |
+|-------------------|----------------------------------------------|
 
 
 | ## UX Process         | ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)                                 |
