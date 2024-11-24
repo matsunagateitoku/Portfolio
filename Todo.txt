@@ -4,6 +4,7 @@
 - UX scetchets take photo and load
 - make all photos the same size
 - add photos for each section
+- fix links to nba and schools
 
 
 
