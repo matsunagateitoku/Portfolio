@@ -8,7 +8,8 @@ My resume: here
 ## Websites
 ![## UX Process](free-website-builder.webp)
 
-- [News Website](https://matsunagateitoku.github.io/news/)
+- [News Website,version1.0](https://matsunagateitoku.github.io/news/)
+- [News Website,version2.0](https://matsunagateitoku.github.io/news/)
 - [Haiku Website](https://matsunagateitoku.github.io/news/)
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
