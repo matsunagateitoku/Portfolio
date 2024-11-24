@@ -1,5 +1,6 @@
 # Scott Lineberger
-My resume: here
+[My resume]([https://matsunagateitoku.github.io/news/](https://docs.google.com/document/d/1Jw1-cPBpKDp9ZUS1sPKBpn0Sox-4GmdChUYuSmX05dI/edit?tab=t.0))
+
 ## UX Process
 ![## UX Process](ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
 - Sketches
