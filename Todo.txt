@@ -1,7 +1,6 @@
 
 - make a detailed list of all notebooks
 - make a to-do list for notebooks
-- replace news with new news site
 - UX scetchets take photo and load
 
 
@@ -20,3 +19,4 @@
 
 Finished items:
 - move notebooks etc to a file
+- replace news with new news site
