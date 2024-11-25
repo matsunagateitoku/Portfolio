@@ -45,6 +45,9 @@
 ## Machine Learning projects
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
+| **TBD**                              |  [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/VISTA%20Vision.ipynb)                     |
+| **TBD**     | [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/Text%20preprocessing%20pipeline%20%281%29.ipynb)                      |
+
 
 ## Deep Learning  projects
 | Notebook          | Colab link                                  |
