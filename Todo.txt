@@ -1,10 +1,15 @@
-
-- make a detailed list of all notebooks
-- make a to-do list for notebooks
-- UX scetchets take photo and load
+easy
+- move images to folder
 - make all photos the same size
 - add photos for each section
 - fix links to nba and schools
+
+
+- make a detailed list of all notebooks
+- make a to-do list for notebooks
+
+- UX scetchets take photo and load
+
 
 
 
