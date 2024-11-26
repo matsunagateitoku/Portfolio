@@ -1,1 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyst Workbench</title>
+  <style>
+    /* Global styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Top banner */
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: left;
+      font-size: 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 30px;
+      font-weight: bold;
+      margin-left: 20px;
+    }
+
+    header .logo span {
+      color: #f39c12; /* A golden color for workbench accent */
+    }
+
+    /* Hamburger menu styling */
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    .hamburger-menu div {
+      width: 30px;
+      height: 4px;
+      background-color: white;
+    }
+
+    /* Secondary navbar styling (under header) */
+    .secondary-nav {
+      background-color: #333;
+      color: white;
+      width: 100%;
+      position: fixed;
+      top: 60px;
+      padding: 10px 0;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+    }
+
+    .secondary-nav button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 0 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .secondary-nav button:hover {
+      background-color: #45a049;
+    }
+
+    /* Navbar links styling */
+    nav {
+      position: fixed;
+      top: 110px; /* Adjusted to be below the secondary navbar */
+      left: 0;
+      width: 200px;
+      background-color: #333;
+      color: white;
+      height: 100%;
+      padding-top: 20px;
+    }
+
+    nav a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      margin: 5px 0;
+    }
+
+    nav a:hover {
+      background-color: #575757;
+    }
+
+    /* Main container */
+    .container {
+      margin-left: 200px;
+      margin-top: 150px; /* Adjusted to account for secondary navbar */
+      display: flex;
+      height: calc(100vh - 150px);
+    }
+
+    /* Left sidebar for buttons */
+    .sidebar {
+      width: 200px;
+      background-color: #f4f4f4;
+      padding-top: 20px;
+      height: 100%;
+      position: fixed;
+      top: 110px; /* Adjusted to be below the secondary navbar */
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .sidebar button:hover {
+      background-color: #45a049;
+    }
+
+    /* Main canvas area */
+    .workspace {
+      flex-grow: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-area {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      height: 40%;
+      resize: none;
+    }
+
+    .output-area {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      height: 50%;
+      background-color: #f9f9f9;
+      overflow-y: auto;
+    }
+
+    /* Sidebar menu that appears on clicking the hamburger menu */
+    .hamburger-menu-content {
+      display: none;
+      position: fixed;
+      top: 60px;
+      right: 0;
+      background-color: #333;
+      color: white;
+      width: 200px;
+      height: 100%;
+      z-index: 200;
+      padding-top: 20px;
+    }
+
+    .hamburger-menu-content a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+    }
+
+    .hamburger-menu-content a:hover {
+      background-color: #575757;
+    }
+
+    /* When hamburger menu is open */
+    .hamburger-menu.open + .hamburger-menu-content {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .secondary-nav {
+        display: none;
+      }
+      .sidebar {
+        display: none;
+      }
+      .container {
+        margin-left: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header with title and logo -->
+  <header>
+    <div class="logo">
+      <img src="wb.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
+      Analyst <span>Workbench</span>
+    </div>
+
+    <!-- Hamburger menu icon -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </header>
+
+  <!-- Hamburger menu content -->
+  <div class="hamburger-menu-content">
+    <a href="#about">About</a>
+    <a href="#guide">User's Guide</a>
+    <a href="#status">Status</a>
+    <a href="#help">Help</a>
+  </div>
+
+  <!-- Secondary Navbar with buttons -->
+  <div class="secondary-nav">
+    <button id="button1">Button 1</button>
+    <button id="button2">Button 2</button>
+    <button id="button3">Button 3</button>
+    <button id="button4">Button 4</button>
+    <button id="button5">Button 5</button>
+  </div>
+
+  <!-- Sidebar with buttons for widgets -->
+  <div class="sidebar">
+    <button id="mt-btn">Machine Translation (MT)</button>
+    <button id="ocr-btn">OCR</button>
+    <button id="llm-btn">LLM</button>
+    <button id="other-btn">Other Widget</button>
+  </div>
+
+  <!-- Main container (workspace) -->
+  <div class="container">
+    <nav>
+      <a href="#home">Machine Translation</a>
+		<a href="#stt">CAT Tool</a>
+      <a href="#about">LLM Summary</a>
+      <a href="#scratchpad">ScratchPad</a>
+      <a href="#stt">Speech-to-Text (STT)</a>
+      <a href="#ocr">OCR</a>
+    </nav>
+
+    <div class="workspace">
+      <!-- User input area -->
+      <textarea class="input-area" placeholder="Enter your text here..."></textarea>
+
+      <!-- Output area for analytics -->
+      <div class="output-area" id="output">
+        Output will appear here.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle the hamburger menu
+    function toggleMenu() {
+      const menu = document.querySelector('.hamburger-menu-content');
+      menu.classList.toggle('open');
+    }
+
+    // JavaScript to handle the buttons' functionalities
+    document.getElementById("mt-btn").addEventListener("click", function() {
+      document.getElementById("output").textContent = "Machine Translation widget opened.";
+    });
+
+    document.getElementById("ocr-btn").addEventListener("click", function() {
+      document.getElementById("output").textContent = "OCR widget opened.";
+    });
+
+    document.getElementById("llm-btn").addEventListener("click", function() {
+      document.getElementById("output").textContent = "LLM widget opened.";
+    });
+
+    document.getElementById("other-btn").addEventListener("click", function() {
+      document.getElementById("output").textContent = "Other widget opened.";
+    });
+
+    // Handling Secondary Navbar Buttons
+    document.getElementById("button1").addEventListener("click", function() {
+      alert("Button 1 clicked
 
