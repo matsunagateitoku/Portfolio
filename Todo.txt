@@ -1,5 +1,5 @@
 easy
-- move images to folder
+- move images to folder.
 - make all photos the same size
 - add photos for each section
 - fix links to nba and schools
