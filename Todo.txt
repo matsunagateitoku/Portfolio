@@ -8,6 +8,7 @@ easy
 - make a detailed list of all notebooks
 - make a to-do list for notebooks
 
+Hard
 - UX scetchets take photo and load
 
 
