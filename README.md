@@ -7,7 +7,7 @@
 - Mockups
   
 ## Websites
-![## UX Process](free-website-builder.webp)
+![## UX Process](./images/free-website-builder.webp)
 
 - [News Website,version1.0](https://matsunagateitoku.github.io/news/)
 - [News Website,version2.0](https://matsunagateitoku.github.io/STDP_News/)
