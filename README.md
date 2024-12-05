@@ -12,7 +12,7 @@
 - [News Website,version1.0](https://matsunagateitoku.github.io/news/)
 - [News Website,version2.0](https://matsunagateitoku.github.io/STDP_News/)
 - [Haiku Website](https://matsunagateitoku.github.io/news/)
-- [Analyst Workbench](https://matsunagateitoku.github.io/Portfolio/awb.html)
+- [Analyst Workbench](https://matsunagateitoku.github.io/Portfolio/websites/awb.html)
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
 - Class website projects:
