@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Federated Dictionary Search</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        header a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        header a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .search-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .search-box input[type="text"] {
+            width: 75%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .search-box select {
+            width: 20%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tabs button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .tabs button.active {
+            background-color: #555;
+        }
+        .results-frame {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .results-frame.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+    </header>
+
+    <div class="container">
+        <div class="search-box">
+            <input type="text" id="query" placeholder="Enter word or phrase">
+            <select id="language">
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="es">Spanish</option>
+                <option value="de">German</option>
+            </select>
+            <button onclick="searchDictionary()">Search</button>
+        </div>
+
+        <div class="tabs" id="tabs"></div>
+
+        <div id="results"></div>
+    </div>
+
+    <footer>
+        <p>© 2024 Federated Dictionary Search | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+    </footer>
+
+    <script>
+        const apiEndpoints = {
+            en: {
+                dict1: "https://api.dictionaryapi.dev/api/v2/entries/en/",
+                dict2: "https://api.wordnik.com/v4/word.json/"
+            },
+            fr: {
+                dict1: "https://api.dictionaryapi.dev/api/v2/entries/fr/",
+                dict2: "https://api.wordnik.com/v4/word.json/"
+            },
+            // Add other language APIs here
+        };
+
+        let currentQuery = '';
+        let currentLanguage = 'en';
+
+        function searchDictionary() {
+            currentQuery = document.getElementById("query").value.trim();
+            currentLanguage = document.getElementById("language").value;
+
+            if (!currentQuery) {
+                alert("Please enter a word to search.");
+                return;
+            }
+
+            document.getElementById("results").innerHTML = '';
+            document.getElementById("tabs").innerHTML = '';
+
+            const tabsContainer = document.getElementById("tabs");
+            const resultsContainer = document.getElementById("results");
+
+            // Clear previous results
+            let activeTab = null;
+
+            // Dynamically add tabs for dictionary sites
+            const sites = Object.keys(apiEndpoints[currentLanguage]);
+            sites.forEach((site, index) => {
+                const tabButton = document.createElement("button");
+                tabButton.textContent = site;
+                tabButton.onclick = function() {
+                    showTab(index);
+                };
+                tabsContainer.appendChild(tabButton);
+
+                // Create results frame
+                const resultsFrame = document.createElement("div");
+                resultsFrame.classList.add("results-frame");
+                resultsFrame.id = site + '-frame';
+
+                // Load results for each site
+                fetchResultsFromAPI(currentLanguage, site, resultsFrame);
+                resultsContainer.appendChild(resultsFrame);
+
+                if (index === 0) {
+                    activeTab = resultsFrame;
+                    tabButton.classList.add("active");
+                    resultsFrame.classList.add("active");
+                }
+            });
+        }
+
+        function fetchResultsFromAPI(language, site, frame) {
+            const apiUrl = apiEndpoints[language][site] + currentQuery;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    frame.innerHTML = `<h3>Results from ${site}</h3>`;
+                    frame.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+                })
+                .catch(error => {
+                    frame.innerHTML = `<p>Error fetching data from ${site}. Please try again later.</p>`;
+                });
+        }
+
+        function showTab(index) {
+            const tabsContainer = document.getElementById("tabs");
+            const tabButtons = tabsContainer.querySelectorAll("button");
+            const resultsFrames = document.getElementById("results").querySelectorAll(".results-frame");
+
+            // Reset all tabs and frames
+            tabButtons.forEach(btn => btn.classList.remove("active"));
+            resultsFrames.forEach(frame => frame.classList.remove("active"));
+
+            // Activate the selected tab and frame
+            tabButtons[index].classList.add("active");
+            resultsFrames[index].classList.add("active");
+        }
+    </script>
+
+</body>
+</html>
