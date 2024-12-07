@@ -2,7 +2,7 @@ easy
 - make all photos the same size
 - add photos for each section
 - fix links to nba over/under and great schools
-- fix link to Haiku website
+
 
 
 - make a detailed list of all notebooks
@@ -31,3 +31,4 @@ Finished items:
 - replace news with new news site
 - move images to folders
 - move websites to folders 
+- fix link to Haiku website
