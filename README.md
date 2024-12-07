@@ -17,7 +17,7 @@
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 
 
-https://github.com/matsunagateitoku/Portfolio/blob/main/websites/fed_search.html
+https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
 - Class website projects:
