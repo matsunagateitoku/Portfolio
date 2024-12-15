@@ -25,7 +25,7 @@ https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html
   qr code
 
 ## Python & Data science 
-![## UX Process](./images/ds.jpg)
+![## UX Process](./images/small.jpg)
   
 | Notebook          | Colab link                                  |
 |-------------------|----------------------------------------------|
