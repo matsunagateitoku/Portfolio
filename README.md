@@ -77,10 +77,4 @@ Instructions to install the project.
 
 ## Usage
 
-Examples of how to use the project.
-
-| Command             | Description                      |
-|---------------------|----------------------------------|
-| `python main.py`    | Run the main application         |
-| `python test.py`    | Run the tests                    |
 
