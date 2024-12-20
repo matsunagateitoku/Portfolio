@@ -15,7 +15,7 @@
 - [Analyst Workbench](https://matsunagateitoku.github.io/Portfolio/websites/awb/awb.html)
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
-- [NLP Toolkit (Coming Soon)](https://matsunagateitoku.github.io/news/wordcloud.html?)
+- [NLP Toolkit (Coming Soon)](https://dolphin-app-kjvwi.ondigitalocean.app/))
 - [Federated Search Tool](https://dolphin-app-kjvwi.ondigitalocean.app/)
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
