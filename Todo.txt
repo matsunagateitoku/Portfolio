@@ -1,8 +1,6 @@
 easy
 - make all photos the same size
 - add photos for each section
-- fix links to nba over/under and great schools
-
 
 
 - make a detailed list of all notebooks
