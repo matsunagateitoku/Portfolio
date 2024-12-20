@@ -16,9 +16,7 @@
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 - [NLP Toolkit (Coming Soon)](https://matsunagateitoku.github.io/news/wordcloud.html?)
-
-
-https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html
+- [Federated Search Tool](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
 - Convert a url to a wordcloud
 - Federated Dictionary Tool
 - Class website projects:
