@@ -146,32 +146,44 @@
       margin-top: 70px;
       display: flex;
       height: calc(100vh - 70px);
+      flex-direction: row;
     }
 
     /* Main canvas area */
     .workspace {
       flex-grow: 1;
-      padding: 20px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
     }
 
-    .input-area {
-      flex-grow: 1;
+    .input-area, .output-area {
+      flex: 1;
       padding: 10px;
       border: 1px solid #ccc;
-      margin-bottom: 20px;
-      height: 40%;
+      margin: 10px;
+      height: calc(100% - 20px);
       resize: none;
+      position: relative;
     }
 
     .output-area {
-      flex-grow: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      height: 50%;
       background-color: #f9f9f9;
       overflow-y: auto;
+    }
+
+    .popout-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .popout-button:hover {
+      background-color: #45a049;
     }
 
     @media (max-width: 768px) {
@@ -237,11 +249,15 @@
   <div class="container">
     <div class="workspace">
       <!-- User input area -->
-      <textarea class="input-area" placeholder="Enter your text here..."></textarea>
+      <div class="input-area">
+        <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
+        <button class="popout-button" onclick="popout('input')">Popout</button>
+      </div>
 
       <!-- Output area for analytics -->
       <div class="output-area" id="output">
         Output will appear here.
+        <button class="popout-button" onclick="popout('output')">Popout</button>
       </div>
     </div>
   </div>
@@ -261,9 +277,21 @@
       sidebarToggle.classList.toggle('open');
     }
 
+    // JavaScript to handle the popout functionality
+    function popout(area) {
+      let content;
+      if (area === 'input') {
+        content = document.querySelector('.input-area-text').value;
+      } else {
+        content = document.getElementById('output').innerHTML;
+      }
+      const newWindow = window.open('', '_blank', 'width=800,height=600');
+      newWindow.document.write(`<html><head><title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title></head><body>${content}</body></html>`);
+    }
+
     // JavaScript to handle the buttons' functionalities
     document.getElementById("mt-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = '<iframe src="https://web.archive.org/web/20241221013958/https://translate.google.com/" style="width: 100%; height: 100%;"></iframe>';
+      document.getElementById("output").innerHTML = '<iframe src="https://translate.google.com/?sl=auto&tl=en&op=translate" style="width: 100%; height: 100%;"></iframe>';
     });
 
     document.getElementById("ocr-btn").addEventListener("click", function() {
