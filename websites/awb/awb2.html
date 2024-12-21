@@ -100,12 +100,11 @@
       color: white;
       height: calc(100% - 60px);
       padding-top: 20px;
-      transform: translateX(-200px);
       transition: transform 0.3s ease;
     }
 
-    nav.open {
-      transform: translateX(0);
+    nav.closed {
+      transform: translateX(-100%);
     }
 
     nav a {
@@ -132,12 +131,12 @@
       cursor: pointer;
       text-align: center;
       line-height: 20px;
-      transform: translateX(-20px);
-      transition: transform 0.3s ease;
+      transition: left 0.3s ease, transform 0.3s ease;
     }
 
-    .sidebar-toggle.open {
-      transform: translateX(0);
+    .sidebar-toggle.closed {
+      left: 0;
+      transform: translateX(-100%);
     }
 
     /* Main container */
@@ -150,7 +149,7 @@
       transition: margin-left 0.3s ease;
     }
 
-    nav.open + .container {
+    nav.closed + .container {
       margin-left: 0;
     }
 
@@ -202,16 +201,24 @@
 
     @media (max-width: 768px) {
       nav {
-        left: -200px;
+        transform: translateX(-100%);
       }
 
-      nav.open {
-        left: 0;
-        transform: none;
+      nav.closed {
+        transform: translateX(-100%);
       }
 
       .container {
         margin-left: 0;
+      }
+
+      .sidebar-toggle {
+        left: 0;
+        transform: translateX(-100%);
+      }
+
+      .sidebar-toggle.closed {
+        transform: translateX(0);
       }
     }
   </style>
@@ -242,7 +249,7 @@
   </div>
 
   <!-- Sidebar with buttons for widgets -->
-  <nav id="sidebar">
+  <nav id="sidebar" class="open">
     <a href="#home" id="mt-btn">Machine Translation</a>
     <a href="#stt">CAT Tool</a>
     <a href="#about">LLM Summary</a>
@@ -303,8 +310,8 @@
       const sidebar = document.getElementById('sidebar');
       const sidebarToggle = document.getElementById('sidebarToggle');
       const container = document.querySelector('.container');
-      sidebar.classList.toggle('open');
-      sidebarToggle.classList.toggle('open');
+      sidebar.classList.toggle('closed');
+      sidebarToggle.classList.toggle('closed');
       container.classList.toggle('expanded');
     }
 
