@@ -61,7 +61,36 @@
       background-color: white;
     }
 
-    /* Navbar links styling */
+    /* Dropdown menu styling */
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 20px;
+      background-color: #333;
+      color: white;
+      width: 200px;
+      z-index: 200;
+      padding-top: 20px;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 15px;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #575757;
+    }
+
+    /* When dropdown menu is open */
+    .dropdown-menu.open {
+      display: block;
+    }
+
+    /* Sidebar styling */
     nav {
       position: fixed;
       top: 60px;
@@ -89,6 +118,26 @@
 
     nav a:hover {
       background-color: #575757;
+    }
+
+    /* Sidebar toggle button */
+    .sidebar-toggle {
+      position: absolute;
+      top: 60px;
+      left: 200px;
+      width: 20px;
+      height: 20px;
+      background-color: #333;
+      color: white;
+      cursor: pointer;
+      text-align: center;
+      line-height: 20px;
+      transform: translateX(-20px);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar-toggle.open {
+      transform: translateX(0);
     }
 
     /* Main container */
@@ -125,36 +174,6 @@
       overflow-y: auto;
     }
 
-    /* Sidebar menu that appears on clicking the hamburger menu */
-    .hamburger-menu-content {
-      display: none;
-      position: fixed;
-      top: 60px;
-      right: 0;
-      background-color: #333;
-      color: white;
-      width: 200px;
-      height: 100%;
-      z-index: 200;
-      padding-top: 20px;
-    }
-
-    .hamburger-menu-content a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 15px;
-    }
-
-    .hamburger-menu-content a:hover {
-      background-color: #575757;
-    }
-
-    /* When hamburger menu is open */
-    .hamburger-menu.open + .hamburger-menu-content {
-      display: block;
-    }
-
     @media (max-width: 768px) {
       nav {
         left: -200px;
@@ -181,15 +200,15 @@
     </div>
 
     <!-- Hamburger menu icon -->
-    <div class="hamburger-menu" onclick="toggleMenu()">
-      <div>help</div>
-      <div>about</div>
-      <div>info</div>
+    <div class="hamburger-menu" onclick="toggleDropdownMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
   </header>
 
-  <!-- Hamburger menu content -->
-  <div class="hamburger-menu-content">
+  <!-- Dropdown menu content -->
+  <div class="dropdown-menu" id="dropdownMenu">
     <a href="#about">About</a>
     <a href="#guide">User's Guide</a>
     <a href="#status">Status</a>
@@ -211,6 +230,9 @@
     <a href="#button5">References</a>
   </nav>
 
+  <!-- Sidebar toggle button -->
+  <div class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">&#9664;</div>
+
   <!-- Main container (workspace) -->
   <div class="container">
     <div class="workspace">
@@ -225,13 +247,18 @@
   </div>
 
   <script>
-    // JavaScript to handle the hamburger menu
-    function toggleMenu() {
-      const menu = document.querySelector('.hamburger-menu-content');
-      menu.classList.toggle('open');
+    // JavaScript to handle the dropdown menu
+    function toggleDropdownMenu() {
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      dropdownMenu.classList.toggle('open');
+    }
 
+    // JavaScript to handle the sidebar
+    function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
+      const sidebarToggle = document.getElementById('sidebarToggle');
       sidebar.classList.toggle('open');
+      sidebarToggle.classList.toggle('open');
     }
 
     // JavaScript to handle the buttons' functionalities
