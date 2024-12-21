@@ -307,7 +307,7 @@
           <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
         </div>
         <div class="button-container">
-          <button onclick="popout('input')">Popout</button>
+          <button onclick="popout('content-viewer')">Popout</button>
           <button onclick="toggleExpand('content-viewer')">Expand</button>
         </div>
       </div>
@@ -319,7 +319,7 @@
           Output will appear here.
         </div>
         <div class="button-container">
-          <button onclick="popout('output')">Popout</button>
+          <button onclick="popout('workbench')">Popout</button>
           <button onclick="toggleExpand('workbench')">Expand</button>
         </div>
       </div>
@@ -364,17 +364,39 @@
     // JavaScript to handle the popout functionality
     function popout(area) {
       let content;
-      const targetBox = document.getElementById(area === 'input' ? 'content-viewer' : (area === 'output' ? 'workbench' : 'artifact'));
-      if (area === 'input') {
+      const targetBox = document.getElementById(area);
+      if (area === 'content-viewer') {
         content = document.querySelector('.input-area-text').value;
-      } else if (area === 'output') {
+      } else if (area === 'workbench') {
         content = document.getElementById('output').innerHTML;
       } else if (area === 'artifact') {
         content = document.getElementById('artifact').innerHTML;
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
-      newWindow.document.write(`<html><head><title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title></head><body>${content}</body></html>`);
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title>
+            <style>
+              body { font-family: Arial, sans-serif; padding: 20px; }
+              .dock-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+              .dock-button:hover { background-color: #45a049; }
+            </style>
+          </head>
+          <body>
+            ${content}
+            <br/><br/>
+            <button class="dock-button" onclick="window.opener.dock('${area}'); window.close();">Dock</button>
+          </body>
+        </html>
+      `);
       targetBox.classList.add('hidden');
+    }
+
+    // JavaScript to handle the dock functionality
+    function dock(area) {
+      const targetBox = document.getElementById(area);
+      targetBox.classList.remove('hidden');
     }
 
     // JavaScript to handle the expand functionality
@@ -438,6 +460,9 @@
     document.getElementById("button5").addEventListener("click", function() {
       alert("Button 5 clicked");
     });
+
+    // Expose the dock function to the global scope so it can be called from the new window
+    window.dock = dock;
   </script>
 </body>
 </html>
