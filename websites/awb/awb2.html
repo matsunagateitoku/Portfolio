@@ -147,6 +147,11 @@
       display: flex;
       height: calc(100vh - 70px);
       flex-direction: row;
+      transition: margin-left 0.3s ease;
+    }
+
+    nav.open + .container {
+      margin-left: 0;
     }
 
     /* Main canvas area */
@@ -171,6 +176,8 @@
     .content-box-header {
       font-weight: bold;
       margin-bottom: 10px;
+      background-color: #e0e0e0;
+      padding: 10px;
     }
 
     .content-box-content {
@@ -267,10 +274,8 @@
       <!-- Workbench box -->
       <div class="content-box">
         <div class="content-box-header">Workbench</div>
-        <div class="content-box-content">
-          <div id="output">
-            Output will appear here.
-          </div>
+        <div class="content-box-content" id="output">
+          Output will appear here.
         </div>
         <button class="popout-button" onclick="popout('output')">Popout</button>
       </div>
@@ -278,7 +283,7 @@
       <!-- Artifact box -->
       <div class="content-box">
         <div class="content-box-header">Artifact</div>
-        <div class="content-box-content">
+        <div class="content-box-content" id="artifact">
           <!-- Add any initial content here for the Artifact box -->
         </div>
         <button class="popout-button" onclick="popout('artifact')">Popout</button>
@@ -297,8 +302,10 @@
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const sidebarToggle = document.getElementById('sidebarToggle');
+      const container = document.querySelector('.container');
       sidebar.classList.toggle('open');
       sidebarToggle.classList.toggle('open');
+      container.classList.toggle('expanded');
     }
 
     // JavaScript to handle the popout functionality
@@ -309,7 +316,7 @@
       } else if (area === 'output') {
         content = document.getElementById('output').innerHTML;
       } else if (area === 'artifact') {
-        content = document.querySelector('.content-box-content').innerHTML;
+        content = document.getElementById('artifact').innerHTML;
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
       newWindow.document.write(`<html><head><title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title></head><body>${content}</body></html>`);
