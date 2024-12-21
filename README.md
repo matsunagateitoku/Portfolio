@@ -13,6 +13,7 @@
 - [News Website,version2.0](https://matsunagateitoku.github.io/STDP_News/)
 - [Haiku Website](https://matsunagateitoku.github.io/Haiku-Website/)
 - [Analyst Workbench](https://matsunagateitoku.github.io/Portfolio/websites/awb/awb.html)
+- - [Analyst Workbench2.0](https://matsunagateitoku.github.io/Portfolio/websites/awb/awb2.html)
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 - [NLP Toolkit (Coming Soon)](https://dolphin-app-kjvwi.ondigitalocean.app/)
