@@ -156,7 +156,7 @@
       flex-direction: row;
     }
 
-    .input-area, .output-area {
+    .content-box {
       flex: 1;
       padding: 10px;
       border: 1px solid #ccc;
@@ -164,10 +164,17 @@
       height: calc(100% - 20px);
       resize: none;
       position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
-    .output-area {
-      background-color: #f9f9f9;
+    .content-box-header {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .content-box-content {
+      flex: 1;
       overflow-y: auto;
     }
 
@@ -248,16 +255,33 @@
   <!-- Main container (workspace) -->
   <div class="container">
     <div class="workspace">
-      <!-- User input area -->
-      <div class="input-area">
-        <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
+      <!-- Content Viewer box -->
+      <div class="content-box">
+        <div class="content-box-header">Content Viewer</div>
+        <div class="content-box-content">
+          <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
+        </div>
         <button class="popout-button" onclick="popout('input')">Popout</button>
       </div>
 
-      <!-- Output area for analytics -->
-      <div class="output-area" id="output">
-        Output will appear here.
+      <!-- Workbench box -->
+      <div class="content-box">
+        <div class="content-box-header">Workbench</div>
+        <div class="content-box-content">
+          <div id="output">
+            Output will appear here.
+          </div>
+        </div>
         <button class="popout-button" onclick="popout('output')">Popout</button>
+      </div>
+
+      <!-- Artifact box -->
+      <div class="content-box">
+        <div class="content-box-header">Artifact</div>
+        <div class="content-box-content">
+          <!-- Add any initial content here for the Artifact box -->
+        </div>
+        <button class="popout-button" onclick="popout('artifact')">Popout</button>
       </div>
     </div>
   </div>
@@ -282,8 +306,10 @@
       let content;
       if (area === 'input') {
         content = document.querySelector('.input-area-text').value;
-      } else {
+      } else if (area === 'output') {
         content = document.getElementById('output').innerHTML;
+      } else if (area === 'artifact') {
+        content = document.querySelector('.content-box-content').innerHTML;
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
       newWindow.document.write(`<html><head><title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title></head><body>${content}</body></html>`);
