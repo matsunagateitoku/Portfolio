@@ -167,6 +167,7 @@
       flex-grow: 1;
       display: flex;
       flex-direction: row;
+      overflow: hidden; /* To prevent overflow when expanding a section */
     }
 
     .content-box {
@@ -179,6 +180,14 @@
       position: relative;
       display: flex;
       flex-direction: column;
+      transition: all 0.3s ease;
+    }
+
+    .content-box.expanded {
+      flex: 1 1 100%;
+      margin: 0;
+      height: 100%;
+      z-index: 100; /* Ensure it stays above other elements */
     }
 
     .content-box-header {
@@ -194,10 +203,15 @@
       overflow-y: auto;
     }
 
-    .popout-button {
+    .button-container {
       position: absolute;
       top: 10px;
       right: 10px;
+      display: flex;
+      gap: 5px;
+    }
+
+    .button-container button {
       padding: 5px 10px;
       background-color: #4CAF50;
       color: white;
@@ -207,7 +221,7 @@
       transition: background-color 0.3s ease;
     }
 
-    .popout-button:hover {
+    .button-container button:hover {
       background-color: #45a049;
     }
 
@@ -281,30 +295,39 @@
   <div class="container">
     <div class="workspace">
       <!-- Content Viewer box -->
-      <div class="content-box">
+      <div class="content-box" id="content-viewer">
         <div class="content-box-header">Content Viewer</div>
         <div class="content-box-content">
           <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
         </div>
-        <button class="popout-button" onclick="popout('input')">Popout</button>
+        <div class="button-container">
+          <button onclick="popout('input')">Popout</button>
+          <button onclick="toggleExpand('content-viewer')">Expand</button>
+        </div>
       </div>
 
       <!-- Workbench box -->
-      <div class="content-box">
+      <div class="content-box" id="workbench">
         <div class="content-box-header">Workbench</div>
         <div class="content-box-content" id="output">
           Output will appear here.
         </div>
-        <button class="popout-button" onclick="popout('output')">Popout</button>
+        <div class="button-container">
+          <button onclick="popout('output')">Popout</button>
+          <button onclick="toggleExpand('workbench')">Expand</button>
+        </div>
       </div>
 
       <!-- Artifact box -->
-      <div class="content-box">
+      <div class="content-box" id="artifact">
         <div class="content-box-header">Artifact</div>
-        <div class="content-box-content" id="artifact">
+        <div class="content-box-content">
           <!-- Add any initial content here for the Artifact box -->
         </div>
-        <button class="popout-button" onclick="popout('artifact')">Popout</button>
+        <div class="button-container">
+          <button onclick="popout('artifact')">Popout</button>
+          <button onclick="toggleExpand('artifact')">Expand</button>
+        </div>
       </div>
     </div>
   </div>
@@ -344,6 +367,20 @@
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
       newWindow.document.write(`<html><head><title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title></head><body>${content}</body></html>`);
+    }
+
+    // JavaScript to handle the expand functionality
+    function toggleExpand(id) {
+      const allBoxes = document.querySelectorAll('.content-box');
+      const targetBox = document.getElementById(id);
+      if (targetBox.classList.contains('expanded')) {
+        allBoxes.forEach(box => box.classList.remove('hidden'));
+        targetBox.classList.remove('expanded');
+      } else {
+        allBoxes.forEach(box => box.classList.add('hidden'));
+        targetBox.classList.add('expanded');
+        targetBox.classList.remove('hidden');
+      }
     }
 
     // JavaScript to handle the buttons' functionalities
