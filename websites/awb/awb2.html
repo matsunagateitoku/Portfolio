@@ -183,6 +183,10 @@
       transition: all 0.3s ease;
     }
 
+    .content-box.hidden {
+      display: none;
+    }
+
     .content-box.expanded {
       flex: 1 1 100%;
       margin: 0;
@@ -373,13 +377,16 @@
     function toggleExpand(id) {
       const allBoxes = document.querySelectorAll('.content-box');
       const targetBox = document.getElementById(id);
+      const button = targetBox.querySelector('.button-container button:last-of-type');
       if (targetBox.classList.contains('expanded')) {
         allBoxes.forEach(box => box.classList.remove('hidden'));
         targetBox.classList.remove('expanded');
+        button.textContent = 'Expand';
       } else {
         allBoxes.forEach(box => box.classList.add('hidden'));
         targetBox.classList.add('expanded');
         targetBox.classList.remove('hidden');
+        button.textContent = 'Shrink';
       }
     }
 
