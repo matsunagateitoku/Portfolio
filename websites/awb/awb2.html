@@ -224,17 +224,16 @@
     }
 
     .button-container button {
-      padding: 5px;
+      padding: 5px 10px;
       background-color: transparent;
-      color: black;
+      color: grey;
       border: none;
       cursor: pointer;
       font-size: 18px;
-      transition: color 0.3s ease;
     }
 
     .button-container button:hover {
-      color: #4CAF50;
+      color: black;
     }
 
     .content-box-footer {
@@ -335,7 +334,7 @@
           <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 80px);"></textarea>
         </div>
         <div class="button-container">
-          <button onclick="popout('content-viewer')">⛶</button>
+          <button onclick="popout('content-viewer')">🗖</button>
           <button onclick="toggleExpand('content-viewer')">🗕</button>
           <button onclick="closeBox('content-viewer')">✖</button>
         </div>
@@ -351,7 +350,7 @@
           Your workbench for analysis with every tool you need.
         </div>
         <div class="button-container">
-          <button onclick="popout('workbench')">⛶</button>
+          <button onclick="popout('workbench')">🗖</button>
           <button onclick="toggleExpand('workbench')">🗕</button>
           <button onclick="closeBox('workbench')">✖</button>
         </div>
@@ -367,7 +366,7 @@
           Your work is saved here.
         </div>
         <div class="button-container">
-          <button onclick="popout('artifact')">⛶</button>
+          <button onclick="popout('artifact')">🗖</button>
           <button onclick="toggleExpand('artifact')">🗕</button>
           <button onclick="closeBox('artifact')">✖</button>
         </div>
@@ -449,7 +448,7 @@
         allBoxes.forEach(box => box.classList.add('hidden'));
         targetBox.classList.add('expanded');
         targetBox.classList.remove('hidden');
-        button.textContent = '🗗';
+        button.textContent = '🗖';
       }
     }
 
