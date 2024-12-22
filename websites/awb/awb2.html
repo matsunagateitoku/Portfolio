@@ -336,7 +336,7 @@ header .logo span {
      <a href="#notes" class="sidebar-btn">Notes</a>
     <a href="#mt" class="sidebar-btn" id="mt-btn">Machine Translation</a>
     <a href="#about" class="sidebar-btn" id="llm-btn">LLM Services</a>
-    <a href="#stt" class="sidebar-btn">Edit Speech-to-Text</a>
+    <a href="#stt" class="sidebar-btn"id="stt-btn">Edit Speech-to-Text</a>
     <a href="#ocr" class="sidebar-btn" id="ocr-btn">Edit OCR Output</a>
     <a href="#button1" class="sidebar-btn">Annotation Tools</a>
     <a href="#dictionary" class="sidebar-btn">Dictionary</a>
@@ -523,9 +523,13 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById("output").innerHTML = '<img src="./images/demo.gif" style="width: 100%; height: 100%; border: none;">';
     });
 
-document.getElementById("ocr-btn").addEventListener("click", function() {
-  document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image as an Artifact.";
-});
+    document.getElementById("ocr-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image as an Artifact.";
+    });
+
+    document.getElementById("stt-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>STT widget opened.</h2> <br/> <br/> Here you will see your STT output. <br/> You can edit the STT output to create a full transcript and save the edited STT transcript as an Artifact.";
+    });
 
     document.getElementById("other-btn").addEventListener("click", function() {
       document.getElementById("output").textContent = "Other widget opened.";
