@@ -528,7 +528,7 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
     });
 
     document.getElementById("notes-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>Notes widget opened.</h2> <br/> <br/> Here you can "scribble" notes. <form action="/submit" method="post">
+      document.getElementById("output").innerHTML = "<h2>Notes widget opened.</h2> <br/> <br/> <p>Here you can scribble notes.</p> <form action="/submit" method="post">
   <label for="user-input">Enter your text:</label>
   <input type="text" id="user-input" name="user-input" placeholder="Type something here">
   <button type="submit">Submit</button>
