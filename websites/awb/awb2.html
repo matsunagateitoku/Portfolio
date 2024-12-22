@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Analyst Workbench</title>
+  <!-- Include Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* Global styling */
     * {
@@ -223,18 +225,16 @@
       gap: 5px;
     }
 
-    .button-container button {
-      padding: 5px 10px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
+    .button-container i {
       cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
+      font-size: 16px;
+      padding: 5px;
+      color: #4CAF50;
+      transition: color 0.3s ease;
     }
 
-    .button-container button:hover {
-      background-color: #45a049;
+    .button-container i:hover {
+      color: #45a049;
     }
 
     .content-box-footer {
@@ -335,9 +335,9 @@
           <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 80px);"></textarea>
         </div>
         <div class="button-container">
-          <button onclick="popout('content-viewer')">Popout</button>
-          <button onclick="toggleExpand('content-viewer')">Expand</button>
-          <button onclick="closeBox('content-viewer')">Close</button>
+          <i class="fas fa-window-restore" onclick="popout('content-viewer')" title="Popout"></i>
+          <i class="fas fa-window-maximize" onclick="toggleExpand('content-viewer')" title="Expand"></i>
+          <i class="fas fa-window-close" onclick="closeBox('content-viewer')" title="Close"></i>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToBench()">Send to Bench</button>
@@ -351,9 +351,9 @@
           Your workbench for analysis with every tool you need.
         </div>
         <div class="button-container">
-          <button onclick="popout('workbench')">Popout</button>
-          <button onclick="toggleExpand('workbench')">Expand</button>
-          <button onclick="closeBox('workbench')">Close</button>
+          <i class="fas fa-window-restore" onclick="popout('workbench')" title="Popout"></i>
+          <i class="fas fa-window-maximize" onclick="toggleExpand('workbench')" title="Expand"></i>
+          <i class="fas fa-window-close" onclick="closeBox('workbench')" title="Close"></i>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToArtifact()">Send to Artifact</button>
@@ -367,9 +367,9 @@
           Your work is saved here.
         </div>
         <div class="button-container">
-          <button onclick="popout('artifact')">Popout</button>
-          <button onclick="toggleExpand('artifact')">Expand</button>
-          <button onclick="closeBox('artifact')">Close</button>
+          <i class="fas fa-window-restore" onclick="popout('artifact')" title="Popout"></i>
+          <i class="fas fa-window-maximize" onclick="toggleExpand('artifact')" title="Expand"></i>
+          <i class="fas fa-window-close" onclick="closeBox('artifact')" title="Close"></i>
         </div>
       </div>
     </div>
@@ -440,16 +440,16 @@
     function toggleExpand(id) {
       const allBoxes = document.querySelectorAll('.content-box');
       const targetBox = document.getElementById(id);
-      const button = targetBox.querySelector('.button-container button:nth-child(2)');
+      const button = targetBox.querySelector('.button-container i:nth-child(2)');
       if (targetBox.classList.contains('expanded')) {
         allBoxes.forEach(box => box.classList.remove('hidden'));
         targetBox.classList.remove('expanded');
-        button.textContent = 'Expand';
+        button.classList.replace('fa-window-minimize', 'fa-window-maximize');
       } else {
         allBoxes.forEach(box => box.classList.add('hidden'));
         targetBox.classList.add('expanded');
         targetBox.classList.remove('hidden');
-        button.textContent = 'Shrink';
+        button.classList.replace('fa-window-maximize', 'fa-window-minimize');
       }
     }
 
@@ -520,8 +520,4 @@
       alert("Button 5 clicked");
     });
 
-    // Expose the dock function to the global scope so it can be called from the new window
-    window.dock = dock;
-  </script>
-</body>
-</html>
+    // Expose the dock function to the global scope so it can be called from
