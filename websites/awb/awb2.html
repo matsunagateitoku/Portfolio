@@ -332,11 +332,12 @@
       <div class="content-box" id="content-viewer">
         <div class="content-box-header">Content Viewer</div>
         <div class="content-box-content">
-          <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 40px);"></textarea>
+          <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 80px);"></textarea>
         </div>
         <div class="button-container">
           <button onclick="popout('content-viewer')">Popout</button>
           <button onclick="toggleExpand('content-viewer')">Expand</button>
+          <button onclick="closeBox('content-viewer')">Close</button>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToBench()">Send to Bench</button>
@@ -347,11 +348,12 @@
       <div class="content-box" id="workbench">
         <div class="content-box-header">Workbench</div>
         <div class="content-box-content" id="output">
-          Your workbench for analysis with evey tool you need.
+          Your workbench for analysis with every tool you need.
         </div>
         <div class="button-container">
           <button onclick="popout('workbench')">Popout</button>
           <button onclick="toggleExpand('workbench')">Expand</button>
+          <button onclick="closeBox('workbench')">Close</button>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToArtifact()">Send to Artifact</button>
@@ -367,6 +369,7 @@
         <div class="button-container">
           <button onclick="popout('artifact')">Popout</button>
           <button onclick="toggleExpand('artifact')">Expand</button>
+          <button onclick="closeBox('artifact')">Close</button>
         </div>
       </div>
     </div>
@@ -437,7 +440,7 @@
     function toggleExpand(id) {
       const allBoxes = document.querySelectorAll('.content-box');
       const targetBox = document.getElementById(id);
-      const button = targetBox.querySelector('.button-container button:last-of-type');
+      const button = targetBox.querySelector('.button-container button:nth-child(2)');
       if (targetBox.classList.contains('expanded')) {
         allBoxes.forEach(box => box.classList.remove('hidden'));
         targetBox.classList.remove('expanded');
@@ -448,6 +451,12 @@
         targetBox.classList.remove('hidden');
         button.textContent = 'Shrink';
       }
+    }
+
+    // JavaScript to handle the close functionality
+    function closeBox(id) {
+      const targetBox = document.getElementById(id);
+      targetBox.classList.add('hidden');
     }
 
     // JavaScript to handle the buttons' functionalities
