@@ -333,7 +333,7 @@ header .logo span {
   <nav id="sidebar">
     <a href="#cat" class="sidebar-btn" id="cat-tool-btn">CAT Tool</a>
     <a href="#scratchpad" class="sidebar-btn" id="sp-btn">ScratchPad</a>
-     <a href="#notes" class="sidebar-btn">Notes</a>
+     <a href="#notes" class="sidebar-btn"id="notes-btn">Notes</a>
     <a href="#mt" class="sidebar-btn" id="mt-btn">Machine Translation</a>
     <a href="#about" class="sidebar-btn" id="llm-btn">LLM Services</a>
     <a href="#stt" class="sidebar-btn"id="stt-btn">Edit Speech-to-Text</a>
@@ -525,6 +525,14 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
 
     document.getElementById("ocr-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image as an Artifact.";
+    });
+
+    document.getElementById("notes-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Notes widget opened.</h2> <br/> <br/> Here you can "scribble" notes. <form action="/submit" method="post">
+  <label for="user-input">Enter your text:</label>
+  <input type="text" id="user-input" name="user-input" placeholder="Type something here">
+  <button type="submit">Submit</button>
+</form>";
     });
 
     document.getElementById("stt-btn").addEventListener("click", function() {
