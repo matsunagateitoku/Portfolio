@@ -18,62 +18,63 @@
     }
 
     /* Top banner */
-    header {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px;
-      text-align: left;
-      font-size: 24px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  text-align: left;
+  font-size: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-    header .logo {
-      font-size: 30px;
-      font-weight: bold;
-      margin-left: 20px;
-    }
+header .logo {
+  font-size: 30px;
+  font-weight: bold;
+  margin-left: 20px;
+  cursor: pointer; /* Add cursor pointer to indicate clickability */
+}
 
-    header .logo span {
-      color: #f39c12; /* A golden color for workbench accent */
-    }
+header .logo span {
+  color: #f39c12; /* A golden color for workbench accent */
+}
 
-    /* Hamburger menu styling */
-    .hamburger-menu {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 30px;
-      cursor: pointer;
-      margin-right: 20px;
-      position: relative;
-    }
-    #hoverover-btn {
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-left: 10px; /* Adjust spacing between hoverover button and hamburger menu */
+  position: relative;
+}
+
+.hamburger-menu div {
+  width: 30px;
+  height: 4px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+#hoverover-btn {
   padding: 5px 10px;
   background-color: #4CAF50;
   color: white;
   border: none;
   cursor: pointer;
   font-size: 18px;
-  margin-left: 10px; /* Adjust spacing as needed */
 }
 
 #hoverover-btn:hover {
   background-color: #45a049;
 }
-    .hamburger-menu div {
-      width: 30px;
-      height: 4px;
-      background-color: white;
-      transition: all 0.3s ease;
-    }
 
     /* Dropdown menu styling */
     .dropdown-menu {
@@ -302,21 +303,23 @@
 <body>
 
   <!-- Header with title and logo -->
-  <header>
-    
-  <div class="logo">
-    <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
+<!-- Header with title and logo -->
+<header>
+  <div class="logo" onclick="resetSite()">
+    <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
     Analyst <span>Workbench</span>
   </div>
 
-  <button id="hoverover-btn" onclick="toggleHoverover()">Hoverover On</button>
-    <!-- Hamburger menu icon -->
+  <!-- Hoverover button and Hamburger menu icon -->
+  <div style="display: flex; align-items: center;">
+    <button id="hoverover-btn" onclick="toggleHoverover()">Hoverover On</button>
     <div class="hamburger-menu" onclick="toggleDropdownMenu()">
       <div></div>
       <div></div>
       <div></div>
     </div>
-  </header>
+  </div>
+</header>
 
   <!-- Dropdown menu content -->
   <div class="dropdown-menu" id="dropdownMenu">
