@@ -332,7 +332,7 @@ header .logo span {
   <!-- Sidebar with buttons for widgets -->
   <nav id="sidebar">
     <a href="#cat" class="sidebar-btn" id="cat-tool-btn">CAT Tool</a>
-    <a href="#scratchpad" class="sidebar-btn">ScratchPad</a>
+    <a href="#scratchpad" class="sidebar-btn" id="sp-btn">ScratchPad</a>
      <a href="#notes" class="sidebar-btn">Notes</a>
     <a href="#mt" class="sidebar-btn" id="mt-btn">Machine Translation</a>
     <a href="#about" class="sidebar-btn" id="llm-btn">LLM Services</a>
@@ -529,6 +529,10 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
 
     document.getElementById("stt-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = "<h2>STT widget opened.</h2> <br/> <br/> Here you will see your STT output. <br/> You can edit the STT output to create a full transcript and save the edited STT transcript as an Artifact.";
+    });
+
+    document.getElementById("sp-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>ScratchPad widget opened.</h2> <br/> <br/> Here you will see your text on a free-form cavas. <br/> You have a suite of useful tools to help you understand the text.";
     });
 
     document.getElementById("other-btn").addEventListener("click", function() {
