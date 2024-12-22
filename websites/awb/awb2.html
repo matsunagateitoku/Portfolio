@@ -221,20 +221,20 @@
       right: 10px;
       display: flex;
       gap: 5px;
-      font-size: 20px;
     }
 
     .button-container button {
-      background: none;
+      padding: 5px;
+      background-color: transparent;
+      color: black;
       border: none;
       cursor: pointer;
-      color: #4CAF50;
-      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 18px;
+      transition: color 0.3s ease;
     }
 
     .button-container button:hover {
-      color: #45a049;
-      transform: scale(1.1);
+      color: #4CAF50;
     }
 
     .content-box-footer {
@@ -335,9 +335,9 @@
           <textarea class="input-area-text" placeholder="Enter your text here..." style="width: 100%; height: calc(100% - 80px);"></textarea>
         </div>
         <div class="button-container">
-          <button onclick="popout('content-viewer')" title="Popout">➖</button>
-          <button onclick="toggleExpand('content-viewer')" title="Expand">🔼</button>
-          <button onclick="closeBox('content-viewer')" title="Close">❌</button>
+          <button onclick="popout('content-viewer')">⛶</button>
+          <button onclick="toggleExpand('content-viewer')">🗕</button>
+          <button onclick="closeBox('content-viewer')">✖</button>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToBench()">Send to Bench</button>
@@ -351,9 +351,9 @@
           Your workbench for analysis with every tool you need.
         </div>
         <div class="button-container">
-          <button onclick="popout('workbench')" title="Popout">➖</button>
-          <button onclick="toggleExpand('workbench')" title="Expand">🔼</button>
-          <button onclick="closeBox('workbench')" title="Close">❌</button>
+          <button onclick="popout('workbench')">⛶</button>
+          <button onclick="toggleExpand('workbench')">🗕</button>
+          <button onclick="closeBox('workbench')">✖</button>
         </div>
         <div class="content-box-footer">
           <button onclick="sendToArtifact()">Send to Artifact</button>
@@ -367,9 +367,9 @@
           Your work is saved here.
         </div>
         <div class="button-container">
-          <button onclick="popout('artifact')" title="Popout">➖</button>
-          <button onclick="toggleExpand('artifact')" title="Expand">🔼</button>
-          <button onclick="closeBox('artifact')" title="Close">❌</button>
+          <button onclick="popout('artifact')">⛶</button>
+          <button onclick="toggleExpand('artifact')">🗕</button>
+          <button onclick="closeBox('artifact')">✖</button>
         </div>
       </div>
     </div>
@@ -444,14 +444,12 @@
       if (targetBox.classList.contains('expanded')) {
         allBoxes.forEach(box => box.classList.remove('hidden'));
         targetBox.classList.remove('expanded');
-        button.textContent = '🔼'; // Expand icon
-        button.title = 'Expand';
+        button.textContent = '🗕';
       } else {
         allBoxes.forEach(box => box.classList.add('hidden'));
         targetBox.classList.add('expanded');
         targetBox.classList.remove('hidden');
-        button.textContent = '🔽'; // Shrink icon
-        button.title = 'Shrink';
+        button.textContent = '🗗';
       }
     }
 
