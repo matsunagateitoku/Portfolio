@@ -344,7 +344,9 @@ header .logo span {
     <a href="#hoverover" class="sidebar-btn" id="termbase-btn">Termbase</a> 
     <a href="#button2" class="sidebar-btn"id="research-btn">Research Tools</a>
     <a href="#button3" class="sidebar-btn" id="query-btn">Query Tools</a>
-    <a href="#button4" class="sidebar-btn" id="policy-btn">Policy Documents</a>
+
+    
+    <!-- <a href="#button4" class="sidebar-btn" id="policy-btn">Policy Documents</a> -->
       <!-- <a href="#button5" class="sidebar-btn">References</a> -->
     <a href="#button5" class="sidebar-btn" id="add-btn">⨁ Add Bench</a>
   </nav>
@@ -550,8 +552,26 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
     });
 
     document.getElementById("sp-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>ScratchPad widget opened.</h2> <br/> <br/> Here you will see your text on a free-form cavas. <br/> You have a suite of useful tools to help you understand the text.";
+      document.getElementById("output").innerHTML = "<h2>ScratchPad widget opened.</h2> <br/> <br/> Here you will see your text on a free-form canvas. <br/> You have a suite of useful tools to help you understand the text.";
     });
+
+
+    
+    document.getElementById("research-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Research widget opened.</h2> <br/> <br/> Here you will see your all the tools that can help you do research.<br/> <br/> Here you can also look up policy documents";
+    });
+
+        document.getElementById("query-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Query widget opened.</h2> <br/> <br/> Here you can do speicalized queries.";
+    });
+
+
+
+
+
+
+
+    
 
     document.getElementById("other-btn").addEventListener("click", function() {
       document.getElementById("output").textContent = "Other widget opened.";
