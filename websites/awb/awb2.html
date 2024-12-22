@@ -522,9 +522,9 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById("output").innerHTML = '<img src="./images/demo.gif" style="width: 100%; height: 100%; border: none;">';
     });
 
-    document.getElementById("ocr-btn").addEventListener("click", function() {
-      document.getElementById("output").textContent = "<h2>OCR widget opened.</h2> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image.";
-    });
+document.getElementById("ocr-btn").addEventListener("click", function() {
+  document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image.";
+});
 
     document.getElementById("other-btn").addEventListener("click", function() {
       document.getElementById("output").textContent = "Other widget opened.";
