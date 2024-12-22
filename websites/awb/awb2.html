@@ -55,7 +55,19 @@
       margin-right: 20px;
       position: relative;
     }
+    #hoverover-btn {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  margin-left: 10px; /* Adjust spacing as needed */
+}
 
+#hoverover-btn:hover {
+  background-color: #45a049;
+}
     .hamburger-menu div {
       width: 30px;
       height: 4px;
@@ -67,7 +79,7 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 60px; /* Adjusted to align with the bottom of the header */
+      top: 60px; /* Adjusted to align with the bottom of the  */
       right: 20px;
       background-color: #333;
       color: white;
@@ -202,7 +214,7 @@
       z-index: 100; /* Ensure it stays above other elements */
     }
 
-    .content-box-header {
+    .content-box- {
       font-weight: bold;
       margin-bottom: 10px;
       background-color: #e0e0e0;
@@ -283,11 +295,13 @@
 
   <!-- Header with title and logo -->
   <header>
-    <div class="logo">
-      <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
-      Analyst <span>Workbench</span>
-    </div>
+    
+  <div class="logo">
+    <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
+    Analyst <span>Workbench</span>
+  </div>
 
+  <button id="hoverover-btn" onclick="toggleHoverover()">Hoverover On</button>
     <!-- Hamburger menu icon -->
     <div class="hamburger-menu" onclick="toggleDropdownMenu()">
       <div></div>
@@ -375,6 +389,24 @@
   </div>
 
   <script>
+    function toggleHoverover() {
+  const hoveroverBtn = document.getElementById('hoverover-btn');
+  if (hoveroverBtn.textContent === 'Hoverover On') {
+    hoveroverBtn.textContent = 'Hoverover Off';
+    // Add logic to enable hoverover functionality
+  } else {
+    hoveroverBtn.textContent = 'Hoverover On';
+    // Add logic to disable hoverover functionality
+  }
+}
+
+function resetSite() {
+  location.reload(); // This will reload the page to its initial state
+}
+
+// Add event listener to the logo image to reset the site
+document.querySelector('.logo img').addEventListener('click', resetSite);
+    
     // JavaScript to handle the dropdown menu
     function toggleDropdownMenu() {
       const dropdownMenu = document.getElementById('dropdownMenu');
