@@ -335,7 +335,7 @@
         </div>
         <div class="button-container">
           <button onclick="popout('content-viewer')">🗖</button>
-          <button onclick="toggleExpand('content-viewer')">🗕</button>
+          <button onclick="toggleExpand('content-viewer')">🗗</button>
           <button onclick="closeBox('content-viewer')">✖</button>
         </div>
         <div class="content-box-footer">
@@ -351,7 +351,7 @@
         </div>
         <div class="button-container">
           <button onclick="popout('workbench')">🗖</button>
-          <button onclick="toggleExpand('workbench')">🗕</button>
+          <button onclick="toggleExpand('workbench')">🗗</button>
           <button onclick="closeBox('workbench')">✖</button>
         </div>
         <div class="content-box-footer">
@@ -367,7 +367,7 @@
         </div>
         <div class="button-container">
           <button onclick="popout('artifact')">🗖</button>
-          <button onclick="toggleExpand('artifact')">🗕</button>
+          <button onclick="toggleExpand('artifact')">🗗</button>
           <button onclick="closeBox('artifact')">✖</button>
         </div>
       </div>
@@ -443,7 +443,7 @@
       if (targetBox.classList.contains('expanded')) {
         allBoxes.forEach(box => box.classList.remove('hidden'));
         targetBox.classList.remove('expanded');
-        button.textContent = '🗕';
+        button.textContent = '🗗';
       } else {
         allBoxes.forEach(box => box.classList.add('hidden'));
         targetBox.classList.add('expanded');
