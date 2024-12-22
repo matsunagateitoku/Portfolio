@@ -536,9 +536,13 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById("output").innerHTML = "<h2>Notes widget opened.</h2> <br/> <br/> <p>Here you can scribble notes.</p>";
     });
 
-
     document.getElementById("annotation-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = "<h2>Annotation widget opened.</h2> <br/> <br/> <p>Here you can annotation data to train AI/ML models.</p>";
+    });
+
+    
+    document.getElementById("termbase-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Termbase widget opened.</h2> <br/> <br/> <p>Here you can look up terms with speical defitions in a termbase.</p>";
     });
 
     document.getElementById("stt-btn").addEventListener("click", function() {
