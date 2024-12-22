@@ -338,7 +338,8 @@ header .logo span {
     <a href="#stt" class="sidebar-btn">Edit Speech-to-Text</a>
     <a href="#ocr" class="sidebar-btn">Edit OCR Output</a>
     <a href="#button1" class="sidebar-btn">Annotation Tools</a>
-    <a href="#hoverover" class="sidebar-btn">Dictionary</a> 
+    <a href="#hoverover" class="sidebar-btn">Dictionary</a>
+        <input type="text" id="dictionary-input" placeholder="Enter text here">
     <a href="#hoverover" class="sidebar-btn">Termbase</a> 
     <a href="#button2" class="sidebar-btn">Research Tools</a>
     <a href="#button3" class="sidebar-btn">Query Tools</a>
@@ -562,6 +563,11 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
     document.getElementById("button5").addEventListener("click", function() {
       alert("Button 5 clicked");
     });
+    document.getElementById("dictionary-input").addEventListener("input", function() {
+    const inputContent = this.value;
+    console.log("Dictionary input:", inputContent);
+    // Add your handling code here
+});
 
     // Expose the dock function to the global scope so it can be called from the new window
     window.dock = dock;
