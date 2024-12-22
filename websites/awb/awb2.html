@@ -338,7 +338,7 @@ header .logo span {
     <a href="#about" class="sidebar-btn" id="llm-btn">LLM Services</a>
     <a href="#stt" class="sidebar-btn"id="stt-btn">Edit Speech-to-Text</a>
     <a href="#ocr" class="sidebar-btn" id="ocr-btn">Edit OCR Output</a>
-    <a href="#button1" class="sidebar-btn">Annotation Tools</a>
+    <a href="#button1" class="sidebar-btn" id="annotation-btn">Annotation Tools</a>
     <a href="#dictionary" class="sidebar-btn">Dictionary</a>
     <a href="#hoverover" class="sidebar-btn">Termbase</a> 
     <a href="#button2" class="sidebar-btn">Research Tools</a>
@@ -529,6 +529,11 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
 
     document.getElementById("notes-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = "<h2>Notes widget opened.</h2> <br/> <br/> <p>Here you can scribble notes.</p>";
+    });
+
+
+    document.getElementById("annotation-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Annotation widget opened.</h2> <br/> <br/> <p>Here you can annotation data to train AI/ML models.</p>";
     });
 
     document.getElementById("stt-btn").addEventListener("click", function() {
