@@ -339,7 +339,7 @@ header .logo span {
     <a href="#stt" class="sidebar-btn"id="stt-btn">Edit Speech-to-Text</a>
     <a href="#ocr" class="sidebar-btn" id="ocr-btn">Edit OCR Output</a>
     <a href="#button1" class="sidebar-btn" id="annotation-btn">Annotation Tools</a>
-    <a href="#dictionary" class="sidebar-btn">Dictionary</a>
+    <a href="#dictionary" class="sidebar-btn" id="dictionary-btn">Dictionary</a>
     <a href="#hoverover" class="sidebar-btn">Termbase</a> 
     <a href="#button2" class="sidebar-btn">Research Tools</a>
     <a href="#button3" class="sidebar-btn">Query Tools</a>
@@ -525,6 +525,10 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
 
     document.getElementById("ocr-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image as an Artifact.";
+    });
+
+    document.getElementById("dictionary-btn").addEventListener("click", function() {
+      document.getElementById("output").innerHTML = "<h2>Dictionary widget opened.</h2> <br/> <br/> You can look up terms here";
     });
 
     document.getElementById("notes-btn").addEventListener("click", function() {
