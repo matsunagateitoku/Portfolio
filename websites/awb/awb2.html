@@ -446,6 +446,18 @@ header button:hover {
 
   <script>
 
+   function getSelectedText() {
+    let selection = window.getSelection();
+    if (selection.toString().length > 0) {
+        // Return the highlighted (selected) text
+        return selection.toString();
+    } else {
+        // If no selection, return null
+        return null;
+    }
+}
+
+
    function submitId() {
   const id = document.getElementById('idInput').value;
   if (id) {
@@ -639,11 +651,34 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById("output").textContent = "Other widget opened.";
     });
 
-    // Function to send content from Content Viewer to Workbench
+   /* orgianl version; no highlighting 
+   
+   // Function to send content from Content Viewer to Workbench
     function sendToBench() {
       const content = document.querySelector('.input-area-text').value;
       document.getElementById('output').innerText = content;
+    } */
+
+   function sendToWorkbench() {
+    // Get the selected text
+    let selectedText = getSelectedText();
+
+    // If there is selected text, send it to the workbench
+    if (selectedText) {
+        // Code to send the selected text to workbench
+        console.log("Sending selected text to workbench:", selectedText);
+    } else {
+        // If no text is selected, send the entire content view
+        let contentView = document.getElementById('content-view');
+        let content = contentView.innerText; // or innerHTML depending on your requirement
+        
+        // Send the entire content view to the workbench
+        console.log("Sending entire content to workbench:", content);
     }
+}
+
+   document.getElementById('send-to-workbench-button').addEventListener('click', sendToWorkbench);
+
 
     // Function to send content from Workbench to Artifact
     function sendToArtifact() {
