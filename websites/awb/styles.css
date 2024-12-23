@@ -80,6 +80,31 @@ header .logo span {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+/* Submit button styling */
+header button {
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Vibrant gradient */
+  color: white;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+header button:hover {
+  background: linear-gradient(135deg, #ff6b6b, #ff8c66);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+header button:active {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
+  transform: translateY(0);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+}
+
 /* Header with ID input box styling */
 header .id-input-container {
   display: flex;
@@ -98,30 +123,6 @@ header .id-input-container input {
 header .id-input-container label {
   font-size: 14px;
   margin-right: 5px;
-}
-
-header button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background: linear-gradient(135deg, #6B8E23, #4CAF50);
-  color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-
-header button:hover {
-  background: linear-gradient(135deg, #558B2F, #388E3C);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-header button:active {
-  background: linear-gradient(135deg, #6B8E23, #4CAF50);
-  transform: translateY(0);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Dropdown menu styling */
