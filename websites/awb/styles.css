@@ -69,11 +69,45 @@ header .logo span {
   background-color: #45a049;
 }
 
+/* Header with ID input box styling */
+header .id-input-container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust spacing as needed */
+}
+
+header .id-input-container input {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 150px; /* Adjust the width of the input box */
+}
+
+header .id-input-container label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+header button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header button:hover {
+  background-color: #45a049;
+}
+
 /* Dropdown menu styling */
 .dropdown-menu {
   display: none;
   position: absolute;
-  top: 60px; /* Adjusted to align with the bottom of the header */
+  top: 60px; /* Adjusted to align with the bottom of the  */
   right: 20px;
   background-color: #333;
   color: white;
@@ -184,6 +218,14 @@ nav.closed + .sidebar-toggle + .container {
   overflow: hidden; /* To prevent overflow when expanding a section */
 }
 
+.content-box-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  background-color: #e0e0e0; /* Light grey background */
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
 .content-box {
   flex: 1;
   padding: 10px;
@@ -208,10 +250,10 @@ nav.closed + .sidebar-toggle + .container {
   z-index: 100; /* Ensure it stays above other elements */
 }
 
-.content-box-header {
+.content-box- {
   font-weight: bold;
   margin-bottom: 10px;
-  background-color: #e0e0e0; /* Light grey background */
+  background-color: #e0e0e0;
   padding: 10px;
   border-radius: 5px 5px 0 0;
 }
