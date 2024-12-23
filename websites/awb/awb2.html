@@ -77,6 +77,27 @@ header .logo span {
   background-color: #45a049;
 }
 
+   /* Header with ID input box styling */
+header .id-input-container {
+  display: flex;
+  align-items: center;
+  margin-right: 20px; /* Adjust spacing as needed */
+}
+
+header .id-input-container input {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 150px; /* Adjust the width of the input box */
+}
+
+header .id-input-container label {
+  font-size: 14px;
+  margin-right: 5px;
+}
+
+
     /* Dropdown menu styling */
     .dropdown-menu {
       display: none;
@@ -309,6 +330,12 @@ header .logo span {
   <div class="logo" onclick="resetSite()">
     <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
     Analyst <span>Workbench</span>
+  </div>
+
+   <!-- Add text input box to the header -->
+  <div class="id-input-container">
+    <label for="id-input" style="color: white; margin-right: 10px;">Enter ID:</label>
+    <input type="text" id="id-input" placeholder="ID..." />
   </div>
 
   <!-- Hoverover button and Hamburger menu icon -->
