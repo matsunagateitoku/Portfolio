@@ -445,6 +445,16 @@ header button:hover {
   </div>
 
   <script>
+
+   function submitId() {
+  const id = document.getElementById('idInput').value;
+  if (id) {
+    alert(`ID Submitted: ${id}`);
+    // You can handle the submission logic here (e.g., send it to a server or display it in the UI)
+  } else {
+    alert('Please enter an ID');
+  }
+}
     function toggleHoverover() {
   const hoveroverBtn = document.getElementById('hoverover-btn');
   if (hoveroverBtn.textContent === 'Hoverover On') {
