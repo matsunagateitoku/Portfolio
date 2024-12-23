@@ -1,366 +1,36 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Analyst Workbench</title>
-  <style>
-    /* Global styling */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
-      height: 100%;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Top banner */
-header {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px;
-  text-align: left;
-  font-size: 24px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-header .logo {
-  font-size: 30px;
-  font-weight: bold;
-  margin-left: 20px;
-  cursor: pointer; /* Add cursor pointer to indicate clickability */
-}
-
-header .logo span {
-  color: #f39c12; /* A golden color for workbench accent */
-}
-
-.hamburger-menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  margin-left: 10px; /* Adjust spacing between hoverover button and hamburger menu */
-  position: relative;
-}
-
-.hamburger-menu div {
-  width: 30px;
-  height: 4px;
-  background-color: white;
-  transition: all 0.3s ease;
-}
-
-#hoverover-btn {
-  padding: 5px 10px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-#hoverover-btn:hover {
-  background-color: #45a049;
-}
-
-   /* Header with ID input box styling */
-header .id-input-container {
-  display: flex;
-  align-items: center;
-  margin-right: 20px; /* Adjust spacing as needed */
-}
-
-header .id-input-container input {
-  padding: 5px;
-  font-size: 14px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  width: 150px; /* Adjust the width of the input box */
-}
-
-header .id-input-container label {
-  font-size: 14px;
-  margin-right: 5px;
-}
-   header button {
-  padding: 5px 10px;
-  font-size: 16px;
-  border: none;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-header button:hover {
-  background-color: #45a049;
-}
-
-
-    /* Dropdown menu styling */
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 60px; /* Adjusted to align with the bottom of the  */
-      right: 20px;
-      background-color: #333;
-      color: white;
-      width: 200px;
-      z-index: 200;
-      padding-top: 10px;
-      border-radius: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .dropdown-menu a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 10px 15px;
-      transition: background-color 0.3s ease;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: #575757;
-    }
-
-    /* When dropdown menu is open */
-    .dropdown-menu.open {
-      display: block;
-    }
-
-    /* Sidebar styling */
-    nav {
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 200px;
-      background-color: #333;
-      color: white;
-      height: calc(100% - 60px);
-      padding-top: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    nav.closed {
-      transform: translateX(-100%);
-    }
-
-    nav a, nav button {
-      display: block;
-      color: white;
-      text-decoration: none;
-      padding: 10px 15px;
-      margin: 5px 0;
-      transition: background-color 0.3s ease, border 0.3s ease;
-      border: 1px solid transparent; /* Add border for buttons */
-    }
-
-    nav a:hover, nav button:hover {
-      background-color: #575757;
-      border: 1px solid #4CAF50; /* Add border color on hover */
-    }
-
-    nav button {
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-
-    /* Sidebar toggle button */
-    .sidebar-toggle {
-      position: fixed;
-      top: 60px;
-      left: 200px;
-      width: 40px;
-      height: 40px;
-      background-color: #4CAF50;
-      color: white;
-      border-radius: 50%;
-      cursor: pointer;
-      text-align: center;
-      line-height: 40px;
-      font-size: 24px;
-      transition: left 0.3s ease;
-      z-index: 101;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .sidebar-toggle.closed {
-      left: 10px;
-    }
-
-    /* Main container */
-    .container {
-      margin-left: 200px;
-      margin-top: 70px;
-      display: flex;
-      height: calc(100vh - 70px);
-      flex-direction: row;
-      transition: margin-left 0.3s ease;
-    }
-
-    nav.closed + .sidebar-toggle + .container {
-      margin-left: 0;
-    }
-
-    /* Main canvas area */
-    .workspace {
-      flex-grow: 1;
-      display: flex;
-      flex-direction: row;
-      overflow: hidden; /* To prevent overflow when expanding a section */
-    }
-
-    .content-box-header {
-  font-weight: bold;
-  margin-bottom: 10px;
-  background-color: #e0e0e0; /* Light grey background */
-  padding: 10px;
-  border-radius: 5px 5px 0 0;
-}
-
-    .content-box {
-      flex: 1;
-      padding: 10px;
-      border: 1px solid #ccc;
-      margin: 10px;
-      height: calc(100% - 20px);
-      resize: none;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      transition: all 0.3s ease;
-    }
-
-    .content-box.hidden {
-      display: none;
-    }
-
-    .content-box.expanded {
-      flex: 1 1 100%;
-      margin: 0;
-      height: 100%;
-      z-index: 100; /* Ensure it stays above other elements */
-    }
-
-    .content-box- {
-      font-weight: bold;
-      margin-bottom: 10px;
-      background-color: #e0e0e0;
-      padding: 10px;
-      border-radius: 5px 5px 0 0;
-    }
-
-    .content-box-content {
-      flex: 1;
-      overflow-y: auto;
-    }
-
-    .button-container {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      gap: 5px;
-    }
-
-    .button-container button {
-      padding: 5px 10px;
-      background-color: transparent;
-      color: grey;
-      border: none;
-      cursor: pointer;
-      font-size: 18px;
-    }
-
-    .button-container button:hover {
-      color: black;
-    }
-
-    .content-box-footer {
-      margin-top: auto;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .content-box-footer button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: background-color 0.3s ease;
-    }
-
-    .content-box-footer button:hover {
-      background-color: #45a049;
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        transform: translateX(-100%);
-      }
-
-      nav.closed {
-        transform: translateX(-100%);
-      }
-
-      .container {
-        margin-left: 0;
-      }
-
-      .sidebar-toggle {
-        left: 10px;
-      }
-
-      .sidebar-toggle.closed {
-        left: 10px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Header with title and logo -->
-<!-- Header with title and logo -->
-<header>
-  <div class="logo" onclick="resetSite()">
-    <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
-    Analyst <span>Workbench</span>
-  </div>
-
-   <!-- Text input and submit button -->
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-    <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
-  </div>
-
-  <!-- Hoverover button and Hamburger menu icon -->
-  <div style="display: flex; align-items: center;">
-    <button id="hoverover-btn" onclick="toggleHoverover()">Hoverover On</button>
-    <div class="hamburger-menu" onclick="toggleDropdownMenu()">
-      <div></div>
-      <div></div>
-      <div></div>
+  <header>
+    <div class="logo" onclick="resetSite()">
+      <img src="./images/w2.jpg" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;"> <!-- Add your logo image here -->
+      Analyst <span>Workbench</span>
     </div>
-  </div>
-</header>
+
+    <!-- Text input and submit button -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+      <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
+    </div>
+
+    <!-- Hoverover button and Hamburger menu icon -->
+    <div style="display: flex; align-items: center;">
+      <button id="hoverover-btn" onclick="toggleHoverover()">Hoverover On</button>
+      <div class="hamburger-menu" onclick="toggleDropdownMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
 
   <!-- Dropdown menu content -->
   <div class="dropdown-menu" id="dropdownMenu">
@@ -375,7 +45,7 @@ header button:hover {
   <nav id="sidebar">
     <a href="#cat" class="sidebar-btn" id="cat-tool-btn">CAT Tool</a>
     <a href="#scratchpad" class="sidebar-btn" id="sp-btn">ScratchPad</a>
-     <a href="#notes" class="sidebar-btn"id="notes-btn">Notes</a>
+    <a href="#notes" class="sidebar-btn"id="notes-btn">Notes</a>
     <a href="#mt" class="sidebar-btn" id="mt-btn">Machine Translation</a>
     <a href="#about" class="sidebar-btn" id="llm-btn">LLM Services</a>
     <a href="#stt" class="sidebar-btn"id="stt-btn">Edit Speech-to-Text</a>
@@ -386,8 +56,6 @@ header button:hover {
     <a href="#tm" class="sidebar-btn"id="tm-btn">Translation Memory</a>
     <a href="#button2" class="sidebar-btn"id="research-btn">Research Tools</a>
     <a href="#button3" class="sidebar-btn" id="query-btn">Query Tools</a>
-      <!-- <a href="#button4" class="sidebar-btn" id="policy-btn">Policy Documents</a> -->
-      <!-- <a href="#button5" class="sidebar-btn">References</a> -->
     <a href="#button5" class="sidebar-btn" id="add-btn">⨁ Add Bench</a>
   </nav>
 
@@ -445,46 +113,45 @@ header button:hover {
   </div>
 
   <script>
-
-   function getSelectedText() {
-    let selection = window.getSelection();
-    if (selection.toString().length > 0) {
-        // Return the highlighted (selected) text
-        return selection.toString();
-    } else {
-        // If no selection, return null
-        return null;
+    function getSelectedText() {
+      let selection = window.getSelection();
+      if (selection.toString().length > 0) {
+          // Return the highlighted (selected) text
+          return selection.toString();
+      } else {
+          // If no selection, return null
+          return null;
+      }
     }
-}
 
+    function submitId() {
+      const id = document.getElementById('idInput').value;
+      if (id) {
+        alert(`ID Submitted: ${id}`);
+        // You can handle the submission logic here (e.g., send it to a server or display it in the UI)
+      } else {
+        alert('Please enter an ID');
+      }
+    }
 
-   function submitId() {
-  const id = document.getElementById('idInput').value;
-  if (id) {
-    alert(`ID Submitted: ${id}`);
-    // You can handle the submission logic here (e.g., send it to a server or display it in the UI)
-  } else {
-    alert('Please enter an ID');
-  }
-}
     function toggleHoverover() {
-  const hoveroverBtn = document.getElementById('hoverover-btn');
-  if (hoveroverBtn.textContent === 'Hoverover On') {
-    hoveroverBtn.textContent = 'Hoverover Off';
-    // Add logic to enable hoverover functionality
-  } else {
-    hoveroverBtn.textContent = 'Hoverover On';
-    // Add logic to disable hoverover functionality
-  }
-}
+      const hoveroverBtn = document.getElementById('hoverover-btn');
+      if (hoveroverBtn.textContent === 'Hoverover On') {
+        hoveroverBtn.textContent = 'Hoverover Off';
+        // Add logic to enable hoverover functionality
+      } else {
+        hoveroverBtn.textContent = 'Hoverover On';
+        // Add logic to disable hoverover functionality
+      }
+    }
 
-function resetSite() {
-  location.reload(); // This will reload the page to its initial state
-}
+    function resetSite() {
+      location.reload(); // This will reload the page to its initial state
+    }
 
-// Add event listener to the logo image to reset the site
-document.querySelector('.logo img').addEventListener('click', resetSite);
-    
+    // Add event listener to the logo image to reset the site
+    document.querySelector('.logo img').addEventListener('click', resetSite);
+
     // JavaScript to handle the dropdown menu
     function toggleDropdownMenu() {
       const dropdownMenu = document.getElementById('dropdownMenu');
@@ -520,32 +187,22 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
       newWindow.document.write(`
-  <html>
-    <head>
-      <title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title>
-      <style>
-        body { font-family: Arial, sans-serif; padding: 20px; }
-        .dock-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
-        .dock-button:hover { background-color: #45a049; }
-      </style>
-    </head>
-    <body>
-      ${content}
-      <br/><br/>
-      <button class="dock-button" onclick="window.opener.dock('${area}'); window.close();">Dock</button>
-    </body>
-  </html>
-`);
-
-     
-     
-     
-     
-     
-     
-     
-     
- 
+        <html>
+          <head>
+            <title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title>
+            <style>
+              body { font-family: Arial, sans-serif; padding: 20px; }
+              .dock-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+              .dock-button:hover { background-color: #45a049; }
+            </style>
+          </head>
+          <body>
+            ${content}
+            <br/><br/>
+            <button class="dock-button" onclick="window.opener.dock('${area}'); window.close();">Dock</button>
+          </body>
+        </html>
+      `);
       targetBox.classList.add('hidden');
     }
 
@@ -591,15 +248,15 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
     });
 
     document.getElementById("llm-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = '<h2>LLM widget opened.</h2><br><p>AI magic happens here!</p><br><p>You can ask questions about the what you see in the Content Veiwer, request summaries, etc.</p> <img src="./images/gpt.jpg" style="width: 100%; height: 100%; border: none;">';
+      document.getElementById("output").innerHTML = '<h2>LLM widget opened.</h2><br><p>AI magic happens here!</p><br><p>You can ask questions about the what you see in the Content Veiwer, request summaries, and more.</p>';
     });
 
     document.getElementById("cat-tool-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = '<h2>CAT Tool widget opened.</h2> <br><br>Your translation work will look like in the CAT Tool.<img src="./images/demo.gif" style="width: 100%; height: 100%; border: none;">';
+      document.getElementById("output").innerHTML = '<h2>CAT Tool widget opened.</h2> <br><br>Your translation work will look like in the CAT Tool.<img src="./images/demo.gif" style="width: 100%; height: 100%; border: none;"></iframe>';
     });
 
     document.getElementById("ocr-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save the edited image as an Artifact.";
+      document.getElementById("output").innerHTML = "<h2>OCR widget opened.</h2> <br/> <br/> Here you will see your image with OCR output overlaid. <br/> You can MT the output, edit the output, and save.";
     });
 
     document.getElementById("dictionary-btn").addEventListener("click", function() {
@@ -614,95 +271,41 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById("output").innerHTML = "<h2>Annotation widget opened.</h2> <br/> <br/> <p>Here you can annotation data to train AI/ML models.</p>";
     });
 
-    
     document.getElementById("termbase-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>Termbase widget opened.</h2> <br/> <br/> <p>Here you can look up terms with speical defitions in a termbase.</p>";
+      document.getElementById("output").innerHTML = "<h2>Termbase widget opened.</h2> <br/> <br/> <p>Here you can look up terms with special definitions in a termbase.</p>";
     });
 
     document.getElementById("stt-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>STT widget opened.</h2> <br/> <br/> Here you will see your STT output. <br/> You can edit the STT output to create a full transcript and save the edited STT transcript as an Artifact.";
+      document.getElementById("output").innerHTML = "<h2>STT widget opened.</h2> <br/> <br/> Here you will see your STT output. <br/> You can edit the STT output to create a full transcript and save the results.";
     });
 
     document.getElementById("sp-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>ScratchPad widget opened.</h2> <br/> <br/> Here you will see your text on a free-form canvas. <br/> You have a suite of useful tools to help you understand the text.";
+      document.getElementById("output").innerHTML = "<h2>ScratchPad widget opened.</h2> <br/> <br/> Here you will see your text on a free-form canvas. <br/> You have a suite of useful tools to help you.";
     });
 
-
-    
     document.getElementById("research-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>Research widget opened.</h2> <br/> <br/> Here you will see your all the tools that can help you do research.<br/> <br/> Here you can also look up policy documents";
+      document.getElementById("output").innerHTML = "<h2>Research widget opened.</h2> <br/> <br/> Here you will see all the tools that can help you do research.<br/> <br/> Here you can also look for any matching documents.";
     });
 
     document.getElementById("query-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>Query widget opened.</h2> <br/> <br/> Here you can do speicalized queries.";
+      document.getElementById("output").innerHTML = "<h2>Query widget opened.</h2> <br/> <br/> Here you can do specialized queries.";
     });
 
     document.getElementById("tm-btn").addEventListener("click", function() {
-      document.getElementById("output").innerHTML = "<h2>TM widget opened.</h2> <br/> <br/> Here you can look for translation memory that matches the content you are veiwing.";
+      document.getElementById("output").innerHTML = "<h2>TM widget opened.</h2> <br/> <br/> Here you can look for translation memory that matches the content you are viewing.";
     });
-
-
-
-
-
-    
 
     document.getElementById("other-btn").addEventListener("click", function() {
       document.getElementById("output").textContent = "Other widget opened.";
-    }); 
-   
-   // Function to send content from Content Viewer to Workbench
+    });
+
+    // Function to send content from Content Viewer to Workbench
     function sendToBench() {
       const content = document.querySelector('.input-area-text').value;
       document.getElementById('output').innerText = content;
-    } 
-   
- /*
-document.addEventListener('DOMContentLoaded', function() {
-    function getSelectedText() {
-        // Get the current selection object from the window
-        const selection = window.getSelection();
-        
-        // If there's some selected text, return it
-        if (selection && selection.toString().length > 0) {
-            return selection.toString();
-        }
-        
-        // If there's no selected text, return null
-        return null;
     }
 
-    function sendToWorkbench() {
-        // Get the selected text, if any
-        const selectedText = getSelectedText();
-        
-        if (selectedText) {
-            // If some text is selected, send only that text
-            console.log("Sending selected text to workbench:", selectedText);
-            // Here, you would send the selected text to the workbench (e.g., via an API call or similar action)
-        } else {
-            // If no text is selected, send the entire content of the content view
-            const contentView = document.getElementById('content-view');
-            const content = contentView ? contentView.innerText : ''; // Use innerText to get the content as plain text
-            console.log("Sending entire content to workbench:", content);
-            // Here, you would send the entire content to the workbench (e.g., via an API call or similar action)
-        }
-    }
-
-  
-
-    // Attach the event listener to the button
-    const button = document.getElementById('send-to-workbench-button');
-    if (button) {
-        button.addEventListener('click', sendToWorkbench);
-    } else {
-        console.error("Button with ID 'send-to-workbench-button' not found.");
-    }
-});
-  */
-
-   document.getElementById('send-to-workbench-button').addEventListener('click', sendToWorkbench);
-
+    document.getElementById('send-to-workbench-button').addEventListener('click', sendToWorkbench);
 
     // Function to send content from Workbench to Artifact
     function sendToArtifact() {
@@ -730,11 +333,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("button5").addEventListener("click", function() {
       alert("Button 5 clicked");
     });
+
     document.getElementById("dictionary-input").addEventListener("input", function() {
-    const inputContent = this.value;
-    console.log("Dictionary input:", inputContent);
-    // Add your handling code here
-});
+      const inputContent = this.value;
+      console.log("Dictionary input:", inputContent);
+      // Add your handling code here
+    });
 
     // Expose the dock function to the global scope so it can be called from the new window
     window.dock = dock;
