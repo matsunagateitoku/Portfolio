@@ -659,23 +659,46 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
       document.getElementById('output').innerText = content;
     } */
 
-   function sendToWorkbench() {
-    // Get the selected text
-    let selectedText = getSelectedText();
-
-    // If there is selected text, send it to the workbench
-    if (selectedText) {
-        // Code to send the selected text to workbench
-        console.log("Sending selected text to workbench:", selectedText);
-    } else {
-        // If no text is selected, send the entire content view
-        let contentView = document.getElementById('content-view');
-        let content = contentView.innerText; // or innerHTML depending on your requirement
+document.addEventListener('DOMContentLoaded', function() {
+    function getSelectedText() {
+        // Get the current selection object from the window
+        const selection = window.getSelection();
         
-        // Send the entire content view to the workbench
-        console.log("Sending entire content to workbench:", content);
+        // If there's some selected text, return it
+        if (selection && selection.toString().length > 0) {
+            return selection.toString();
+        }
+        
+        // If there's no selected text, return null
+        return null;
     }
-}
+
+    function sendToWorkbench() {
+        // Get the selected text, if any
+        const selectedText = getSelectedText();
+        
+        if (selectedText) {
+            // If some text is selected, send only that text
+            console.log("Sending selected text to workbench:", selectedText);
+            // Here, you would send the selected text to the workbench (e.g., via an API call or similar action)
+        } else {
+            // If no text is selected, send the entire content of the content view
+            const contentView = document.getElementById('content-view');
+            const content = contentView ? contentView.innerText : ''; // Use innerText to get the content as plain text
+            console.log("Sending entire content to workbench:", content);
+            // Here, you would send the entire content to the workbench (e.g., via an API call or similar action)
+        }
+    }
+
+    // Attach the event listener to the button
+    const button = document.getElementById('send-to-workbench-button');
+    if (button) {
+        button.addEventListener('click', sendToWorkbench);
+    } else {
+        console.error("Button with ID 'send-to-workbench-button' not found.");
+    }
+});
+
 
    document.getElementById('send-to-workbench-button').addEventListener('click', sendToWorkbench);
 
