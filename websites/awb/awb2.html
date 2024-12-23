@@ -96,6 +96,19 @@ header .id-input-container label {
   font-size: 14px;
   margin-right: 5px;
 }
+   header button {
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+header button:hover {
+  background-color: #45a049;
+}
 
 
     /* Dropdown menu styling */
@@ -332,10 +345,10 @@ header .id-input-container label {
     Analyst <span>Workbench</span>
   </div>
 
-   <!-- Add text input box to the header -->
-  <div class="id-input-container">
-    <label for="id-input" style="color: white; margin-right: 10px;">Enter ID:</label>
-    <input type="text" id="id-input" placeholder="ID..." />
+   <!-- Text input and submit button -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+    <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #4CAF50; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
   </div>
 
   <!-- Hoverover button and Hamburger menu icon -->
