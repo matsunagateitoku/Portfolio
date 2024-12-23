@@ -649,15 +649,14 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
 
     document.getElementById("other-btn").addEventListener("click", function() {
       document.getElementById("output").textContent = "Other widget opened.";
-    });
-
-   /* orgianl version; no highlighting 
+    }); 
    
    // Function to send content from Content Viewer to Workbench
     function sendToBench() {
       const content = document.querySelector('.input-area-text').value;
       document.getElementById('output').innerText = content;
     } 
+   
  /*
 document.addEventListener('DOMContentLoaded', function() {
     function getSelectedText() {
