@@ -457,23 +457,33 @@ document.querySelector('.logo img').addEventListener('click', resetSite);
         content = document.getElementById('artifact').innerHTML;
       }
       const newWindow = window.open('', '_blank', 'width=800,height=600');
-      newWindow.document.write(
-        <html>
-          <head>
-            <title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title>
-            <style>
-              body { font-family: Arial, sans-serif; padding: 20px; }
-              .dock-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
-              .dock-button:hover { background-color: #45a049; }
-            </style>
-          </head>
-          <body>
-            ${content}
-            <br/><br/>
-            <button class="dock-button" onclick="window.opener.dock('${area}'); window.close();">Dock</button>
-          </body>
-        </html>
-      );
+      newWindow.document.write(`
+  <html>
+    <head>
+      <title>${area.charAt(0).toUpperCase() + area.slice(1)} Area</title>
+      <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .dock-button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        .dock-button:hover { background-color: #45a049; }
+      </style>
+    </head>
+    <body>
+      ${content}
+      <br/><br/>
+      <button class="dock-button" onclick="window.opener.dock('${area}'); window.close();">Dock</button>
+    </body>
+  </html>
+`);
+
+     
+     
+     
+     
+     
+     
+     
+     
+ 
       targetBox.classList.add('hidden');
     }
 
