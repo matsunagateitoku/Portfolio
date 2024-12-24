@@ -17,15 +17,9 @@ Analyst <span>Workbench</span>
 
 <!-- Text input and submit button -->
 <div style="display: flex; align-items: center; gap: 10px;">
-
-<!-- Modify the placeholder and button text to "Enter URL" -->
-<input type="text" id="idInput" placeholder="Enter URL" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-<button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Enter</button>
-
-
-<!--   <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-     <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
-   </div>
+  <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+  <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
+</div>
 
    
 
@@ -140,27 +134,31 @@ return null;
 }
 }
 
+<script>
   async function submitId() {
-    const url = document.getElementById('idInput').value;
-    if (url) {
+    const id = document.getElementById('idInput').value;
+    if (id) {
       try {
-        const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-        const response = await fetch(proxyUrl);
+        const response = await fetch('./files/data.js');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        const data = await response.json();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(data.contents, 'text/html');
-        const textContent = doc.body.innerText;
-        document.querySelector('.input-area-text').value = textContent;
+        const scriptContent = await response.text();
+        eval(scriptContent); // Load the data.js content
+        const item = data.items.find(item => item.ID == id);
+        if (item) {
+          document.querySelector('.input-area-text').value = item.content;
+        } else {
+          alert('No matching ID found');
+        }
       } catch (error) {
-        alert('Failed to fetch the URL content: ' + error.message);
+        alert('Failed to fetch the data: ' + error.message);
       }
     } else {
-      alert('Please enter a URL');
+      alert('Please enter an ID');
     }
   }
+</script>
 
 function toggleHoverover() {
 const hoveroverBtn = document.getElementById('hoverover-btn');
