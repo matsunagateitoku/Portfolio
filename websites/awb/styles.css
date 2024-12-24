@@ -1,3 +1,6 @@
+Here are the changes to be made to the `styles.css` file to update the submit button with a light green and pleasant style:
+
+```css
 /* Global styling */
 * {
   margin: 0;
@@ -347,3 +350,4 @@ nav.closed + .sidebar-toggle + .container {
     left: 10px;
   }
 }
+```
