@@ -132,15 +132,27 @@
       }
     }
 
-    function submitId() {
-      const id = document.getElementById('idInput').value;
-      if (id) {
-        alert(`ID Submitted: ${id}`);
-        // You can handle the submission logic here (e.g., send it to a server or display it in the UI)
-      } else {
-        alert('Please enter an ID');
+<!-- Modify the placeholder and button text to "Enter URL" -->
+<input type="text" id="idInput" placeholder="Enter URL" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+<button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Enter</button>
+
+  async function submitId() {
+    const url = document.getElementById('idInput').value;
+    if (url) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const text = await response.text();
+        document.querySelector('.input-area-text').value = text;
+      } catch (error) {
+        alert('Failed to fetch the URL content: ' + error.message);
       }
+    } else {
+      alert('Please enter a URL');
     }
+  }
 
     function toggleHoverover() {
       const hoveroverBtn = document.getElementById('hoverover-btn');
