@@ -379,20 +379,20 @@ header button:active {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: linear-gradient(135deg, #FFA07A, #FF6347); /* Light orange background */
+  background: linear-gradient(135deg, #FFB07A, #FF8C47); /* Light orange background */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 #hoverover-btn:hover {
-  background: linear-gradient(135deg, #FF7F50, #FF4500); /* Slightly darker orange on hover */
+  background: linear-gradient(135deg, #FF9F50, #FF7040); /* Slightly darker orange on hover */
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 #hoverover-btn:active {
-  background: linear-gradient(135deg, #FF6347, #FF4500); /* Slightly darker orange on active */
+  background: linear-gradient(135deg, #FF8C47, #FF7040); /* Slightly darker orange on active */
   transform: translateY(-4px);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
