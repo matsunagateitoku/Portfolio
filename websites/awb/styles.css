@@ -228,6 +228,27 @@ nav button {
   transition: margin-left 0.3s ease;
 }
 
+
+.content-box {
+  /* Existing styles */
+  position: relative;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
+}
+
+.content-box {
+  resize: both;
+  overflow: auto;
+}
+
 nav.closed + .sidebar-toggle + .container {
   margin-left: 0;
 }
