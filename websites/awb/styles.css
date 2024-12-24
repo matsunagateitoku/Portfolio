@@ -56,28 +56,29 @@ header .logo span {
   transition: all 0.3s ease;
 }
 
+/* Hoverover button styling */
 #hoverover-btn {
   padding: 10px 20px;
   font-size: 18px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: linear-gradient(135deg, #6B8E23, #4CAF50);
+  background: #63C28D; /* Light green background to match the submit button */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 #hoverover-btn:hover {
-  background: linear-gradient(135deg, #558B2F, #388E3C);
+  background: #c0e7d1; /* Slightly darker green on hover */
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 #hoverover-btn:active {
-  background: linear-gradient(135deg, #3E8E41, #2E7D32);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background: #FFA000; /* Darker green on active */
+  transform: translateY(0);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Submit button styling */
