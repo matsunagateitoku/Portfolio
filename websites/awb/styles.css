@@ -354,20 +354,20 @@ header button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: #90EE90; /* Light green background */
+  background: #FFD700; /* Light yellow background */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 header button:hover {
-  background: #77DD77; /* Slightly darker green on hover */
+  background: #FFC107; /* Slightly darker yellow on hover */
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 header button:active {
-  background: #90EE90;
+  background: #FFA000; /* Darker yellow on active */
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
