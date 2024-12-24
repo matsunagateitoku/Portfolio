@@ -354,14 +354,14 @@ header button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: #FFD700; /* Light yellow background */
+  background: ##63C28D; /* Light yellow background */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
 }
 
 header button:hover {
-  background: #FFC107; /* Slightly darker yellow on hover */
+  background:  #c0e7d1; /* Slightly darker yellow on hover */
   transform: translateY(-2px);
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
