@@ -247,6 +247,7 @@ nav button {
 .content-box {
   resize: both;
   overflow: auto;
+  position: relative;
 }
 
 nav.closed + .sidebar-toggle + .container {
@@ -331,6 +332,16 @@ nav.closed + .sidebar-toggle + .container {
   margin-top: auto;
   text-align: center;
   padding: 10px;
+}
+
+.resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ccc;
+  right: 0;
+  bottom: 0;
+  cursor: se-resize;
 }
 
 .content-box-footer button {
