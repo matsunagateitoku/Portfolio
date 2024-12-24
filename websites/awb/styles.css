@@ -379,7 +379,7 @@ header button:active {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: linear-gradient(135deg, #FFB07A, #FF8C47); /* Light orange background */
+  background: linear-gradient(135deg, #f2b40a, #f7d36f); /* Light orange background */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
