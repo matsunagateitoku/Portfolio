@@ -327,6 +327,25 @@ document.getElementById("add-bench-btn").addEventListener("click", function() {
       document.getElementById('artifact').querySelector('.content-box-content').innerHTML = content;
     }
 
+    document.querySelectorAll('.resize-handle').forEach(handle => {
+  handle.addEventListener('mousedown', initResize);
+});
+
+function initResize(event) {
+  const box = event.target.parentElement;
+  window.addEventListener('mousemove', resize);
+  window.addEventListener('mouseup', stopResize);
+
+  function resize(e) {
+    box.style.width = (e.clientX - box.offsetLeft) + 'px';
+    box.style.height = (e.clientY - box.offsetTop) + 'px';
+  }
+
+  function stopResize() {
+    window.removeEventListener('mousemove', resize);
+    window.removeEventListener('mouseup', stopResize);
+  }
+}
 
     // Expose the dock function to the global scope so it can be called from the new window
     window.dock = dock;
