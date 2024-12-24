@@ -150,7 +150,10 @@
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        document.querySelector('.input-area-text').value = data.contents;
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(data.contents, 'text/html');
+        const textContent = doc.body.innerText;
+        document.querySelector('.input-area-text').value = textContent;
       } catch (error) {
         alert('Failed to fetch the URL content: ' + error.message);
       }
