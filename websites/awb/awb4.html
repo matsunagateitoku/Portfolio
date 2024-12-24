@@ -56,7 +56,9 @@
     <a href="#tm" class="sidebar-btn"id="tm-btn">Translation Memory</a>
     <a href="#button2" class="sidebar-btn"id="research-btn">Research Tools</a>
     <a href="#button3" class="sidebar-btn" id="query-btn">Query Tools</a>
-    <a href="#button5" class="sidebar-btn" id="add-btn">⨁ Add Bench</a>
+    <a href="#button5" class="sidebar-btn" id="add-bench-btn">✙ Add Bench⨁</a>
+
+    
   </nav>
 
   <!-- Sidebar toggle button -->
@@ -242,6 +244,25 @@
         workbenchHeader.textContent = 'Workbench - ' + btn.textContent;
       });
     });
+
+    document.getElementById("add-bench-btn").addEventListener("click", function() {
+  // Create a new workbench element
+  const newWorkbench = document.createElement("div");
+  newWorkbench.classList.add("content-box");
+  newWorkbench.innerHTML = `
+    <div class="content-box-header">Workbench</div>
+    <div class="content-box-content">Your workbench for analysis with every tool you need.</div>
+    <div class="button-container">
+      <button onclick="popout('workbench')">📖</button>
+      <button onclick="toggleExpand('workbench')">🔍</button>
+      <button onclick="closeBox('workbench')">❌</button>
+    </div>
+    <div class="content-box-footer">
+      <button onclick="sendToArtifact()">Send to Artifact</button>
+    </div>
+  `;
+  document.querySelector(".workspace").appendChild(newWorkbench);
+});
 
     document.getElementById("mt-btn").addEventListener("click", function() {
       document.getElementById("output").innerHTML = '<iframe src="./images/trans.jpg" style="width: 100%; height: 100%; border: none;"></iframe>';
