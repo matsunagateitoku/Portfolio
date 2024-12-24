@@ -16,10 +16,10 @@ Analyst <span>Workbench</span>
 </div>
 
 <!-- Text input and submit button -->
-<div style="display: flex; align-items: center; gap: 10px;">
-  <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
-  <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
-</div>
+ <div style="display: flex; align-items: center; gap: 10px;">
+    <input type="text" id="idInput" placeholder="Enter ID" style="padding: 5px; font-size: 16px; border-radius: 5px; border: 1px solid #ccc;">
+    <button onclick="submitId()" style="padding: 5px 10px; font-size: 16px; border: none; background-color: #70cc74; color: white; border-radius: 5px; cursor: pointer;">Submit</button>
+  </div>
 
    
 
@@ -122,7 +122,6 @@ Your work is saved here.
 </div>
 </div>
 
-<script>
 function getSelectedText() {
 let selection = window.getSelection();
 if (selection.toString().length > 0) {
@@ -136,33 +135,24 @@ return null;
 
 
   async function submitId() {
-    const id = document.getElementById('idInput').value;
-    if (id) {
-      try {
-        // Fetch the file (JSON data) for the current source
-        const response = await fetch('./files/data.js');
+ <script>
+    // This function will be called when the submit button is clicked
+    function submitId() {
+      // Get the ID from the input field
+      const id = document.getElementById('idInput').value;
 
-        // Check if the fetch was successful, otherwise throw an error
-        if (!response.ok) throw new Error(`Network response was not ok for ./files/data.js`);
+      // Find the item that matches the entered ID in the data array
+      const item = data.items.find(item => item.ID === parseInt(id));
 
-        // Parse the JSON response containing newspapers information
-        const scriptContent = await response.text();
-        const data = (new Function('const exports = {}; ' + scriptContent + '; return exports.data;'))();
-
-        // Find the item by ID
-        const item = data.items.find(item => item.ID == id);
-        if (item) {
-          document.querySelector('.input-area-text').value = item.content;
-        } else {
-          alert('No matching ID found');
-        }
-      } catch (error) {
-        alert('Failed to fetch the data: ' + error.message);
+      // If the item is found, log its content to the console
+      if (item) {
+        console.log(item.content);
+      } else {
+        console.log('ID not found');
       }
-    } else {
-      alert('Please enter an ID');
     }
-  }
+
+  
 function toggleHoverover() {
 const hoveroverBtn = document.getElementById('hoverover-btn');
 if (hoveroverBtn.textContent === 'Hoverover On') {
