@@ -295,10 +295,6 @@
       document.getElementById("output").innerHTML = "<h2>TM widget opened.</h2> <br/> <br/> Here you can look for translation memory that matches the content you are viewing.";
     });
 
-    document.getElementById("other-btn").addEventListener("click", function() {
-      document.getElementById("output").textContent = "Other widget opened.";
-    });
-
     // Function to send content from Content Viewer to Workbench
     function sendToBench() {
       const content = document.querySelector('.input-area-text').value;
