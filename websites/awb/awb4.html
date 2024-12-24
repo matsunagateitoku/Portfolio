@@ -134,18 +134,22 @@ return null;
 }
 }
 
+
   async function submitId() {
     const id = document.getElementById('idInput').value;
     if (id) {
       try {
+        // Fetch the file (JSON data) for the current source
         const response = await fetch('./files/data.js');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
+
+        // Check if the fetch was successful, otherwise throw an error
+        if (!response.ok) throw new Error(`Network response was not ok for ./files/data.js`);
+
+        // Parse the JSON response containing newspapers information
         const scriptContent = await response.text();
-        // Create a new function to return the data object
-        const dataFunction = new Function('return ' + scriptContent);
-        const data = dataFunction(); // Execute the function to get the data object
+        const data = (new Function('const exports = {}; ' + scriptContent + '; return exports.data;'))();
+
+        // Find the item by ID
         const item = data.items.find(item => item.ID == id);
         if (item) {
           document.querySelector('.input-area-text').value = item.content;
@@ -159,7 +163,6 @@ return null;
       alert('Please enter an ID');
     }
   }
-
 function toggleHoverover() {
 const hoveroverBtn = document.getElementById('hoverover-btn');
 if (hoveroverBtn.textContent === 'Hoverover On') {
