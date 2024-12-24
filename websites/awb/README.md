@@ -2,6 +2,7 @@
 - clean up tech debt in code
 - refactor in JS files 
 - user can highlight text to send to workbench
+- Add a NER service
 - Start plugging in real tools:
 -   CAT
 -   TM
