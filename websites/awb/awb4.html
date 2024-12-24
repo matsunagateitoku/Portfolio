@@ -353,6 +353,19 @@ function initResize(event) {
   }
 }
 
+    function toggleHoverover() {
+  const hoveroverBtn = document.getElementById('hoverover-btn');
+  if (hoveroverBtn.textContent === 'Hoverover On') {
+    hoveroverBtn.textContent = 'Hoverover Off';
+    hoveroverBtn.style.backgroundColor = '#70cc74';
+    // Add logic to enable hoverover functionality
+  } else {
+    hoveroverBtn.textContent = 'Hoverover On';
+    hoveroverBtn.style.backgroundColor = ''; // Reset to original color or set desired color when hoverover is on
+    // Add logic to disable hoverover functionality
+  }
+}
+
     // Expose the dock function to the global scope so it can be called from the new window
     window.dock = dock;
   </script>
