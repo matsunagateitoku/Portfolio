@@ -354,7 +354,7 @@ header button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background: ##63C28D; /* Light yellow background */
+  background: #63C28D; /* Light yellow background */
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: background 0.3s ease, transform 0.3s ease;
