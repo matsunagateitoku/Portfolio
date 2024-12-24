@@ -136,20 +136,20 @@ return null;
 }
 
 
-    function submitId() {
-      // Get the ID from the input field
-      const id = document.getElementById('idInput').value;
+function submitId() {
+  // Get the ID from the input field
+  const id = document.getElementById('idInput').value;
 
-      // Find the item that matches the entered ID in the data array
-      const item = data.items.find(item => item.ID === parseInt(id));
+  // Find the item that matches the entered ID in the data array
+  const item = data.items.find(item => item.ID === parseInt(id));
 
-      // If the item is found, log its content to the console
-      if (item) {
-        console.log(item.content);
-      } else {
-        console.log('ID not found');
-      }
-    }
+  // If the item is found, output its content to the Content Viewer
+  if (item) {
+    document.querySelector('.input-area-text').value = item.content;
+  } else {
+    console.log('ID not found');
+  }
+}
 
   
 function toggleHoverover() {
