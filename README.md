@@ -17,13 +17,13 @@
 - [Analyst Workbench3.0](https://matsunagateitoku.github.io/Portfolio/websites/awb/awb4.html)
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
-- [NLP Toolkit (Coming Soon)](https://dolphin-app-kjvwi.ondigitalocean.app/)
+- [NLP Toolkit](https://dolphin-app-kjvwi.ondigitalocean.app/)
 - [Federated Search Tool](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
-- Convert a url to a wordcloud
-- Federated Dictionary Tool
+- Convert a url to a wordcloud (Coming Soon)
+- Federated Dictionary Tool (Coming Soon)
 - Class website projects:
-  Dice game
-  qr code
+  Dice game (Coming Soon)
+  qr code (Coming Soon)
 
 ## Python & Data science 
 ![## UX Process](./images/small.jpg)
