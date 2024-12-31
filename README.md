@@ -67,16 +67,4 @@
 
 
 
-## Installation
-
-Instructions to install the project.
-
-| Step | Command             |
-|------|---------------------|
-| 1    | `git clone <repo>`   |
-| 2    | `cd <project>`      |
-| 3    | `pip install -r requirements.txt` |
-
-## Usage
-
 
