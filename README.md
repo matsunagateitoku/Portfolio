@@ -18,9 +18,9 @@
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 - [NLP Toolkit](https://dolphin-app-kjvwi.ondigitalocean.app/)
-- [Federated Search Tool](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
+- [Federated Search Tool (Coming Soon)](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
 - Convert a url to a wordcloud (Coming Soon)
-- Federated Dictionary Tool (Coming Soon)
+  
 - Class website projects:
   Dice game (Coming Soon)
   qr code (Coming Soon)
