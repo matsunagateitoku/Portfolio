@@ -21,9 +21,9 @@
 - [Federated Search Tool (Coming Soon)](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
 - Convert a url to a wordcloud (Coming Soon)
   
-- Class website projects:
-  Dice game (Coming Soon)
-  qr code (Coming Soon)
+  Class website projects:
+- Dice game (Coming Soon)
+- qr code (Coming Soon)
 
 ## Python & Data science 
 ![## UX Process](./images/small.jpg)
