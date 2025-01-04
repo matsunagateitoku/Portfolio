@@ -1,4 +1,5 @@
 easy
+- add comments to NBA 
 - make all photos the same size
 - add photos for each section
 
