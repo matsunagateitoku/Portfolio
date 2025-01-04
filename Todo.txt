@@ -2,6 +2,8 @@ easy
 - make all photos the same size
 - add photos for each section
 
+### get Fasttext Document Simalarity from eCornell
+
 
 - make a detailed list of all notebooks
 - make a to-do list for notebooks
