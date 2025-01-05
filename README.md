@@ -28,9 +28,9 @@
 ## Python & Data science 
 ![## UX Process](./images/small.jpg)
   
-| Notebook          | Colab link                                  |
-|-------------------|----------------------------------------------|
-| **Great Schools**                              |                        [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/GS.ipynb)                     |
+| Notebook          |         Discription                                | Colab link    |
+|-------------------|----------------------------------------------|------|
+| **Great Schools**   | Leveraging the Great School's API       |                [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/GS.ipynb)                     |
 | **NBA Over/Unders Bets Project**     |  [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/matsunagateitoku/Portfolio/blob/main/notebooks/NBA_OU.ipynb)                     |
 
 
