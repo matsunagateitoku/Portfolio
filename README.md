@@ -3,8 +3,9 @@
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
-- Sketches
-- Mockups
+- Sketches (Coming Soon)
+- Mockups (Coming Soon)
+- Wireframing & Prototyping (Coming Soon)
   
 ## Websites
 ![## UX Process](./images/free-website-builder.webp)
