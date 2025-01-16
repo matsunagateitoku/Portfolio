@@ -51,7 +51,7 @@
 | **Dividing datasets into test, training, walidate**     | TBD                     |
 | **Fasttext Document Simalarity from eCornell**     | TBD   
 | **eCornell notes**     | TBD      notebooks/Notes from eCornell.ipynb
-| **SANS notes**     | TBD    |
+| **SANS notes**     | TBD    |     notebooks/Notes from SANS course .ipynb
 
 
 
