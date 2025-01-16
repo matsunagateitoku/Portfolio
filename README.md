@@ -49,8 +49,8 @@
 | **Federated Dictionary Tool**     | TBD                 |
 | **Website to Wordcloud**     | TBD                 |
 | **Dividing datasets into test, training, walidate**     | TBD                     |
-| **Fasttext Document Simalarity from eCornell**     | TBD   
-| **[eCornell notes](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/eCornell.ipynb)**  |   [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)]
+| **Fasttext Document Simalarity from eCornell**     | TBD   |
+| **[eCornell notes](https://github.com/matsunagateitoku/Portfolio/blob/main/notebooks/eCornell.ipynb)**  |   [![Open in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)] |
 | **SANS notes**     | TBD    |     notebooks/Notes from SANS course .ipynb
 
 
