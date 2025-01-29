@@ -1,5 +1,5 @@
 # Scott Lineberger
-[My resume](https://github.com/matsunagateitoku/Portfolio/blob/main/websites/Future%20Resume%20.pdf)
+[My resume](https://#)
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
