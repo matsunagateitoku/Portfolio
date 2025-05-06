@@ -1,5 +1,5 @@
 # Scott Lineberger
-[My resume](https://#)
+[My resume removed](https://#)
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
