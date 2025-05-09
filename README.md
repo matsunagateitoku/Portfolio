@@ -1,4 +1,4 @@
-# Scott Lineberger
+# Scott Lineberger 
 [My resume removed](https://#)
 
 ## UX Process
