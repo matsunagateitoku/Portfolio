@@ -54,7 +54,6 @@
 | **SANS notes**     | TBD    |     notebooks/Notes from SANS course .ipynb
 
 
-
     
 ## Machine Learning projects
 | Notebook          | Colab link                                  |
