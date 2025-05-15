@@ -12,10 +12,9 @@ Harder
 - UX scetchets take photo and load
 
 websites
--fix images on haiku
+-fix images on haiku website
 
   
-
 
 
 
