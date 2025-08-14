@@ -1,6 +1,10 @@
 # Scott Lineberger 
 [My resume removed](https://#)
 
+
+https://docs.google.com/document/d/1kE1fLzbPEV3AdI9cShPUMTnNnlNM6PHPzwIDQ1-M-GQ/edit?tab=t.0
+
+
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
 - Sketches (Coming soon)
