@@ -1,5 +1,5 @@
 # Scott Lineberger 
-[My resume (removed)](https://#)
+[My resume (removed for now)](https://#)
 
 
 ## UX Process
