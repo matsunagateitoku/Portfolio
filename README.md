@@ -7,7 +7,7 @@
 - Sketches (Coming soon)
 - Mockups (Coming soon)
 - Wireframing & Prototyping (Coming soon)
-- 
+- Research (Coming soon)
    
 ## Websites
 ![## UX Process](./images/free-website-builder.webp)
