@@ -1,6 +1,8 @@
 # Scott Lineberger 
 [My resume (removed for now)](https://#)
-[My resume (removed for now)](./websites/lexi.pdf)
+
+
+[LEXI](./websites/lexi.pdf)
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
