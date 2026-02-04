@@ -1,3 +1,4 @@
+top things
 1. Deploy NLP Flask app to AWS elsaticbeanstock
 2. Review all the eCornell class materials 
 
