@@ -2,8 +2,8 @@
 [My resume (removed for now)](https://#)
 
 
-- [LEXI](./websites/lexi.pdf)
-- [LEXI](https://matsunagateitoku.github.io/Portfolio/websites/lexi2.html)
+- [LEXI plan](./websites/lexi.pdf)
+- [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi3.html)
 
 
 ## UX Process
