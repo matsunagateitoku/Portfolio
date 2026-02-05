@@ -3,7 +3,7 @@
 
 
 - [LEXI plan](./websites/lexi.pdf)
-- [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi3.html)
+- [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi4.html)
 
 
 ## UX Process
