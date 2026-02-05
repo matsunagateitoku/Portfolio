@@ -3,6 +3,8 @@
 
 
 [LEXI](./websites/lexi.pdf)
+[LEXI](https://matsunagateitoku.github.io/Portfolio/websites/lexi-translation-app.html)
+
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
