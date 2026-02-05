@@ -392,8 +392,6 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            margin-top: 6px;
-            margin-left: 34px;
             font-size: 11px;
             color: #6366f1;
             text-decoration: none;
@@ -402,6 +400,37 @@
 
         .source-link:hover {
             text-decoration: underline;
+        }
+
+        .source-links {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            margin-left: 34px;
+        }
+
+        .add-to-lexicon-btn-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: white;
+            color: #6366f1;
+            border: 1.5px solid #6366f1;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+            margin-left: 34px;
+        }
+
+        .add-to-lexicon-btn-small:hover {
+            background: #6366f1;
+            color: white;
+            transform: translateY(-1px);
         }
 
         .add-lexicon-btn {
@@ -471,22 +500,59 @@
             background: #fafafa;
             padding: 16px;
             border-radius: 8px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             transition: all 0.2s ease;
+            gap: 16px;
         }
 
         .history-item:hover {
             background: #f0f0f0;
         }
 
+        .history-content {
+            flex: 1;
+        }
+
         .history-word {
-            font-size: 16px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
             color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .history-context {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .history-source-text {
             margin-bottom: 4px;
+            font-style: italic;
+        }
+
+        .history-target-text {
+            color: #888;
+        }
+
+        .history-source-text strong,
+        .history-target-text strong {
+            color: #6366f1;
+            font-weight: 600;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 1px 3px;
+            border-radius: 2px;
+        }
+
+        .history-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+            flex-shrink: 0;
         }
 
         .history-translation {
@@ -501,7 +567,6 @@
         .history-date {
             font-size: 11px;
             color: #999;
-            margin-bottom: 4px;
         }
 
         .history-lang {
@@ -510,6 +575,7 @@
             color: #4338ca;
             padding: 3px 8px;
             border-radius: 4px;
+            white-space: nowrap;
         }
 
         /* FEDERATED SEARCH TAB */
@@ -567,6 +633,13 @@
             color: #666;
             line-height: 1.6;
             margin-bottom: 6px;
+        }
+
+        .highlight-term {
+            background: linear-gradient(transparent 60%, #fff3cd 60%);
+            font-weight: 600;
+            color: #1a1a1a;
+            padding: 1px 2px;
         }
 
         .result-url {
@@ -737,71 +810,120 @@
                 <div class="ai-summary-box">
                     <div class="ai-badge">
                         <span>✨</span>
-                        <span>AI Translation Summary</span>
+                        <span>Contextualized AI Translation</span>
                     </div>
                     <div class="ai-summary-text">
-                        The Chinese word "韧性" (rèn xìng) translates to English as "resilience," which means the ability to recover quickly from difficulties and adapt to challenging situations. The term 韧性 literally combines the characters for "tough/pliable" (韧) and "nature/quality" (性), emphasizing both strength and flexibility. In English, "resilience" captures this dual quality—the capacity to withstand stress while maintaining the ability to bounce back. Alternative English translations depending on context include "toughness," "tenacity," "elasticity," and "durability."
+                        In the context of "中国经济展现出了强大的韧性," the term "韧性" (rèn xìng) is best translated as "resilience," referring specifically to the economy's capacity to withstand shocks and maintain stability despite challenges. Here, it emphasizes both durability under pressure and the ability to recover, making "resilience" the most contextually appropriate translation over alternatives like "toughness" or "tenacity."
                     </div>
                 </div>
 
                 <div class="definitions-section">
-                    <h3 class="section-title">Translations & Definitions</h3>
+                    <h3 class="section-title">Contextual Translations</h3>
                     
                     <div class="definition-item">
                         <span class="definition-number">1</span>
-                        <span class="definition-text"><strong>resilience</strong> – The primary translation meaning the capacity to recover quickly from difficulties; toughness</span>
-                        <div class="definition-example">"She showed great resilience in overcoming the challenges." (她展现出了强大的韧性克服挑战。)</div>
-                        <a href="#" class="source-link">
-                            <span>📖</span>
-                            <span>Oxford English-Chinese Dictionary</span>
-                        </a>
+                        <span class="definition-text"><strong>resilience</strong> – The capacity to recover quickly from difficulties; economic strength and adaptability</span>
+                        <div class="definition-example">"The economy demonstrated remarkable resilience during the crisis." (经济在危机中展现出非凡的韧性。)</div>
+                        <div class="source-links">
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Oxford Dictionary</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>🔄</span>
+                                <span>Translation Memory (3 matches)</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>🌐</span>
+                                <span>Web Context</span>
+                            </a>
+                        </div>
+                        <button class="add-to-lexicon-btn-small">
+                            <span>➕</span>
+                            <span>Add to Lexicon</span>
+                        </button>
                     </div>
 
                     <div class="definition-item">
                         <span class="definition-number">2</span>
-                        <span class="definition-text"><strong>toughness</strong> – The quality of being strong and not easily damaged or affected by difficult conditions</span>
-                        <div class="definition-example">"The material's toughness makes it ideal for construction." (这种材料的韧性使其非常适合建筑。)</div>
-                        <a href="#" class="source-link">
-                            <span>📖</span>
-                            <span>Cambridge English Dictionary</span>
-                        </a>
+                        <span class="definition-text"><strong>toughness</strong> – The quality of being strong and able to withstand adverse conditions or rough handling</span>
+                        <div class="definition-example">"Material toughness is essential for construction." (材料的韧性对建筑至关重要。)</div>
+                        <div class="source-links">
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Cambridge Dictionary</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Pleco Dictionary</span>
+                            </a>
+                        </div>
+                        <button class="add-to-lexicon-btn-small">
+                            <span>➕</span>
+                            <span>Add to Lexicon</span>
+                        </button>
                     </div>
 
                     <div class="definition-item">
                         <span class="definition-number">3</span>
-                        <span class="definition-text"><strong>tenacity</strong> – The quality of being determined and persistent; not giving up easily</span>
-                        <div class="definition-example">"His tenacity in pursuing his goals was admirable." (他追求目标的韧性令人钦佩。)</div>
-                        <a href="#" class="source-link">
-                            <span>📖</span>
-                            <span>Collins English Dictionary</span>
-                        </a>
+                        <span class="definition-text"><strong>tenacity</strong> – The quality of being determined and persistent; not giving up in the face of difficulties</span>
+                        <div class="definition-example">"Her tenacity helped her overcome every obstacle." (她的韧性帮助她克服了每一个障碍。)</div>
+                        <div class="source-links">
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Collins Dictionary</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>🔄</span>
+                                <span>Translation Memory (1 match)</span>
+                            </a>
+                        </div>
+                        <button class="add-to-lexicon-btn-small">
+                            <span>➕</span>
+                            <span>Add to Lexicon</span>
+                        </button>
                     </div>
 
                     <div class="definition-item">
                         <span class="definition-number">4</span>
-                        <span class="definition-text"><strong>elasticity</strong> – The ability to return to original form after being stretched or compressed; flexibility</span>
-                        <div class="definition-example">"The economy showed remarkable elasticity during the crisis." (经济在危机期间表现出非凡的韧性。)</div>
-                        <a href="#" class="source-link">
-                            <span>📖</span>
-                            <span>Merriam-Webster Dictionary</span>
-                        </a>
+                        <span class="definition-text"><strong>elasticity</strong> – The ability to return to original form after being stretched or compressed; flexibility in response to change</span>
+                        <div class="definition-example">"Economic elasticity allows for rapid adjustment to market changes." (经济韧性允许快速适应市场变化。)</div>
+                        <div class="source-links">
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Merriam-Webster</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>🌐</span>
+                                <span>Web Context</span>
+                            </a>
+                        </div>
+                        <button class="add-to-lexicon-btn-small">
+                            <span>➕</span>
+                            <span>Add to Lexicon</span>
+                        </button>
                     </div>
 
                     <div class="definition-item">
                         <span class="definition-number">5</span>
-                        <span class="definition-text"><strong>durability</strong> – The ability to withstand wear, pressure, or damage; lasting quality</span>
-                        <div class="definition-example">"The durability of the product exceeded our expectations." (产品的韧性超出了我们的预期。)</div>
-                        <a href="#" class="source-link">
-                            <span>📖</span>
-                            <span>Longman Dictionary</span>
-                        </a>
+                        <span class="definition-text"><strong>durability</strong> – The ability to withstand wear, pressure, or damage over time; lasting quality</span>
+                        <div class="definition-example">"The durability of the infrastructure is critical for long-term development." (基础设施的韧性对长期发展至关重要。)</div>
+                        <div class="source-links">
+                            <a href="#" class="source-link">
+                                <span>📖</span>
+                                <span>Longman Dictionary</span>
+                            </a>
+                            <a href="#" class="source-link">
+                                <span>🔄</span>
+                                <span>Translation Memory (2 matches)</span>
+                            </a>
+                        </div>
+                        <button class="add-to-lexicon-btn-small">
+                            <span>➕</span>
+                            <span>Add to Lexicon</span>
+                        </button>
                     </div>
                 </div>
-
-                <button class="add-lexicon-btn">
-                    <span>➕</span>
-                    <span>Add to My Lexicon</span>
-                </button>
             </div>
 
             <!-- TAB 2: DICTIONARY RESULTS -->
@@ -813,6 +935,10 @@
                         <li>the capacity to recover quickly from difficulties</li>
                         <li>the ability of a substance to withstand or recover from difficult conditions</li>
                     </ul>
+                    <button class="add-to-lexicon-btn-small">
+                        <span>➕</span>
+                        <span>Add to Lexicon</span>
+                    </button>
                 </div>
 
                 <div class="dictionary-entry">
@@ -822,6 +948,10 @@
                         <li>resilient; tough (of materials or character)</li>
                         <li>flexibility combined with strength</li>
                     </ul>
+                    <button class="add-to-lexicon-btn-small">
+                        <span>➕</span>
+                        <span>Add to Lexicon</span>
+                    </button>
                 </div>
 
                 <div class="dictionary-entry">
@@ -831,6 +961,10 @@
                         <li>elasticity (when referring to materials)</li>
                         <li>the quality of being able to recover from or adjust to misfortune or change</li>
                     </ul>
+                    <button class="add-to-lexicon-btn-small">
+                        <span>➕</span>
+                        <span>Add to Lexicon</span>
+                    </button>
                 </div>
 
                 <div class="dictionary-entry">
@@ -839,6 +973,10 @@
                         <li>韧性 rèn xìng - toughness; resilience; strength and pliability</li>
                         <li>韧 (rèn) - pliable but strong; resilient; flexible</li>
                     </ul>
+                    <button class="add-to-lexicon-btn-small">
+                        <span>➕</span>
+                        <span>Add to Lexicon</span>
+                    </button>
                 </div>
 
                 <div class="dictionary-entry">
@@ -847,74 +985,102 @@
                         <li>韧性 - resilience, the ability to bounce back; durability</li>
                         <li>Often used in contexts of psychology (mental resilience), materials science (material toughness), or economics (economic resilience)</li>
                     </ul>
+                    <button class="add-to-lexicon-btn-small">
+                        <span>➕</span>
+                        <span>Add to Lexicon</span>
+                    </button>
                 </div>
             </div>
 
             <!-- TAB 3: PREVIOUS TRANSLATIONS -->
             <div id="history" class="tab-content">
                 <div class="history-item">
-                    <div>
+                    <div class="history-content">
                         <div class="history-word">韧性 → resilience</div>
-                        <div class="history-translation">Toughness, ability to recover from difficulties</div>
+                        <div class="history-context">
+                            <div class="history-source-text">中国经济展现出了强大的<strong>韧性</strong></div>
+                            <div class="history-target-text">China's economy has shown strong <strong>resilience</strong></div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">2 hours ago</div>
                         <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
 
                 <div class="history-item">
-                    <div>
-                        <div class="history-word">短暂的 → ephemeral</div>
-                        <div class="history-translation">Lasting for a very short time</div>
+                    <div class="history-content">
+                        <div class="history-word">适应力 → adaptability</div>
+                        <div class="history-context">
+                            <div class="history-source-text">这种<strong>适应力</strong>体现在社会各个层面</div>
+                            <div class="history-target-text">This <strong>adaptability</strong> is reflected across various levels of society</div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">Yesterday</div>
                         <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
 
                 <div class="history-item">
-                    <div>
-                        <div class="history-word">resilience → الصمود</div>
-                        <div class="history-translation">Steadfastness, resilience</div>
+                    <div class="history-content">
+                        <div class="history-word">复原力 → recovery capacity</div>
+                        <div class="history-context">
+                            <div class="history-source-text">展现出惊人的心理<strong>复原力</strong></div>
+                            <div class="history-target-text">Demonstrated remarkable psychological <strong>recovery capacity</strong></div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">3 days ago</div>
-                        <span class="history-lang">EN → AR</span>
+                        <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
 
                 <div class="history-item">
-                    <div>
-                        <div class="history-word">机缘巧合 → serendipity</div>
-                        <div class="history-translation">Fortunate coincidence, happy accident</div>
+                    <div class="history-content">
+                        <div class="history-word">竞争力 → competitiveness</div>
+                        <div class="history-context">
+                            <div class="history-source-text">增强了经济的<strong>竞争力</strong></div>
+                            <div class="history-target-text">Enhanced economic <strong>competitiveness</strong></div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">5 days ago</div>
                         <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
 
                 <div class="history-item">
-                    <div>
-                        <div class="history-word">غامض → ambiguous</div>
-                        <div class="history-translation">Unclear, having multiple meanings</div>
+                    <div class="history-content">
+                        <div class="history-word">可持续性 → sustainability</div>
+                        <div class="history-context">
+                            <div class="history-source-text">环境<strong>可持续性</strong>提出了新的要求</div>
+                            <div class="history-target-text">Environmental <strong>sustainability</strong> poses new requirements</div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">1 week ago</div>
-                        <span class="history-lang">AR → EN</span>
+                        <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
 
                 <div class="history-item">
-                    <div>
-                        <div class="history-word">perseverance → 坚韧不拔</div>
-                        <div class="history-translation">Persistent determination</div>
+                    <div class="history-content">
+                        <div class="history-word">灵活性 → flexibility</div>
+                        <div class="history-context">
+                            <div class="history-source-text">提高经济的<strong>灵活性</strong>和创新能力</div>
+                            <div class="history-target-text">Improve economic <strong>flexibility</strong> and innovation capacity</div>
+                        </div>
                     </div>
-                    <div class="history-meta">
+                    <div class="history-actions">
                         <div class="history-date">2 weeks ago</div>
-                        <span class="history-lang">EN → ZH</span>
+                        <span class="history-lang">ZH → EN</span>
+                        <button class="add-to-lexicon-btn-small">➕ Add</button>
                     </div>
                 </div>
             </div>
@@ -922,67 +1088,67 @@
             <!-- TAB 4: FEDERATED SEARCH -->
             <div id="federated" class="tab-content">
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-news">NEWS</span>
+                    <span class="result-source-badge badge-news">新闻 NEWS</span>
                     <div class="result-title">
-                        <a href="#">Understanding 韧性: How Chinese Concept of Resilience Differs from Western Views</a>
+                        <a href="#">在不确定时代建立韧性：专家观点</a>
                     </div>
                     <div class="result-snippet">
-                        Psychologists note that the Chinese term "韧性" (rèn xìng) encompasses not just bouncing back, but enduring strength. "While English 'resilience' emphasizes recovery, 韧性 emphasizes sustained toughness," explains Dr. Wang...
+                        心理健康专家讨论了在应对全球挑战时<span class="highlight-term">韧性</span>的重要性。"<span class="highlight-term">韧性</span>的概念不仅包括心理韧性，还包括适应能力，"陈博士说。研究表明，培养<span class="highlight-term">韧性</span>需要长期的实践和自我反思...
                     </div>
                     <div class="result-url">psychologytoday.com</div>
                 </div>
 
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-press">PRESS RELEASE</span>
+                    <span class="result-source-badge badge-press">新闻稿 PRESS</span>
                     <div class="result-title">
-                        <a href="#">Translation Study Reveals Nuances in Chinese Word 韧性 vs. English "Resilience"</a>
+                        <a href="#">新研究揭示理解韧性的文化差异</a>
                     </div>
                     <div class="result-snippet">
-                        New research highlights cultural differences in resilience concepts. The Chinese 韧性 combines ideas of toughness (韧) and inherent quality (性), suggesting resilience as an intrinsic characteristic rather than just reactive ability...
+                        研究表明，虽然英语使用者将"resilience"与反弹能力联系在一起，但使用"<span class="highlight-term">韧性</span>"的中文使用者更强调在压力下的持久韧性。这种<span class="highlight-term">韧性</span>不仅是恢复能力，更是一种内在的品质...
                     </div>
                     <div class="result-url">sciencedaily.com</div>
                 </div>
 
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-web">WEB</span>
+                    <span class="result-source-badge badge-web">网页 WEB</span>
                     <div class="result-title">
-                        <a href="#">How to Translate 韧性: A Complete Guide to Chinese-English Translation</a>
+                        <a href="#">如何翻译韧性：中英翻译完整指南</a>
                     </div>
                     <div class="result-snippet">
-                        Translating 韧性 (rèn xìng) requires understanding context. While "resilience" is the most common translation, alternatives include "toughness" (physical contexts), "tenacity" (character descriptions), and "durability" (materials)...
+                        翻译<span class="highlight-term">韧性</span>（rèn xìng）需要理解上下文。虽然"resilience"是最常见的翻译，但替代词包括"toughness"（物理语境）、"tenacity"（性格描述）和"durability"（材料）。<span class="highlight-term">韧性</span>一词在不同领域有不同的含义...
                     </div>
                     <div class="result-url">chinesetranslation.com</div>
                 </div>
 
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-news">NEWS</span>
+                    <span class="result-source-badge badge-news">新闻 NEWS</span>
                     <div class="result-title">
-                        <a href="#">China's Economic 韧性 Shows Strength: What Resilience Means in Business Context</a>
+                        <a href="#">中国经济韧性展现实力：韧性在商业背景下的含义</a>
                     </div>
                     <div class="result-snippet">
-                        Financial analysts discuss China's economic resilience using the term "经济韧性" (jīng jì rèn xìng). The concept translates as "economic resilience" but carries connotations of adaptive strength unique to Chinese economic philosophy...
+                        金融分析师使用"经济<span class="highlight-term">韧性</span>"一词讨论中国的经济弹性。这个概念译为"economic resilience"，但带有中国经济哲学特有的适应性力量的内涵。专家指出，这种<span class="highlight-term">韧性</span>是长期积累的结果...
                     </div>
                     <div class="result-url">reuters.com</div>
                 </div>
 
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-web">WEB</span>
+                    <span class="result-source-badge badge-web">网页 WEB</span>
                     <div class="result-title">
-                        <a href="#">Chinese Character Deep Dive: 韧 (Tough) + 性 (Nature) = 韧性 (Resilience)</a>
+                        <a href="#">汉字深度解析：韧（坚韧）+ 性（本质）= 韧性（弹性）</a>
                     </div>
                     <div class="result-snippet">
-                        Breaking down the components of 韧性 helps understand its full meaning. 韧 (rèn) means "pliable yet strong" - like bamboo that bends but doesn't break. Combined with 性 (xìng, nature/quality), it becomes "the quality of being tough yet flexible"...
+                        分解<span class="highlight-term">韧性</span>的组成部分有助于理解其完整含义。韧（rèn）意为"柔韧而坚强"——就像竹子弯曲但不折断。与性（xìng，性质/品质）结合，它变成了"坚韧而灵活的品质"。这种<span class="highlight-term">韧性</span>体现了中国文化中对平衡的追求...
                     </div>
                     <div class="result-url">hackingchinese.com</div>
                 </div>
 
                 <div class="search-result-item">
-                    <span class="result-source-badge badge-press">ACADEMIC</span>
+                    <span class="result-source-badge badge-press">学术 ACADEMIC</span>
                     <div class="result-title">
-                        <a href="#">Linguistic Analysis: Translating 韧性 and Related Chinese Resilience Terms</a>
+                        <a href="#">语言分析：翻译韧性及相关中文韧性术语</a>
                     </div>
                     <div class="result-snippet">
-                        This paper examines how Chinese resilience vocabulary (韧性, 坚韧, 顽强) maps onto English terms. Unlike English's single "resilience," Chinese offers multiple terms with distinct connotations - 韧性 for flexible toughness, 坚韧 for firm perseverance...
+                        本文研究中文<span class="highlight-term">韧性</span>词汇（<span class="highlight-term">韧性</span>、坚韧、顽强）如何映射到英语术语。与英语的单一"resilience"不同，中文提供了多个具有不同含义的术语——<span class="highlight-term">韧性</span>表示灵活的韧性，坚韧表示坚定的毅力...
                     </div>
                     <div class="result-url">tandfonline.com</div>
                 </div>
