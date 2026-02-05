@@ -3,7 +3,7 @@
 
 
 - [LEXI](./websites/lexi.pdf)
-- [LEXI](https://matsunagateitoku.github.io/Portfolio/websites/lexi.html)
+- [LEXI](https://matsunagateitoku.github.io/Portfolio/websites/lexi2.html)
 
 
 ## UX Process
