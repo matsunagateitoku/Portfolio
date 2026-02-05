@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lexi - AI Translation & Dictionary</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #fafafa;
+            color: #1a1a1a;
+            line-height: 1.6;
+            overflow: hidden;
+        }
+
+        .main-layout {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .text-panel {
+            flex: 1;
+            background: white;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .text-panel-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafafa;
+        }
+
+        .text-panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .text-panel-subtitle {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .text-content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 30px;
+        }
+
+        .text-content {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 16px;
+            line-height: 1.9;
+            color: #333;
+        }
+
+        .text-content h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin: 30px 0 16px 0;
+        }
+
+        .text-content p {
+            margin-bottom: 20px;
+        }
+
+        .selectable-word {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 2px 0;
+            border-radius: 3px;
+        }
+
+        .selectable-word:hover {
+            background: #fff3cd;
+            color: #1a1a1a;
+        }
+
+        .selectable-word.selected {
+            background: #6366f1;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .lookup-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: #fafafa;
+        }
+
+        .container {
+            max-width: none;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e0e0e0;
+            background: white;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .search-section {
+            background: white;
+            padding: 20px 30px;
+            box-shadow: none;
+            margin-bottom: 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 50px 14px 20px;
+            font-size: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .search-input:focus {
+            border-color: #6366f1;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+            background: white;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 18px;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .lang-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .lang-dropdown {
+            padding: 6px 12px;
+            border: 1.5px solid #e0e0e0;
+            border-radius: 6px;
+            background: white;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .lang-dropdown:hover {
+            border-color: #6366f1;
+        }
+
+        .lang-arrow {
+            font-size: 16px;
+            color: #999;
+        }
+
+        .tabs-container {
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fafafa;
+            overflow-x: auto;
+            flex-shrink: 0;
+        }
+
+        .tab-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover {
+            background: rgba(99, 102, 241, 0.05);
+            color: #6366f1;
+        }
+
+        .tab-btn.active {
+            color: #6366f1;
+            border-bottom-color: #6366f1;
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 24px 30px;
+            animation: fadeIn 0.4s ease;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* AI SUMMARY TAB */
+        .translation-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .word-display {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .word-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .pronunciation {
+            color: #666;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .language-badge {
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .ai-summary-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #0ea5e9;
+            margin-bottom: 24px;
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #0ea5e9;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .ai-summary-text {
+            font-size: 14px;
+            color: #0c4a6e;
+            line-height: 1.7;
+        }
+
+        .definitions-section {
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+        }
+
+        .definition-item {
+            background: #fafafa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border-left: 3px solid #d4d4d4;
+            transition: all 0.2s ease;
+        }
+
+        .definition-item:hover {
+            border-left-color: #6366f1;
+            background: #f8f8ff;
+        }
+
+        .definition-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .definition-text {
+            display: inline;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .definition-example {
+            margin-top: 10px;
+            padding-left: 34px;
+            font-size: 13px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            margin-top: 6px;
+            margin-left: 34px;
+            font-size: 11px;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .source-link:hover {
+            text-decoration: underline;
+        }
+
+        .add-lexicon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: #6366f1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-lexicon-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        /* DICTIONARY TAB */
+        .dictionary-entry {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px 0;
+        }
+
+        .dictionary-entry:last-child {
+            border-bottom: none;
+        }
+
+        .dict-source {
+            display: inline-block;
+            background: #f3f4f6;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 10px;
+        }
+
+        .dict-definitions {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .dict-definitions li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .dict-definitions li::before {
+            content: "•";
+            position: absolute;
+            left: 6px;
+            color: #6366f1;
+            font-weight: bold;
+        }
+
+        /* PREVIOUS TRANSLATIONS TAB */
+        .history-item {
+            background: #fafafa;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+        .history-item:hover {
+            background: #f0f0f0;
+        }
+
+        .history-word {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+
+        .history-translation {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .history-meta {
+            text-align: right;
+        }
+
+        .history-date {
+            font-size: 11px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .history-lang {
+            font-size: 10px;
+            background: #e0e7ff;
+            color: #4338ca;
+            padding: 3px 8px;
+            border-radius: 4px;
+        }
+
+        /* FEDERATED SEARCH TAB */
+        .search-result-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 16px 0;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-source-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .badge-news {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge-press {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-web {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .result-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+
+        .result-title a {
+            color: #1a1a1a;
+            text-decoration: none;
+        }
+
+        .result-title a:hover {
+            color: #6366f1;
+        }
+
+        .result-snippet {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 6px;
+        }
+
+        .result-url {
+            font-size: 11px;
+            color: #10b981;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+            opacity: 0.3;
+        }
+
+        .empty-text {
+            font-size: 14px;
+            color: #999;
+        }
+
+        @media (max-width: 1024px) {
+            .main-layout {
+                flex-direction: column;
+            }
+
+            .text-panel {
+                border-right: none;
+                border-bottom: 1px solid #e0e0e0;
+                max-height: 40vh;
+            }
+
+            .lookup-panel {
+                max-height: 60vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 24px;
+            }
+
+            .tab-btn {
+                padding: 12px 10px;
+                font-size: 12px;
+                min-width: 100px;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .word-display {
+                font-size: 22px;
+            }
+
+            .text-panel-header {
+                padding: 16px 20px;
+            }
+
+            .text-content-wrapper {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-layout">
+        <!-- LEFT PANEL: TEXT PRESENTER -->
+        <div class="text-panel">
+            <div class="text-panel-header">
+                <div class="text-panel-title">Text Presenter</div>
+                <div class="text-panel-subtitle">Highlight any word to look it up</div>
+            </div>
+            <div class="text-content-wrapper">
+                <div class="text-content">
+                    <h2>中国经济的韧性与挑战</h2>
+                    <p>
+                        近年来，中国经济展现出了强大的<span class="selectable-word selected" onclick="lookupWord('韧性', 'resilience')">韧性</span>。尽管面临着全球经济不确定性的挑战，中国依然保持着稳定的增长态势。这种<span class="selectable-word" onclick="lookupWord('适应力', 'adaptability')">适应力</span>不仅体现在经济数据上，更反映在社会各个层面。
+                    </p>
+                    <p>
+                        经济学家指出，中国的<span class="selectable-word" onclick="lookupWord('复原力', 'recovery ability')">复原力</span>源于多个因素。首先是庞大的国内市场，为经济发展提供了充足的<span class="selectable-word" onclick="lookupWord('动力', 'momentum')">动力</span>。其次，持续的技术创新和产业升级增强了经济的<span class="selectable-word" onclick="lookupWord('竞争力', 'competitiveness')">竞争力</span>。
+                    </p>
+                    <p>
+                        然而，<span class="selectable-word" onclick="lookupWord('挑战', 'challenge')">挑战</span>依然存在。人口老龄化、环境<span class="selectable-word" onclick="lookupWord('可持续性', 'sustainability')">可持续性</span>、以及全球供应链的重组都对经济发展提出了新的要求。面对这些挑战，中国需要继续深化改革，提高经济的<span class="selectable-word" onclick="lookupWord('灵活性', 'flexibility')">灵活性</span>和创新能力。
+                    </p>
+                    
+                    <h2>全球化背景下的机遇</h2>
+                    <p>
+                        在全球化的大背景下，中国经济迎来了前所未有的<span class="selectable-word" onclick="lookupWord('机遇', 'opportunity')">机遇</span>。通过"一带一路"倡议，中国与世界各国的经贸<span class="selectable-word" onclick="lookupWord('合作', 'cooperation')">合作</span>不断深化。这不仅促进了中国经济的发展，也为全球经济增长注入了新的<span class="selectable-word" onclick="lookupWord('活力', 'vitality')">活力</span>。
+                    </p>
+                    <p>
+                        同时，数字经济的快速发展为中国经济<span class="selectable-word" onclick="lookupWord('转型', 'transformation')">转型</span>升级提供了强大支撑。人工智能、大数据、云计算等新技术的广泛应用，推动了传统产业的<span class="selectable-word" onclick="lookupWord('革新', 'innovation')">革新</span>，也催生了众多新兴产业。
+                    </p>
+                    
+                    <h2>未来发展的展望</h2>
+                    <p>
+                        展望未来，中国经济仍将保持稳健的发展<span class="selectable-word" onclick="lookupWord('势头', 'momentum')">势头</span>。通过持续推进高质量发展，中国将在全球经济中扮演更加重要的<span class="selectable-word" onclick="lookupWord('角色', 'role')">角色</span>。同时，中国也将为构建人类命运共同体贡献更多的<span class="selectable-word" onclick="lookupWord('智慧', 'wisdom')">智慧</span>和力量。
+                    </p>
+                    <p>
+                        总的来说，中国经济的<span class="selectable-word" onclick="lookupWord('韧性', 'resilience')">韧性</span>源于其强大的制度优势、庞大的市场规模和持续的创新能力。这些因素将继续支撑中国经济在未来实现更高质量、更可<span class="selectable-word" onclick="lookupWord('持续', 'sustainable')">持续</span>的发展。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: LEXI LOOKUP -->
+        <div class="lookup-panel">
+            <div class="container">
+        <header>
+            <div class="logo">Lexi</div>
+            <div class="tagline">AI-powered translation and dictionary</div>
+        </header>
+
+        <div class="search-section">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search any word in any language..." value="韧性">
+                <span class="search-icon">🔍</span>
+            </div>
+            <div class="language-selector">
+                <span class="lang-label">From:</span>
+                <select class="lang-dropdown">
+                    <option>Chinese (Simplified)</option>
+                    <option>English</option>
+                    <option>Chinese (Traditional)</option>
+                    <option>Arabic</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Japanese</option>
+                    <option>Korean</option>
+                </select>
+                <span class="lang-arrow">⇄</span>
+                <span class="lang-label">To:</span>
+                <select class="lang-dropdown">
+                    <option>English</option>
+                    <option>Chinese (Simplified)</option>
+                    <option>Arabic</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Japanese</option>
+                    <option>Korean</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tabs-container">
+            <div class="tabs-header">
+                <button class="tab-btn active" onclick="switchTab('ai-summary')">AI Summary</button>
+                <button class="tab-btn" onclick="switchTab('dictionary')">Dictionary Results</button>
+                <button class="tab-btn" onclick="switchTab('history')">Previous Translations</button>
+                <button class="tab-btn" onclick="switchTab('federated')">Federated Search</button>
+            </div>
+
+            <!-- TAB 1: AI SUMMARY -->
+            <div id="ai-summary" class="tab-content active">
+                <div class="translation-header">
+                    <div class="word-display">resilience</div>
+                    <div class="word-meta">
+                        <span class="pronunciation">/rɪˈzɪl.i.əns/</span>
+                        <span class="language-badge">ZH → EN</span>
+                    </div>
+                </div>
+
+                <div class="ai-summary-box">
+                    <div class="ai-badge">
+                        <span>✨</span>
+                        <span>AI Translation Summary</span>
+                    </div>
+                    <div class="ai-summary-text">
+                        The Chinese word "韧性" (rèn xìng) translates to English as "resilience," which means the ability to recover quickly from difficulties and adapt to challenging situations. The term 韧性 literally combines the characters for "tough/pliable" (韧) and "nature/quality" (性), emphasizing both strength and flexibility. In English, "resilience" captures this dual quality—the capacity to withstand stress while maintaining the ability to bounce back. Alternative English translations depending on context include "toughness," "tenacity," "elasticity," and "durability."
+                    </div>
+                </div>
+
+                <div class="definitions-section">
+                    <h3 class="section-title">Translations & Definitions</h3>
+                    
+                    <div class="definition-item">
+                        <span class="definition-number">1</span>
+                        <span class="definition-text"><strong>resilience</strong> – The primary translation meaning the capacity to recover quickly from difficulties; toughness</span>
+                        <div class="definition-example">"She showed great resilience in overcoming the challenges." (她展现出了强大的韧性克服挑战。)</div>
+                        <a href="#" class="source-link">
+                            <span>📖</span>
+                            <span>Oxford English-Chinese Dictionary</span>
+                        </a>
+                    </div>
+
+                    <div class="definition-item">
+                        <span class="definition-number">2</span>
+                        <span class="definition-text"><strong>toughness</strong> – The quality of being strong and not easily damaged or affected by difficult conditions</span>
+                        <div class="definition-example">"The material's toughness makes it ideal for construction." (这种材料的韧性使其非常适合建筑。)</div>
+                        <a href="#" class="source-link">
+                            <span>📖</span>
+                            <span>Cambridge English Dictionary</span>
+                        </a>
+                    </div>
+
+                    <div class="definition-item">
+                        <span class="definition-number">3</span>
+                        <span class="definition-text"><strong>tenacity</strong> – The quality of being determined and persistent; not giving up easily</span>
+                        <div class="definition-example">"His tenacity in pursuing his goals was admirable." (他追求目标的韧性令人钦佩。)</div>
+                        <a href="#" class="source-link">
+                            <span>📖</span>
+                            <span>Collins English Dictionary</span>
+                        </a>
+                    </div>
+
+                    <div class="definition-item">
+                        <span class="definition-number">4</span>
+                        <span class="definition-text"><strong>elasticity</strong> – The ability to return to original form after being stretched or compressed; flexibility</span>
+                        <div class="definition-example">"The economy showed remarkable elasticity during the crisis." (经济在危机期间表现出非凡的韧性。)</div>
+                        <a href="#" class="source-link">
+                            <span>📖</span>
+                            <span>Merriam-Webster Dictionary</span>
+                        </a>
+                    </div>
+
+                    <div class="definition-item">
+                        <span class="definition-number">5</span>
+                        <span class="definition-text"><strong>durability</strong> – The ability to withstand wear, pressure, or damage; lasting quality</span>
+                        <div class="definition-example">"The durability of the product exceeded our expectations." (产品的韧性超出了我们的预期。)</div>
+                        <a href="#" class="source-link">
+                            <span>📖</span>
+                            <span>Longman Dictionary</span>
+                        </a>
+                    </div>
+                </div>
+
+                <button class="add-lexicon-btn">
+                    <span>➕</span>
+                    <span>Add to My Lexicon</span>
+                </button>
+            </div>
+
+            <!-- TAB 2: DICTIONARY RESULTS -->
+            <div id="dictionary" class="tab-content">
+                <div class="dictionary-entry">
+                    <span class="dict-source">Pleco Chinese-English Dictionary</span>
+                    <ul class="dict-definitions">
+                        <li>韧性 (rèn xìng) - resilience, toughness, tenacity</li>
+                        <li>the capacity to recover quickly from difficulties</li>
+                        <li>the ability of a substance to withstand or recover from difficult conditions</li>
+                    </ul>
+                </div>
+
+                <div class="dictionary-entry">
+                    <span class="dict-source">MDBG Chinese-English Dictionary</span>
+                    <ul class="dict-definitions">
+                        <li>韧性 - toughness; resilience; strength and durability</li>
+                        <li>resilient; tough (of materials or character)</li>
+                        <li>flexibility combined with strength</li>
+                    </ul>
+                </div>
+
+                <div class="dictionary-entry">
+                    <span class="dict-source">Oxford Chinese-English Dictionary</span>
+                    <ul class="dict-definitions">
+                        <li>韧性 (rèn xìng) - resilience; toughness; tenacity</li>
+                        <li>elasticity (when referring to materials)</li>
+                        <li>the quality of being able to recover from or adjust to misfortune or change</li>
+                    </ul>
+                </div>
+
+                <div class="dictionary-entry">
+                    <span class="dict-source">CC-CEDICT</span>
+                    <ul class="dict-definitions">
+                        <li>韧性 rèn xìng - toughness; resilience; strength and pliability</li>
+                        <li>韧 (rèn) - pliable but strong; resilient; flexible</li>
+                    </ul>
+                </div>
+
+                <div class="dictionary-entry">
+                    <span class="dict-source">Yabla Chinese Dictionary</span>
+                    <ul class="dict-definitions">
+                        <li>韧性 - resilience, the ability to bounce back; durability</li>
+                        <li>Often used in contexts of psychology (mental resilience), materials science (material toughness), or economics (economic resilience)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TAB 3: PREVIOUS TRANSLATIONS -->
+            <div id="history" class="tab-content">
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">韧性 → resilience</div>
+                        <div class="history-translation">Toughness, ability to recover from difficulties</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">2 hours ago</div>
+                        <span class="history-lang">ZH → EN</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">短暂的 → ephemeral</div>
+                        <div class="history-translation">Lasting for a very short time</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">Yesterday</div>
+                        <span class="history-lang">ZH → EN</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">resilience → الصمود</div>
+                        <div class="history-translation">Steadfastness, resilience</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">3 days ago</div>
+                        <span class="history-lang">EN → AR</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">机缘巧合 → serendipity</div>
+                        <div class="history-translation">Fortunate coincidence, happy accident</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">5 days ago</div>
+                        <span class="history-lang">ZH → EN</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">غامض → ambiguous</div>
+                        <div class="history-translation">Unclear, having multiple meanings</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">1 week ago</div>
+                        <span class="history-lang">AR → EN</span>
+                    </div>
+                </div>
+
+                <div class="history-item">
+                    <div>
+                        <div class="history-word">perseverance → 坚韧不拔</div>
+                        <div class="history-translation">Persistent determination</div>
+                    </div>
+                    <div class="history-meta">
+                        <div class="history-date">2 weeks ago</div>
+                        <span class="history-lang">EN → ZH</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAB 4: FEDERATED SEARCH -->
+            <div id="federated" class="tab-content">
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-news">NEWS</span>
+                    <div class="result-title">
+                        <a href="#">Understanding 韧性: How Chinese Concept of Resilience Differs from Western Views</a>
+                    </div>
+                    <div class="result-snippet">
+                        Psychologists note that the Chinese term "韧性" (rèn xìng) encompasses not just bouncing back, but enduring strength. "While English 'resilience' emphasizes recovery, 韧性 emphasizes sustained toughness," explains Dr. Wang...
+                    </div>
+                    <div class="result-url">psychologytoday.com</div>
+                </div>
+
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-press">PRESS RELEASE</span>
+                    <div class="result-title">
+                        <a href="#">Translation Study Reveals Nuances in Chinese Word 韧性 vs. English "Resilience"</a>
+                    </div>
+                    <div class="result-snippet">
+                        New research highlights cultural differences in resilience concepts. The Chinese 韧性 combines ideas of toughness (韧) and inherent quality (性), suggesting resilience as an intrinsic characteristic rather than just reactive ability...
+                    </div>
+                    <div class="result-url">sciencedaily.com</div>
+                </div>
+
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-web">WEB</span>
+                    <div class="result-title">
+                        <a href="#">How to Translate 韧性: A Complete Guide to Chinese-English Translation</a>
+                    </div>
+                    <div class="result-snippet">
+                        Translating 韧性 (rèn xìng) requires understanding context. While "resilience" is the most common translation, alternatives include "toughness" (physical contexts), "tenacity" (character descriptions), and "durability" (materials)...
+                    </div>
+                    <div class="result-url">chinesetranslation.com</div>
+                </div>
+
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-news">NEWS</span>
+                    <div class="result-title">
+                        <a href="#">China's Economic 韧性 Shows Strength: What Resilience Means in Business Context</a>
+                    </div>
+                    <div class="result-snippet">
+                        Financial analysts discuss China's economic resilience using the term "经济韧性" (jīng jì rèn xìng). The concept translates as "economic resilience" but carries connotations of adaptive strength unique to Chinese economic philosophy...
+                    </div>
+                    <div class="result-url">reuters.com</div>
+                </div>
+
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-web">WEB</span>
+                    <div class="result-title">
+                        <a href="#">Chinese Character Deep Dive: 韧 (Tough) + 性 (Nature) = 韧性 (Resilience)</a>
+                    </div>
+                    <div class="result-snippet">
+                        Breaking down the components of 韧性 helps understand its full meaning. 韧 (rèn) means "pliable yet strong" - like bamboo that bends but doesn't break. Combined with 性 (xìng, nature/quality), it becomes "the quality of being tough yet flexible"...
+                    </div>
+                    <div class="result-url">hackingchinese.com</div>
+                </div>
+
+                <div class="search-result-item">
+                    <span class="result-source-badge badge-press">ACADEMIC</span>
+                    <div class="result-title">
+                        <a href="#">Linguistic Analysis: Translating 韧性 and Related Chinese Resilience Terms</a>
+                    </div>
+                    <div class="result-snippet">
+                        This paper examines how Chinese resilience vocabulary (韧性, 坚韧, 顽强) maps onto English terms. Unlike English's single "resilience," Chinese offers multiple terms with distinct connotations - 韧性 for flexible toughness, 坚韧 for firm perseverance...
+                    </div>
+                    <div class="result-url">tandfonline.com</div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentWord = '韧性';
+        let currentTranslation = 'resilience';
+
+        function lookupWord(word, translation) {
+            // Remove previous selections
+            document.querySelectorAll('.selectable-word').forEach(el => {
+                el.classList.remove('selected');
+            });
+            
+            // Mark current word as selected
+            event.target.classList.add('selected');
+            
+            // Update search input
+            document.querySelector('.search-input').value = word;
+            
+            // Determine language direction
+            const isChinese = /[\u4e00-\u9fa5]/.test(word);
+            
+            if (isChinese) {
+                // Chinese to English
+                document.querySelector('.word-display').textContent = translation;
+                document.querySelector('.pronunciation').textContent = getPronunciation(translation);
+                document.querySelector('.language-badge').textContent = 'ZH → EN';
+                updateLanguageDropdowns('Chinese (Simplified)', 'English');
+            } else {
+                // English to Chinese
+                document.querySelector('.word-display').textContent = translation;
+                document.querySelector('.pronunciation').textContent = '/' + word + '/';
+                document.querySelector('.language-badge').textContent = 'EN → ZH';
+                updateLanguageDropdowns('English', 'Chinese (Simplified)');
+            }
+            
+            // Switch to AI Summary tab
+            switchTab('ai-summary');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-btn')[0].classList.add('active');
+            
+            // Scroll to top of results
+            document.querySelector('#ai-summary').scrollTop = 0;
+        }
+
+        function getPronunciation(word) {
+            const pronunciations = {
+                'resilience': '/rɪˈzɪl.i.əns/',
+                'adaptability': '/əˌdæp.təˈbɪl.ə.ti/',
+                'recovery': '/rɪˈkʌv.ər.i/',
+                'momentum': '/moʊˈmen.təm/',
+                'competitiveness': '/kəmˈpet.ɪ.tɪv.nəs/',
+                'sustainability': '/səˌsteɪ.nəˈbɪl.ə.ti/',
+                'flexibility': '/ˌflek.səˈbɪl.ə.ti/'
+            };
+            return pronunciations[word.toLowerCase()] || '/' + word + '/';
+        }
+
+        function updateLanguageDropdowns(from, to) {
+            const fromDropdown = document.querySelectorAll('.lang-dropdown')[0];
+            const toDropdown = document.querySelectorAll('.lang-dropdown')[1];
+            
+            fromDropdown.value = from;
+            toDropdown.value = to;
+        }
+
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active state from all tab buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active state to clicked button
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
