@@ -12,6 +12,7 @@
 - Mockups (Coming soon)
 - Wireframing & Prototyping (Coming soon)
 - Research (Coming soon)
+- [Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
    
 ## Websites
 ![## UX Process](./images/free-website-builder.webp)
