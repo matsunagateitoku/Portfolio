@@ -1,0 +1,1772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexi — UX Wireframes</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wire-bg: #FAFAF8;
+    --wire-paper: #FFFFFF;
+    --wire-line: #B8B5AD;
+    --wire-line-dark: #8A8780;
+    --wire-fill: #E8E6E1;
+    --wire-fill-dark: #D4D1CB;
+    --wire-accent: #5B7FFF;
+    --wire-accent-light: #DBE3FF;
+    --wire-text: #3D3B37;
+    --wire-text-light: #7A7770;
+    --wire-red: #E8534A;
+    --wire-green: #4CAF6A;
+    --wire-yellow: #F0C850;
+    --wire-blue-note: #4A90D9;
+    --hand: 'Architects Daughter', cursive;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--wire-bg);
+    font-family: var(--mono);
+    color: var(--wire-text);
+    line-height: 1.5;
+  }
+
+  /* ─── NAV ─── */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #2D2B28;
+    color: #F0EDE6;
+    display: flex;
+    align-items: center;
+    padding: 12px 32px;
+    gap: 24px;
+    border-bottom: 3px solid var(--wire-accent);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  }
+
+  .top-bar h1 {
+    font-family: var(--hand);
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+
+  .top-bar h1 span {
+    color: var(--wire-accent);
+  }
+
+  .nav-pills {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+
+  .nav-pill {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-family: var(--mono);
+    font-weight: 500;
+    cursor: pointer;
+    border: 1.5px solid transparent;
+    background: transparent;
+    color: #A09D96;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .nav-pill:hover { color: #F0EDE6; background: rgba(255,255,255,0.06); }
+  .nav-pill.active {
+    background: var(--wire-accent);
+    color: white;
+    border-color: var(--wire-accent);
+  }
+
+  /* ─── SCREEN CONTAINER ─── */
+  .screens-viewport {
+    padding: 40px 32px 80px;
+  }
+
+  .screen-section {
+    display: none;
+    animation: fadeUp 0.3s ease;
+  }
+  .screen-section.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    margin-bottom: 32px;
+  }
+
+  .section-header h2 {
+    font-family: var(--hand);
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--wire-text);
+    margin-bottom: 4px;
+  }
+
+  .section-header .screen-id {
+    font-size: 11px;
+    color: var(--wire-accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .section-header p {
+    font-size: 13px;
+    color: var(--wire-text-light);
+    max-width: 700px;
+    margin-top: 8px;
+  }
+
+  /* ─── WIREFRAME FRAME ─── */
+  .wireframe-stage {
+    background: var(--wire-paper);
+    border: 2px solid var(--wire-line);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    position: relative;
+  }
+
+  .wireframe-stage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 19px, #f2f1ee 19px, #f2f1ee 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, #f2f1ee 19px, #f2f1ee 20px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wireframe-stage > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── WIREFRAME COMPONENTS ─── */
+  .w-layout {
+    display: flex;
+    min-height: 540px;
+  }
+
+  .w-panel-left {
+    flex: 0 0 50%;
+    border-right: 2px dashed var(--wire-line);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .w-panel-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .w-header {
+    padding: 12px 20px;
+    border-bottom: 1.5px solid var(--wire-line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--wire-fill);
+  }
+
+  .w-header-title {
+    font-family: var(--hand);
+    font-size: 16px;
+    color: var(--wire-text);
+  }
+
+  .w-header-sub {
+    font-size: 10px;
+    color: var(--wire-text-light);
+  }
+
+  .w-body {
+    flex: 1;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  /* Text lines */
+  .w-text-line {
+    height: 8px;
+    background: var(--wire-fill-dark);
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .w-text-line.short { width: 60%; }
+  .w-text-line.med { width: 80%; }
+  .w-text-line.long { width: 95%; }
+  .w-text-line.title {
+    height: 14px;
+    width: 55%;
+    background: var(--wire-text);
+    margin-bottom: 14px;
+    border-radius: 3px;
+  }
+
+  .w-text-block {
+    margin-bottom: 20px;
+  }
+
+  /* Word highlights */
+  .w-word {
+    display: inline-block;
+    height: 10px;
+    border-radius: 3px;
+    margin: 0 2px;
+    vertical-align: middle;
+  }
+  .w-word.normal { width: 30px; background: var(--wire-fill-dark); }
+  .w-word.hover { width: 30px; background: var(--wire-yellow); border: 1.5px solid #D4A820; }
+  .w-word.selected { width: 30px; background: var(--wire-accent); border-radius: 4px; }
+
+  /* Search bar */
+  .w-search {
+    border: 2px solid var(--wire-line);
+    border-radius: 6px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--wire-paper);
+    margin-bottom: 10px;
+  }
+  .w-search .placeholder {
+    font-size: 11px;
+    color: var(--wire-line-dark);
+    font-family: var(--mono);
+  }
+  .w-search .icon {
+    font-size: 14px;
+    color: var(--wire-line-dark);
+    margin-left: auto;
+  }
+  .w-search.filled {
+    border-color: var(--wire-accent);
+  }
+  .w-search.filled .placeholder {
+    color: var(--wire-text);
+    font-weight: 600;
+  }
+
+  /* Language selector */
+  .w-lang-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .w-lang-box {
+    border: 1.5px solid var(--wire-line);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 10px;
+    color: var(--wire-text-light);
+    background: var(--wire-paper);
+  }
+  .w-lang-arrow {
+    font-size: 12px;
+    color: var(--wire-line-dark);
+  }
+
+  /* Tabs */
+  .w-tabs {
+    display: flex;
+    border-bottom: 2px solid var(--wire-line);
+    background: var(--wire-fill);
+  }
+  .w-tab {
+    flex: 1;
+    padding: 10px 8px;
+    text-align: center;
+    font-size: 9px;
+    font-weight: 600;
+    color: var(--wire-text-light);
+    letter-spacing: 0.3px;
+    border-bottom: 3px solid transparent;
+    font-family: var(--mono);
+  }
+  .w-tab.active {
+    color: var(--wire-accent);
+    border-bottom-color: var(--wire-accent);
+    background: var(--wire-paper);
+  }
+
+  /* Tab content area */
+  .w-tab-body {
+    flex: 1;
+    padding: 16px 20px;
+    overflow: hidden;
+  }
+
+  /* AI Summary box */
+  .w-ai-box {
+    background: var(--wire-accent-light);
+    border-left: 4px solid var(--wire-accent);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 16px;
+  }
+  .w-ai-badge {
+    display: inline-block;
+    background: var(--wire-accent);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-family: var(--mono);
+  }
+
+  /* Definition cards */
+  .w-def-card {
+    border: 1.5px solid var(--wire-line);
+    border-left: 4px solid var(--wire-fill-dark);
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: var(--wire-paper);
+  }
+  .w-def-card:hover { border-left-color: var(--wire-accent); }
+  .w-def-num {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--wire-accent);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-family: var(--mono);
+  }
+  .w-def-content { flex: 1; }
+  .w-def-word {
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--wire-text);
+    font-family: var(--mono);
+  }
+  .w-def-desc {
+    font-size: 10px;
+    color: var(--wire-text-light);
+    margin-top: 2px;
+  }
+  .w-def-btn {
+    border: 1.5px solid var(--wire-accent);
+    color: var(--wire-accent);
+    background: transparent;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: var(--mono);
+    cursor: default;
+  }
+
+  /* Skeleton / shimmer */
+  .w-skeleton {
+    background: linear-gradient(90deg, var(--wire-fill) 25%, var(--wire-fill-dark) 50%, var(--wire-fill) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 4px;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* History items */
+  .w-history-item {
+    border: 1.5px solid var(--wire-line);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Search result */
+  .w-search-result {
+    border-bottom: 1.5px solid var(--wire-fill);
+    padding: 12px 0;
+  }
+  .w-result-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 8px;
+    font-weight: 600;
+    font-family: var(--mono);
+    margin-bottom: 4px;
+  }
+  .w-result-badge.news { background: #FEE2E2; color: #B91C1C; }
+  .w-result-badge.web { background: #DBEAFE; color: #1D4ED8; }
+  .w-result-badge.academic { background: #F3E8FF; color: #7C3AED; }
+
+  /* Empty state */
+  .w-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: 300px;
+    text-align: center;
+    color: var(--wire-line-dark);
+  }
+  .w-empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 3px dashed var(--wire-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+  .w-empty-text {
+    font-family: var(--hand);
+    font-size: 16px;
+    color: var(--wire-line-dark);
+  }
+  .w-empty-sub {
+    font-size: 11px;
+    color: var(--wire-line);
+    margin-top: 4px;
+  }
+
+  /* Annotations */
+  .annotation {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .annotation .note {
+    font-family: var(--hand);
+    font-size: 13px;
+    color: var(--wire-red);
+    white-space: nowrap;
+  }
+  .annotation .arrow {
+    color: var(--wire-red);
+    font-size: 18px;
+  }
+  .annotation-blue .note { color: var(--wire-blue-note); }
+  .annotation-blue .arrow { color: var(--wire-blue-note); }
+  .annotation-green .note { color: var(--wire-green); }
+
+  /* Callout boxes */
+  .callout-row {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .callout-box {
+    flex: 1;
+    min-width: 200px;
+    border: 2px solid var(--wire-line);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--wire-paper);
+  }
+  .callout-box h4 {
+    font-family: var(--hand);
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--wire-text);
+  }
+  .callout-box p {
+    font-size: 11px;
+    color: var(--wire-text-light);
+    line-height: 1.6;
+  }
+  .callout-box.red { border-color: var(--wire-red); }
+  .callout-box.red h4 { color: var(--wire-red); }
+  .callout-box.blue { border-color: var(--wire-blue-note); }
+  .callout-box.blue h4 { color: var(--wire-blue-note); }
+  .callout-box.green { border-color: var(--wire-green); }
+  .callout-box.green h4 { color: var(--wire-green); }
+
+  /* Resize handle wireframe */
+  .w-resize-handle {
+    width: 8px;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent, transparent 3px,
+      var(--wire-line) 3px, var(--wire-line) 4px
+    );
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    cursor: col-resize;
+  }
+
+  /* Mobile wireframe */
+  .w-mobile-frame {
+    width: 320px;
+    margin: 0 auto;
+    border: 2px solid var(--wire-line);
+    border-radius: 24px;
+    overflow: hidden;
+    background: var(--wire-paper);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .w-mobile-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 19px, #f2f1ee 19px, #f2f1ee 20px),
+      repeating-linear-gradient(90deg, transparent, transparent 19px, #f2f1ee 19px, #f2f1ee 20px);
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .w-mobile-frame > * { position: relative; z-index: 1; }
+  .w-mobile-notch {
+    width: 100px;
+    height: 6px;
+    background: var(--wire-line);
+    border-radius: 3px;
+    margin: 10px auto 8px;
+  }
+
+  /* Multi-screen row */
+  .screen-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .screen-row .wireframe-stage { flex: 1; min-width: 500px; }
+
+  /* Interaction flow arrows */
+  .flow-connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 0;
+  }
+  .flow-arrow {
+    font-family: var(--hand);
+    font-size: 14px;
+    color: var(--wire-accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-arrow::before, .flow-arrow::after {
+    content: '';
+    width: 40px;
+    height: 2px;
+    background: var(--wire-accent);
+    border-radius: 1px;
+  }
+
+  /* Word-level inline wireframe */
+  .w-inline-words {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 6px;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  /* Toast notification */
+  .w-toast {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #2D2B28;
+    color: #F0EDE6;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-family: var(--mono);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 20;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  .w-toast .check { color: var(--wire-green); font-weight: bold; }
+
+  /* Cursor */
+  .w-cursor {
+    position: absolute;
+    z-index: 15;
+    font-size: 20px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.3));
+  }
+
+  /* Section divider */
+  .section-divider {
+    border: none;
+    border-top: 2px dashed var(--wire-line);
+    margin: 48px 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1><span>Lexi</span> — Wireframes</h1>
+  <nav class="nav-pills">
+    <button class="nav-pill active" onclick="showSection('empty')">1. Empty State</button>
+    <button class="nav-pill" onclick="showSection('hover')">2. Hover</button>
+    <button class="nav-pill" onclick="showSection('loading')">3. Loading</button>
+    <button class="nav-pill" onclick="showSection('ai')">4. AI Summary</button>
+    <button class="nav-pill" onclick="showSection('dict')">5. Dictionary</button>
+    <button class="nav-pill" onclick="showSection('history')">6. History</button>
+    <button class="nav-pill" onclick="showSection('federated')">7. Federated</button>
+    <button class="nav-pill" onclick="showSection('lexicon')">8. Add to Lexicon</button>
+    <button class="nav-pill" onclick="showSection('mobile')">9. Mobile</button>
+    <button class="nav-pill" onclick="showSection('flow')">10. User Flow</button>
+  </nav>
+</div>
+
+<div class="screens-viewport">
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 1. EMPTY STATE -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section active" id="sec-empty">
+    <div class="section-header">
+      <div class="screen-id">Screen 1.0</div>
+      <h2>Empty State — No Word Selected</h2>
+      <p>User has loaded source text but hasn't clicked any word yet. The right panel is idle, prompting the user to interact.</p>
+    </div>
+
+    <div class="wireframe-stage" style="position:relative;">
+      <div class="w-layout">
+        <!-- Left panel -->
+        <div class="w-panel-left">
+          <div class="w-header">
+            <span class="w-header-title">Text Presenter</span>
+            <span class="w-header-sub">Highlight any word to look it up</span>
+          </div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:40px"></span>
+                <span class="w-word normal" style="width:16px"></span>
+                <span class="w-word normal" style="width:30px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+                <span class="w-word normal" style="width:26px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:38px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:44px"></span>
+                <span class="w-word normal" style="width:16px"></span>
+              </div>
+            </div>
+            <div class="w-text-block">
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:30px"></span>
+                <span class="w-word normal" style="width:26px"></span>
+                <span class="w-word normal" style="width:38px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:40px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-resize-handle"></div>
+
+        <!-- Right panel - empty -->
+        <div class="w-panel-right">
+          <div class="w-header">
+            <span class="w-header-title">Lexi</span>
+            <span class="w-header-sub">AI-powered translation dictionary</span>
+          </div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search">
+              <span class="placeholder">Search any word in any language...</span>
+              <span class="icon">⌕</span>
+            </div>
+            <div class="w-lang-row">
+              <div class="w-lang-box">Chinese (Simplified)</div>
+              <span class="w-lang-arrow">⇄</span>
+              <div class="w-lang-box">English</div>
+            </div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab active">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <div class="w-empty">
+              <div class="w-empty-icon">👆</div>
+              <div class="w-empty-text">Click a word to look it up</div>
+              <div class="w-empty-sub">or type a term in the search bar above</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Annotation -->
+      <div class="annotation" style="top:280px; right:60px;">
+        <div class="note" style="transform: rotate(-3deg);">← empty state prompt</div>
+      </div>
+      <div class="annotation annotation-blue" style="top:56px; left: 46%;">
+        <div class="note" style="transform: rotate(2deg);">↕ draggable divider</div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box blue">
+        <h4>Design Decision</h4>
+        <p>The empty state uses a friendly icon + text prompt rather than leaving the panel blank. This teaches the click-to-lookup interaction on first visit.</p>
+      </div>
+      <div class="callout-box">
+        <h4>Interaction</h4>
+        <p>Every word in the left panel is individually clickable. Hovering shows a subtle yellow highlight to signal interactivity before the user commits to clicking.</p>
+      </div>
+      <div class="callout-box green">
+        <h4>Validate With</h4>
+        <p>Usability test Task 1: Can users discover the click-to-lookup pattern without instruction? Measure time to first click.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 2. HOVER STATE -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-hover">
+    <div class="section-header">
+      <div class="screen-id">Screen 2.0</div>
+      <h2>Hover State — Word Highlighted</h2>
+      <p>User hovers over a word in the source text. The word gets a yellow background highlight to signal that it's clickable. Cursor changes to pointer.</p>
+    </div>
+
+    <div class="wireframe-stage" style="position:relative;">
+      <div class="w-layout" style="min-height:360px;">
+        <div class="w-panel-left">
+          <div class="w-header">
+            <span class="w-header-title">Text Presenter</span>
+          </div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word hover" style="width:34px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+                <span class="w-word normal" style="width:26px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header">
+            <span class="w-header-title">Lexi</span>
+          </div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search">
+              <span class="placeholder">Search any word in any language...</span>
+              <span class="icon">⌕</span>
+            </div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab active">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <div class="w-empty">
+              <div class="w-empty-icon">👆</div>
+              <div class="w-empty-text">Click a word to look it up</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cursor annotation -->
+      <div class="w-cursor" style="top:120px; left: 218px;">☝️</div>
+      <div class="annotation" style="top:90px; left:260px;">
+        <div class="note" style="transform: rotate(-5deg);">yellow = hover affordance</div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box">
+        <h4>Hover Feedback</h4>
+        <p>Yellow highlight on hover signals clickability. This is the primary affordance that teaches users the interaction model. Without it, users may not realize words are interactive.</p>
+      </div>
+      <div class="callout-box red">
+        <h4>A/B Test Candidate</h4>
+        <p>Test hover highlight color (yellow vs. light blue vs. underline-only) and trigger (hover vs. hover+delay). Measure first-click discovery rate.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 3. LOADING STATE -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-loading">
+    <div class="section-header">
+      <div class="screen-id">Screen 3.0</div>
+      <h2>Loading State — Federated Query In Progress</h2>
+      <p>User has clicked a word. The word is now selected (indigo pill). The right panel shows skeleton loaders while the federated query fans out to dictionaries, TM, and web sources.</p>
+    </div>
+
+    <div class="wireframe-stage" style="position:relative;">
+      <div class="w-layout" style="min-height:440px;">
+        <div class="w-panel-left">
+          <div class="w-header">
+            <span class="w-header-title">Text Presenter</span>
+          </div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header">
+            <span class="w-header-title">Lexi</span>
+          </div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled">
+              <span class="placeholder">韧性</span>
+              <span class="icon">⌕</span>
+            </div>
+            <div class="w-lang-row">
+              <div class="w-lang-box">Chinese (Simplified)</div>
+              <span class="w-lang-arrow">→</span>
+              <div class="w-lang-box">English</div>
+            </div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab active">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <!-- Skeleton AI box -->
+            <div style="background: var(--wire-accent-light); border-left: 4px solid var(--wire-accent); border-radius: 4px; padding: 12px 14px; margin-bottom: 16px;">
+              <div class="w-skeleton" style="width: 120px; height: 16px; margin-bottom: 8px;"></div>
+              <div class="w-skeleton" style="width: 100%; height: 10px; margin-bottom: 6px;"></div>
+              <div class="w-skeleton" style="width: 85%; height: 10px; margin-bottom: 6px;"></div>
+              <div class="w-skeleton" style="width: 60%; height: 10px;"></div>
+            </div>
+            <!-- Skeleton cards -->
+            <div class="w-skeleton" style="width: 180px; height: 14px; margin-bottom: 12px;"></div>
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 4px; padding: 12px; margin-bottom: 8px;">
+              <div class="w-skeleton" style="width: 60%; height: 12px; margin-bottom: 8px;"></div>
+              <div class="w-skeleton" style="width: 90%; height: 8px; margin-bottom: 4px;"></div>
+              <div class="w-skeleton" style="width: 40%; height: 8px;"></div>
+            </div>
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 4px; padding: 12px; margin-bottom: 8px;">
+              <div class="w-skeleton" style="width: 50%; height: 12px; margin-bottom: 8px;"></div>
+              <div class="w-skeleton" style="width: 80%; height: 8px; margin-bottom: 4px;"></div>
+              <div class="w-skeleton" style="width: 35%; height: 8px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="annotation" style="top:110px; left:210px;">
+        <div class="note" style="transform: rotate(-3deg);">indigo = selected ●</div>
+      </div>
+      <div class="annotation annotation-blue" style="top:160px; right:40px;">
+        <div class="note" style="transform: rotate(2deg);">shimmer skeleton →</div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box blue">
+        <h4>Progressive Loading</h4>
+        <p>Results populate progressively as each federated source responds. Dictionary results may arrive in 200ms while the AI summary takes 1-2s. Show what's ready immediately.</p>
+      </div>
+      <div class="callout-box">
+        <h4>Search Auto-fill</h4>
+        <p>The search bar auto-populates with the clicked word and the language direction auto-detects from script analysis. Zero user configuration required.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 4. AI SUMMARY TAB -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-ai">
+    <div class="section-header">
+      <div class="screen-id">Screen 4.0</div>
+      <h2>AI Summary Tab — Results Populated</h2>
+      <p>The default landing view after a lookup. Shows the RAG-generated contextual translation at the top, followed by ranked alternative translations with source attribution.</p>
+    </div>
+
+    <div class="wireframe-stage" style="position:relative;">
+      <div class="w-layout">
+        <div class="w-panel-left">
+          <div class="w-header">
+            <span class="w-header-title">Text Presenter</span>
+          </div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+                <span class="w-word normal" style="width:26px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word normal" style="width:38px"></span>
+              </div>
+            </div>
+            <div class="w-text-block">
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:30px"></span>
+                <span class="w-word normal" style="width:20px"></span>
+                <span class="w-word normal" style="width:36px"></span>
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:42px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+              </div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:26px"></span>
+                <span class="w-word normal" style="width:34px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:38px"></span>
+                <span class="w-word normal" style="width:16px"></span>
+                <span class="w-word normal" style="width:30px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header">
+            <span class="w-header-title">Lexi</span>
+          </div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled">
+              <span class="placeholder">韧性</span>
+              <span class="icon">⌕</span>
+            </div>
+            <div class="w-lang-row">
+              <div class="w-lang-box">Chinese (Simplified)</div>
+              <span class="w-lang-arrow">→</span>
+              <div class="w-lang-box">English</div>
+            </div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab active">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <!-- Word header -->
+            <div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--wire-fill);">
+              <span style="font-size: 18px; font-weight: 700; font-family: var(--mono); color: var(--wire-text);">resilience</span>
+              <span style="font-size: 10px; color: var(--wire-text-light); margin-left: 8px; font-style: italic;">/rɪˈzɪl.i.əns/</span>
+              <span style="background: var(--wire-accent-light); color: var(--wire-accent); padding: 2px 8px; border-radius: 3px; font-size: 9px; font-weight: 600; margin-left: 8px; font-family: var(--mono);">ZH → EN</span>
+            </div>
+
+            <!-- AI Summary box -->
+            <div class="w-ai-box">
+              <div class="w-ai-badge">✦ CONTEXTUALIZED AI TRANSLATION</div>
+              <div style="font-size: 10px; color: #3B5998; line-height: 1.5; font-family: var(--mono);">
+                In this economic context, "韧性" translates as "resilience" — the capacity to withstand shocks and maintain stability. More appropriate than "toughness" or "tenacity" here.
+              </div>
+            </div>
+
+            <!-- Section title -->
+            <div style="font-size: 12px; font-weight: 700; margin-bottom: 10px; font-family: var(--mono); color: var(--wire-text);">Contextual Translations</div>
+
+            <!-- Definition cards -->
+            <div class="w-def-card">
+              <div class="w-def-num">1</div>
+              <div class="w-def-content">
+                <div class="w-def-word">resilience</div>
+                <div class="w-def-desc">Capacity to recover from difficulties; strength and adaptability</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); margin-top: 4px;">Sources: Oxford · TM (3) · Web</div>
+              </div>
+              <div class="w-def-btn">+ LEXICON</div>
+            </div>
+
+            <div class="w-def-card">
+              <div class="w-def-num">2</div>
+              <div class="w-def-content">
+                <div class="w-def-word">toughness</div>
+                <div class="w-def-desc">Quality of being strong under adverse conditions</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); margin-top: 4px;">Sources: Cambridge · Pleco</div>
+              </div>
+              <div class="w-def-btn">+ LEXICON</div>
+            </div>
+
+            <div class="w-def-card">
+              <div class="w-def-num">3</div>
+              <div class="w-def-content">
+                <div class="w-def-word">tenacity</div>
+                <div class="w-def-desc">Quality of being determined and persistent</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); margin-top: 4px;">Sources: Collins · TM (1)</div>
+              </div>
+              <div class="w-def-btn">+ LEXICON</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="annotation" style="top:205px; right:30px;">
+        <div class="note" style="transform: rotate(-2deg);">← AI-generated, not raw data</div>
+      </div>
+      <div class="annotation annotation-green" style="bottom:30px; right: 30px;">
+        <div class="note" style="transform: rotate(1deg);">each card has + LEXICON →</div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box blue">
+        <h4>AI Summary = Default Tab</h4>
+        <p>The AI-synthesized view is the default because it provides the most actionable answer. Raw sources are one tab away for verification. This hierarchy was determined by card sorting and co-design workshops.</p>
+      </div>
+      <div class="callout-box green">
+        <h4>Source Attribution</h4>
+        <p>Each translation option cites its sources (dictionaries, TM matches, web). This builds trust — the user can see why the AI recommends "resilience" over "toughness."</p>
+      </div>
+      <div class="callout-box red">
+        <h4>A/B Test</h4>
+        <p>Test whether the AI summary should be fully expanded or truncated to 3 lines with "show more." Measure read rate and translation confidence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 5. DICTIONARY TAB -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-dict">
+    <div class="section-header">
+      <div class="screen-id">Screen 5.0</div>
+      <h2>Dictionary Results Tab</h2>
+      <p>Raw, unprocessed dictionary entries from each federated source. No AI interpretation — just the data. Users come here to verify or challenge the AI summary.</p>
+    </div>
+
+    <div class="wireframe-stage">
+      <div class="w-layout" style="min-height:460px;">
+        <div class="w-panel-left">
+          <div class="w-header"><span class="w-header-title">Text Presenter</span></div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word normal" style="width:18px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+                <span class="w-word normal" style="width:32px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header"><span class="w-header-title">Lexi</span></div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled">
+              <span class="placeholder">韧性</span>
+              <span class="icon">⌕</span>
+            </div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab">AI SUMMARY</div>
+            <div class="w-tab active">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <!-- Dictionary source 1 -->
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 12px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 11px; font-weight: 700; font-family: var(--mono);">Pleco Chinese-English</span>
+                <div class="w-def-btn">+ LEXICON</div>
+              </div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.8;">
+                <div>• 韧性 (rèn xìng) — resilience, toughness, tenacity</div>
+                <div>• capacity to recover quickly from difficulties</div>
+                <div>• ability to withstand or recover from conditions</div>
+              </div>
+            </div>
+            <!-- Dictionary source 2 -->
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 12px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 11px; font-weight: 700; font-family: var(--mono);">MDBG Chinese-English</span>
+                <div class="w-def-btn">+ LEXICON</div>
+              </div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.8;">
+                <div>• 韧性 — toughness; resilience; strength and durability</div>
+                <div>• resilient; tough (of materials or character)</div>
+              </div>
+            </div>
+            <!-- Dictionary source 3 -->
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 12px; margin-bottom: 10px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <span style="font-size: 11px; font-weight: 700; font-family: var(--mono);">Oxford Chinese-English</span>
+                <div class="w-def-btn">+ LEXICON</div>
+              </div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.8;">
+                <div>• 韧性 (rèn xìng) — resilience; toughness; tenacity</div>
+                <div>• elasticity (when referring to materials)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box">
+        <h4>Raw Data, No Interpretation</h4>
+        <p>This tab shows dictionary entries exactly as received from each source. No ranking, no context-aware filtering. It's the "trust but verify" layer.</p>
+      </div>
+      <div class="callout-box blue">
+        <h4>Card Sorting Insight</h4>
+        <p>Users may group "dictionary" and "TM" together as "reference sources" vs. "AI opinion." The card sort in Phase 2 validates whether this separation works.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 6. HISTORY TAB -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-history">
+    <div class="section-header">
+      <div class="screen-id">Screen 6.0</div>
+      <h2>Previous Translations Tab</h2>
+      <p>Shows the user's own translation history for this term and related terms. Each entry includes the source sentence, target sentence, timestamp, and language pair.</p>
+    </div>
+
+    <div class="wireframe-stage">
+      <div class="w-layout" style="min-height:420px;">
+        <div class="w-panel-left">
+          <div class="w-header"><span class="w-header-title">Text Presenter</span></div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header"><span class="w-header-title">Lexi</span></div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled"><span class="placeholder">韧性</span><span class="icon">⌕</span></div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab active">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <div class="w-history-item">
+              <div style="flex:1;">
+                <div style="font-size: 12px; font-weight: 700; font-family: var(--mono); margin-bottom: 4px;">韧性 → resilience</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                  <div>中国经济展现出了强大的<b>韧性</b></div>
+                  <div style="color: var(--wire-accent);">China's economy has shown strong <b>resilience</b></div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono);">2 hrs ago</div>
+                <div style="font-size: 8px; background: var(--wire-fill); padding: 2px 6px; border-radius: 3px; margin-top: 4px; font-family: var(--mono);">ZH→EN</div>
+              </div>
+            </div>
+            <div class="w-history-item">
+              <div style="flex:1;">
+                <div style="font-size: 12px; font-weight: 700; font-family: var(--mono); margin-bottom: 4px;">适应力 → adaptability</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                  <div>这种<b>适应力</b>体现在社会各个层面</div>
+                  <div style="color: var(--wire-accent);">This <b>adaptability</b> is reflected across society</div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono);">Yesterday</div>
+                <div style="font-size: 8px; background: var(--wire-fill); padding: 2px 6px; border-radius: 3px; margin-top: 4px; font-family: var(--mono);">ZH→EN</div>
+              </div>
+            </div>
+            <div class="w-history-item">
+              <div style="flex:1;">
+                <div style="font-size: 12px; font-weight: 700; font-family: var(--mono); margin-bottom: 4px;">复原力 → recovery capacity</div>
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                  <div>展现出惊人的心理<b>复原力</b></div>
+                  <div style="color: var(--wire-accent);">Remarkable psychological <b>recovery capacity</b></div>
+                </div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-size: 9px; color: var(--wire-text-light); font-family: var(--mono);">3 days ago</div>
+                <div style="font-size: 8px; background: var(--wire-fill); padding: 2px 6px; border-radius: 3px; margin-top: 4px; font-family: var(--mono);">ZH→EN</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box green">
+        <h4>Personal TM</h4>
+        <p>This is effectively a personal translation memory. Shows how the user has translated this term (and semantically related terms) before, preserving the original sentence context.</p>
+      </div>
+      <div class="callout-box">
+        <h4>Consistency Check</h4>
+        <p>Translators value consistency. Seeing that they previously used "resilience" for 韧性 helps them maintain consistent terminology across documents.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 7. FEDERATED SEARCH TAB -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-federated">
+    <div class="section-header">
+      <div class="screen-id">Screen 7.0</div>
+      <h2>Federated Search Tab</h2>
+      <p>Web, news, and academic results showing the term used in real-world context. Highlighted occurrences help users see how the word is used across domains.</p>
+    </div>
+
+    <div class="wireframe-stage">
+      <div class="w-layout" style="min-height:460px;">
+        <div class="w-panel-left">
+          <div class="w-header"><span class="w-header-title">Text Presenter</span></div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header"><span class="w-header-title">Lexi</span></div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled"><span class="placeholder">韧性</span><span class="icon">⌕</span></div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab active">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <div class="w-search-result">
+              <div class="w-result-badge news">NEWS</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--wire-text); font-family: var(--mono); margin: 4px 0;">Building resilience in uncertain times: Expert perspectives</div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                Mental health experts discuss <span style="background: var(--wire-yellow); padding: 0 2px; font-weight: 600;">韧性</span> in coping with global challenges. The concept encompasses both psychological toughness and adaptability...
+              </div>
+              <div style="font-size: 9px; color: var(--wire-green); font-family: var(--mono); margin-top: 4px;">psychologytoday.com</div>
+            </div>
+            <div class="w-search-result">
+              <div class="w-result-badge academic">ACADEMIC</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--wire-text); font-family: var(--mono); margin: 4px 0;">Cultural differences in understanding resilience</div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                Research shows English speakers associate "resilience" with bouncing back, while Chinese speakers using "<span style="background: var(--wire-yellow); padding: 0 2px; font-weight: 600;">韧性</span>" emphasize enduring strength under pressure...
+              </div>
+              <div style="font-size: 9px; color: var(--wire-green); font-family: var(--mono); margin-top: 4px;">tandfonline.com</div>
+            </div>
+            <div class="w-search-result">
+              <div class="w-result-badge web">WEB</div>
+              <div style="font-size: 11px; font-weight: 600; color: var(--wire-text); font-family: var(--mono); margin: 4px 0;">How to translate 韧性: A complete ZH-EN guide</div>
+              <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono); line-height: 1.6;">
+                Translating <span style="background: var(--wire-yellow); padding: 0 2px; font-weight: 600;">韧性</span> requires context. While "resilience" is most common, alternatives include "toughness" (physical), "tenacity" (character)...
+              </div>
+              <div style="font-size: 9px; color: var(--wire-green); font-family: var(--mono); margin-top: 4px;">chinesetranslation.com</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box">
+        <h4>Source Badges</h4>
+        <p>Color-coded badges (NEWS, ACADEMIC, WEB, PRESS) help users quickly assess source type and credibility. Academic sources may carry more weight for technical translations.</p>
+      </div>
+      <div class="callout-box blue">
+        <h4>Term Highlighting</h4>
+        <p>The searched term is highlighted in yellow within result snippets so users can quickly scan how it's used in context across different sources and domains.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 8. ADD TO LEXICON -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-lexicon">
+    <div class="section-header">
+      <div class="screen-id">Screen 8.0</div>
+      <h2>Add to Lexicon — Success Confirmation</h2>
+      <p>User clicks "+ LEXICON" on a translation option. A toast notification confirms the term has been saved to their personal glossary. This is the output action that closes the loop.</p>
+    </div>
+
+    <div class="wireframe-stage" style="position: relative;">
+      <div class="w-layout" style="min-height: 400px;">
+        <div class="w-panel-left">
+          <div class="w-header"><span class="w-header-title">Text Presenter</span></div>
+          <div class="w-body">
+            <div class="w-text-block">
+              <div class="w-text-line title"></div>
+              <div class="w-inline-words">
+                <span class="w-word normal" style="width:24px"></span>
+                <span class="w-word selected" style="width:34px"></span>
+                <span class="w-word normal" style="width:28px"></span>
+                <span class="w-word normal" style="width:22px"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-resize-handle"></div>
+        <div class="w-panel-right">
+          <div class="w-header"><span class="w-header-title">Lexi</span></div>
+          <div style="padding: 12px 20px; border-bottom: 1.5px solid var(--wire-line);">
+            <div class="w-search filled"><span class="placeholder">韧性</span><span class="icon">⌕</span></div>
+          </div>
+          <div class="w-tabs">
+            <div class="w-tab active">AI SUMMARY</div>
+            <div class="w-tab">DICTIONARY</div>
+            <div class="w-tab">HISTORY</div>
+            <div class="w-tab">FEDERATED</div>
+          </div>
+          <div class="w-tab-body">
+            <div style="margin-bottom: 12px; padding-bottom: 10px; border-bottom: 2px solid var(--wire-fill);">
+              <span style="font-size: 18px; font-weight: 700; font-family: var(--mono); color: var(--wire-text);">resilience</span>
+              <span style="font-size: 10px; color: var(--wire-text-light); margin-left: 8px; font-style: italic;">/rɪˈzɪl.i.əns/</span>
+            </div>
+
+            <div class="w-def-card" style="border-left-color: var(--wire-green); background: #F0FDF4;">
+              <div class="w-def-num" style="background: var(--wire-green);">1</div>
+              <div class="w-def-content">
+                <div class="w-def-word">resilience</div>
+                <div class="w-def-desc">Capacity to recover from difficulties</div>
+              </div>
+              <div class="w-def-btn" style="background: var(--wire-green); color: white; border-color: var(--wire-green);">✓ ADDED</div>
+            </div>
+
+            <div class="w-def-card">
+              <div class="w-def-num">2</div>
+              <div class="w-def-content">
+                <div class="w-def-word">toughness</div>
+                <div class="w-def-desc">Quality of being strong under adverse conditions</div>
+              </div>
+              <div class="w-def-btn">+ LEXICON</div>
+            </div>
+
+            <div class="w-def-card">
+              <div class="w-def-num">3</div>
+              <div class="w-def-content">
+                <div class="w-def-word">tenacity</div>
+                <div class="w-def-desc">Quality of being determined and persistent</div>
+              </div>
+              <div class="w-def-btn">+ LEXICON</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Toast -->
+      <div class="w-toast">
+        <span class="check">✓</span> Added "韧性 → resilience" to Lexicon
+      </div>
+
+      <div class="annotation annotation-green" style="bottom: 60px; right: 230px;">
+        <div class="note" style="transform: rotate(-3deg);">toast confirms action ↘</div>
+      </div>
+      <div class="annotation" style="top: 250px; right: 30px;">
+        <div class="note" style="transform: rotate(2deg);">← button state change</div>
+      </div>
+    </div>
+
+    <div class="callout-row">
+      <div class="callout-box green">
+        <h4>Micro-feedback</h4>
+        <p>The button changes from "+ LEXICON" to "✓ ADDED" with green styling. A toast notification at the bottom provides secondary confirmation. Both are reversible.</p>
+      </div>
+      <div class="callout-box red">
+        <h4>Undo Path</h4>
+        <p>The toast should include an "Undo" link. Heuristic: User Control and Freedom — users should be able to reverse accidental saves without hunting for lexicon management.</p>
+      </div>
+      <div class="callout-box">
+        <h4>What Gets Saved</h4>
+        <p>Term pair (韧性→resilience), source sentence context, timestamp, language direction, and the definition text. This feeds future TM lookups.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 9. MOBILE -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-mobile">
+    <div class="section-header">
+      <div class="screen-id">Screen 9.0</div>
+      <h2>Mobile / Responsive — Stacked Layout</h2>
+      <p>On screens below 1024px, the split panel stacks vertically. The source text panel collapses to ~40% height with a "scroll for more" affordance. The lookup panel takes the remaining 60%.</p>
+    </div>
+
+    <div style="display: flex; gap: 48px; flex-wrap: wrap; justify-content: center; align-items: flex-start;">
+      <!-- Mobile: Source text collapsed -->
+      <div>
+        <div style="font-family: var(--hand); font-size: 14px; color: var(--wire-text-light); margin-bottom: 12px; text-align: center;">Source Text (collapsed)</div>
+        <div class="w-mobile-frame">
+          <div class="w-mobile-notch"></div>
+          <div class="w-header" style="padding: 8px 16px;">
+            <span class="w-header-title" style="font-size: 13px;">Text Presenter</span>
+          </div>
+          <div style="padding: 12px 16px; max-height: 160px; overflow: hidden; border-bottom: 2px solid var(--wire-accent);">
+            <div class="w-text-line title" style="height: 10px; width: 60%;"></div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:20px; height: 8px;"></span>
+              <span class="w-word normal" style="width:14px; height: 8px;"></span>
+              <span class="w-word selected" style="width:28px; height: 8px;"></span>
+              <span class="w-word normal" style="width:22px; height: 8px;"></span>
+              <span class="w-word normal" style="width:18px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:24px; height: 8px;"></span>
+              <span class="w-word normal" style="width:30px; height: 8px;"></span>
+              <span class="w-word normal" style="width:16px; height: 8px;"></span>
+            </div>
+          </div>
+          <!-- Lookup results -->
+          <div style="padding: 8px 16px;">
+            <div class="w-search filled" style="padding: 8px 10px; margin-bottom: 6px;">
+              <span class="placeholder" style="font-size: 10px;">韧性</span>
+              <span class="icon" style="font-size: 12px;">⌕</span>
+            </div>
+          </div>
+          <div class="w-tabs" style="font-size: 8px;">
+            <div class="w-tab active" style="padding: 8px 4px; font-size: 8px;">AI</div>
+            <div class="w-tab" style="padding: 8px 4px; font-size: 8px;">DICT</div>
+            <div class="w-tab" style="padding: 8px 4px; font-size: 8px;">HIST</div>
+            <div class="w-tab" style="padding: 8px 4px; font-size: 8px;">FED</div>
+          </div>
+          <div style="padding: 10px 16px;">
+            <div class="w-ai-box" style="padding: 8px 10px;">
+              <div class="w-ai-badge" style="font-size: 7px;">✦ AI TRANSLATION</div>
+              <div style="font-size: 9px; color: #3B5998; line-height: 1.4; font-family: var(--mono);">
+                "韧性" → resilience in this economic context...
+              </div>
+            </div>
+            <div class="w-def-card" style="padding: 8px;">
+              <div class="w-def-num" style="width: 16px; height: 16px; font-size: 8px;">1</div>
+              <div class="w-def-content">
+                <div class="w-def-word" style="font-size: 10px;">resilience</div>
+                <div class="w-def-desc" style="font-size: 8px;">Recovery from difficulties</div>
+              </div>
+              <div class="w-def-btn" style="font-size: 7px; padding: 2px 6px;">+ LEX</div>
+            </div>
+            <div class="w-def-card" style="padding: 8px;">
+              <div class="w-def-num" style="width: 16px; height: 16px; font-size: 8px;">2</div>
+              <div class="w-def-content">
+                <div class="w-def-word" style="font-size: 10px;">toughness</div>
+                <div class="w-def-desc" style="font-size: 8px;">Strong under adversity</div>
+              </div>
+              <div class="w-def-btn" style="font-size: 7px; padding: 2px 6px;">+ LEX</div>
+            </div>
+          </div>
+          <div style="height: 24px;"></div>
+        </div>
+      </div>
+
+      <!-- Mobile: Text expanded -->
+      <div>
+        <div style="font-family: var(--hand); font-size: 14px; color: var(--wire-text-light); margin-bottom: 12px; text-align: center;">Source Text (expanded)</div>
+        <div class="w-mobile-frame">
+          <div class="w-mobile-notch"></div>
+          <div class="w-header" style="padding: 8px 16px;">
+            <span class="w-header-title" style="font-size: 13px;">Text Presenter</span>
+            <span style="margin-left: auto; font-size: 10px; color: var(--wire-accent); font-family: var(--mono); font-weight: 600;">▼ COLLAPSE</span>
+          </div>
+          <div style="padding: 12px 16px; border-bottom: 2px solid var(--wire-accent);">
+            <div class="w-text-line title" style="height: 10px; width: 60%;"></div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:20px; height: 8px;"></span>
+              <span class="w-word normal" style="width:14px; height: 8px;"></span>
+              <span class="w-word selected" style="width:28px; height: 8px;"></span>
+              <span class="w-word normal" style="width:22px; height: 8px;"></span>
+              <span class="w-word normal" style="width:18px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:24px; height: 8px;"></span>
+              <span class="w-word normal" style="width:30px; height: 8px;"></span>
+              <span class="w-word normal" style="width:16px; height: 8px;"></span>
+              <span class="w-word normal" style="width:28px; height: 8px;"></span>
+              <span class="w-word normal" style="width:20px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:22px; height: 8px;"></span>
+              <span class="w-word normal" style="width:34px; height: 8px;"></span>
+              <span class="w-word normal" style="width:18px; height: 8px;"></span>
+              <span class="w-word normal" style="width:26px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:30px; height: 8px;"></span>
+              <span class="w-word normal" style="width:16px; height: 8px;"></span>
+              <span class="w-word normal" style="width:38px; height: 8px;"></span>
+              <span class="w-word normal" style="width:20px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:24px; height: 8px;"></span>
+              <span class="w-word normal" style="width:28px; height: 8px;"></span>
+              <span class="w-word normal" style="width:14px; height: 8px;"></span>
+              <span class="w-word normal" style="width:32px; height: 8px;"></span>
+            </div>
+            <div class="w-inline-words">
+              <span class="w-word normal" style="width:20px; height: 8px;"></span>
+              <span class="w-word normal" style="width:36px; height: 8px;"></span>
+              <span class="w-word normal" style="width:22px; height: 8px;"></span>
+            </div>
+          </div>
+          <div style="padding: 10px 16px; text-align: center;">
+            <span style="font-size: 10px; color: var(--wire-accent); font-family: var(--mono); font-weight: 600;">▲ SHOW RESULTS</span>
+          </div>
+          <div style="height: 24px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-row" style="margin-top: 32px;">
+      <div class="callout-box blue">
+        <h4>Stacked Layout</h4>
+        <p>Below 1024px, the side-by-side panels stack vertically. The source text collapses to a preview with expand/collapse toggle. Tab labels abbreviate to fit narrow screens.</p>
+      </div>
+      <div class="callout-box red">
+        <h4>Mobile Trade-off</h4>
+        <p>Translators primarily work on desktop. Mobile is secondary — reference use (checking a term on the go). Don't over-invest in mobile parity with desktop.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════ -->
+  <!-- 10. USER FLOW -->
+  <!-- ════════════════════════════════════════════ -->
+  <div class="screen-section" id="sec-flow">
+    <div class="section-header">
+      <div class="screen-id">Screen 10.0</div>
+      <h2>Core Lookup — User Flow Diagram</h2>
+      <p>The end-to-end interaction sequence from loading text to saving a term. Each box represents a screen state, arrows show transitions and triggers.</p>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 0; align-items: center;">
+      <!-- Step 1 -->
+      <div style="border: 2px solid var(--wire-line); border-radius: 8px; padding: 16px 24px; background: var(--wire-paper); text-align: center; min-width: 320px;">
+        <div style="font-size: 9px; color: var(--wire-accent); font-weight: 600; letter-spacing: 1px; font-family: var(--mono);">SCREEN 1.0</div>
+        <div style="font-family: var(--hand); font-size: 16px; margin: 4px 0;">Load Source Text</div>
+        <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono);">Empty state — right panel idle</div>
+      </div>
+      <div style="font-family: var(--hand); color: var(--wire-accent); padding: 8px 0; font-size: 13px;">↓ user hovers word</div>
+
+      <!-- Step 2 -->
+      <div style="border: 2px solid var(--wire-line); border-radius: 8px; padding: 16px 24px; background: var(--wire-paper); text-align: center; min-width: 320px;">
+        <div style="font-size: 9px; color: var(--wire-accent); font-weight: 600; letter-spacing: 1px; font-family: var(--mono);">SCREEN 2.0</div>
+        <div style="font-family: var(--hand); font-size: 16px; margin: 4px 0;">Hover Highlight</div>
+        <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono);">Yellow background signals clickability</div>
+      </div>
+      <div style="font-family: var(--hand); color: var(--wire-accent); padding: 8px 0; font-size: 13px;">↓ user clicks word</div>
+
+      <!-- Step 3 -->
+      <div style="border: 2px solid var(--wire-line); border-radius: 8px; padding: 16px 24px; background: var(--wire-paper); text-align: center; min-width: 320px;">
+        <div style="font-size: 9px; color: var(--wire-accent); font-weight: 600; letter-spacing: 1px; font-family: var(--mono);">SCREEN 3.0</div>
+        <div style="font-family: var(--hand); font-size: 16px; margin: 4px 0;">Loading / Skeleton</div>
+        <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono);">Federated query fires → shimmer loaders</div>
+      </div>
+      <div style="font-family: var(--hand); color: var(--wire-accent); padding: 8px 0; font-size: 13px;">↓ results arrive (~200ms–2s)</div>
+
+      <!-- Step 4 -->
+      <div style="border: 2px solid var(--wire-accent); border-radius: 8px; padding: 16px 24px; background: var(--wire-accent-light); text-align: center; min-width: 320px;">
+        <div style="font-size: 9px; color: var(--wire-accent); font-weight: 600; letter-spacing: 1px; font-family: var(--mono);">SCREEN 4.0 — DEFAULT VIEW</div>
+        <div style="font-family: var(--hand); font-size: 16px; margin: 4px 0;">AI Summary Tab</div>
+        <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono);">Contextual gloss + ranked translations</div>
+      </div>
+
+      <!-- Branch -->
+      <div style="display: flex; gap: 16px; align-items: flex-start; margin-top: 8px;">
+        <div style="text-align: center;">
+          <div style="font-family: var(--hand); color: var(--wire-text-light); padding: 8px 0; font-size: 11px;">↓ switch tab</div>
+          <div style="display: flex; gap: 12px;">
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 10px 14px; background: var(--wire-paper); text-align: center; font-size: 9px; font-family: var(--mono);">
+              <div style="color: var(--wire-accent); font-weight: 600;">5.0</div>
+              <div style="font-family: var(--hand); font-size: 12px;">Dictionary</div>
+            </div>
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 10px 14px; background: var(--wire-paper); text-align: center; font-size: 9px; font-family: var(--mono);">
+              <div style="color: var(--wire-accent); font-weight: 600;">6.0</div>
+              <div style="font-family: var(--hand); font-size: 12px;">History</div>
+            </div>
+            <div style="border: 1.5px solid var(--wire-line); border-radius: 6px; padding: 10px 14px; background: var(--wire-paper); text-align: center; font-size: 9px; font-family: var(--mono);">
+              <div style="color: var(--wire-accent); font-weight: 600;">7.0</div>
+              <div style="font-family: var(--hand); font-size: 12px;">Federated</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <div style="font-family: var(--hand); color: var(--wire-green); padding: 8px 0; font-size: 11px;">↓ clicks + LEXICON</div>
+          <div style="border: 2px solid var(--wire-green); border-radius: 8px; padding: 12px 20px; background: #F0FDF4; text-align: center;">
+            <div style="font-size: 9px; color: var(--wire-green); font-weight: 600; letter-spacing: 1px; font-family: var(--mono);">SCREEN 8.0</div>
+            <div style="font-family: var(--hand); font-size: 14px; margin: 4px 0; color: var(--wire-green);">Saved to Lexicon ✓</div>
+            <div style="font-size: 10px; color: var(--wire-text-light); font-family: var(--mono);">Toast + button state change</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loop back -->
+      <div style="font-family: var(--hand); color: var(--wire-text-light); padding: 16px 0 0; font-size: 12px; text-align: center;">
+        ↻ user clicks a different word → back to Screen 2.0
+      </div>
+    </div>
+
+    <div class="callout-row" style="margin-top: 32px;">
+      <div class="callout-box blue">
+        <h4>Happy Path</h4>
+        <p>The ideal flow is: click word → read AI summary → add to lexicon. Three actions, no navigation required. The tabs exist for users who want to go deeper, but the default path is designed to be complete in itself.</p>
+      </div>
+      <div class="callout-box">
+        <h4>Error States (not shown)</h4>
+        <p>Additional wireframes needed: no results found, API timeout, word not recognized, network error. Each needs its own empty/error state in the right panel.</p>
+      </div>
+      <div class="callout-box green">
+        <h4>Funnel Mapping</h4>
+        <p>Each step maps to a funnel stage from the metrics plan. Screen 1→2 = "Click a Word" rate. Screen 4 = "View AI Summary." Screen 8 = "Add to Lexicon" conversion.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showSection(id) {
+  document.querySelectorAll('.screen-section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(p => p.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
