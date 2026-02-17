@@ -12,6 +12,7 @@
 - Mockups (Coming soon)
 - Wireframing & Prototyping (Coming soon)
 - Research (Coming soon)
+- [Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi-mockups.html)
 - [Wireframing](https://matsunagateitoku.github.io/Portfolio/websites/lexi-wireframes.html)
 - [Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
    
