@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lexi — Lo-Fi Design Explorations</title>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Caveat:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FDF8F0;
+    --paper-dark: #F4EDE0;
+    --ink: #2C2A26;
+    --ink-light: #7A756A;
+    --pencil: #9E9889;
+    --red: #D94F4F;
+    --blue: #4A7FD4;
+    --green: #4AA06D;
+    --yellow: #E8C840;
+    --orange: #D4854A;
+    --purple: #8B6AAE;
+    --hand: 'Caveat', cursive;
+    --hand2: 'Architects Daughter', cursive;
+    --mono: 'IBM Plex Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    font-family: var(--hand);
+    color: var(--ink);
+    /* Subtle paper texture */
+    background-image:
+      radial-gradient(ellipse at 20% 50%, rgba(210,195,170,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(210,195,170,0.1) 0%, transparent 50%);
+  }
+
+  /* ─── HEADER ─── */
+  .page-header {
+    padding: 48px 48px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-header h1 {
+    font-family: var(--hand);
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+
+  .page-header h1 span { color: var(--blue); }
+
+  .page-header .subtitle {
+    font-family: var(--hand2);
+    font-size: 18px;
+    color: var(--ink-light);
+    margin-top: 8px;
+  }
+
+  .page-header .context {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--pencil);
+    margin-top: 16px;
+    line-height: 1.7;
+    max-width: 800px;
+    border-left: 3px solid var(--pencil);
+    padding-left: 16px;
+  }
+
+  /* ─── SKETCH CARD ─── */
+  .explorations {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 48px 80px;
+  }
+
+  .sketch-card {
+    background: white;
+    border: 2px solid #D8D0C4;
+    border-radius: 4px;
+    margin-bottom: 56px;
+    position: relative;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.04);
+    /* Slight rotation for hand-drawn feel */
+    overflow: hidden;
+  }
+
+  .sketch-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 23px, rgba(180,175,165,0.12) 23px, rgba(180,175,165,0.12) 24px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .sketch-card > * { position: relative; z-index: 1; }
+
+  .sketch-label {
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--paper);
+    padding: 2px 12px;
+    font-family: var(--hand);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--blue);
+    z-index: 5;
+    letter-spacing: 0.5px;
+  }
+
+  .sketch-top {
+    padding: 28px 28px 12px;
+    border-bottom: 1.5px dashed #D8D0C4;
+  }
+
+  .sketch-title {
+    font-family: var(--hand);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .sketch-desc {
+    font-family: var(--hand2);
+    font-size: 14px;
+    color: var(--ink-light);
+    line-height: 1.5;
+    max-width: 600px;
+  }
+
+  .sketch-body {
+    padding: 24px 28px 28px;
+    min-height: 400px;
+    position: relative;
+  }
+
+  /* ─── DRAWING PRIMITIVES ─── */
+
+  /* Rough boxes */
+  .box {
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    position: absolute;
+  }
+
+  .box.dashed { border-style: dashed; border-color: var(--pencil); }
+  .box.thick { border-width: 3px; }
+  .box.blue { border-color: var(--blue); }
+  .box.red { border-color: var(--red); }
+  .box.green { border-color: var(--green); }
+  .box.filled { background: rgba(74,127,212,0.06); }
+  .box.filled-yellow { background: rgba(232,200,64,0.15); }
+  .box.filled-green { background: rgba(74,160,109,0.08); }
+  .box.filled-red { background: rgba(217,79,79,0.06); }
+  .box.filled-gray { background: rgba(0,0,0,0.03); }
+
+  /* Scribble text */
+  .label {
+    position: absolute;
+    font-family: var(--hand);
+    font-size: 14px;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .label.sm { font-size: 12px; }
+  .label.lg { font-size: 18px; font-weight: 600; }
+  .label.xl { font-size: 22px; font-weight: 700; }
+  .label.light { color: var(--ink-light); }
+  .label.pencil { color: var(--pencil); }
+  .label.red { color: var(--red); }
+  .label.blue { color: var(--blue); }
+  .label.green { color: var(--green); }
+  .label.orange { color: var(--orange); }
+  .label.purple { color: var(--purple); }
+  .label.mono { font-family: var(--mono); font-size: 10px; }
+  .label.hand2 { font-family: var(--hand2); }
+
+  /* Squiggly lines (text placeholders) */
+  .squiggle {
+    position: absolute;
+    height: 3px;
+    background: var(--pencil);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+  .squiggle.dark { opacity: 0.8; background: var(--ink); height: 4px; }
+
+  /* Word blocks */
+  .word-block {
+    position: absolute;
+    height: 10px;
+    border-radius: 2px;
+    background: #D8D0C4;
+  }
+  .word-block.highlight { background: var(--yellow); border: 1.5px solid #C4A820; }
+  .word-block.selected { background: var(--blue); border-radius: 4px; }
+
+  /* Arrows */
+  .arrow-note {
+    position: absolute;
+    font-family: var(--hand);
+    color: var(--red);
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .arrow-note.blue { color: var(--blue); }
+  .arrow-note.green { color: var(--green); }
+  .arrow-note.orange { color: var(--orange); }
+  .arrow-note.purple { color: var(--purple); }
+
+  /* Pros/Cons strip */
+  .verdict {
+    display: flex;
+    gap: 0;
+    border-top: 1.5px dashed #D8D0C4;
+  }
+
+  .verdict-col {
+    flex: 1;
+    padding: 16px 24px;
+  }
+
+  .verdict-col + .verdict-col {
+    border-left: 1.5px dashed #D8D0C4;
+  }
+
+  .verdict-label {
+    font-family: var(--hand);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .verdict-label.pro { color: var(--green); }
+  .verdict-label.con { color: var(--red); }
+  .verdict-label.note { color: var(--blue); }
+
+  .verdict-items {
+    font-family: var(--hand2);
+    font-size: 13px;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  /* SVG arrows overlay */
+  .arrows-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* Circle badge */
+  .circle-badge {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--hand);
+    font-size: 14px;
+    font-weight: 700;
+    background: white;
+  }
+
+  /* Crosshatch fill pattern */
+  .crosshatch {
+    position: absolute;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 4px,
+      rgba(0,0,0,0.04) 4px,
+      rgba(0,0,0,0.04) 5px
+    );
+  }
+
+  /* ─── COMPARISON STRIP ─── */
+  .comparison-strip {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 48px;
+  }
+
+  .comparison-strip h2 {
+    font-family: var(--hand);
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--ink);
+  }
+
+  .comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .comp-cell {
+    background: white;
+    border: 2px solid #D8D0C4;
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .comp-cell .comp-name {
+    font-family: var(--hand);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .comp-cell .comp-score {
+    font-family: var(--hand2);
+    font-size: 12px;
+    color: var(--ink-light);
+  }
+
+  .score-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: #E8E4DC;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- HEADER -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-header">
+  <h1><span>Lexi</span> — Design Explorations</h1>
+  <div class="subtitle">6 lo-fi layout concepts before converging on the split-panel approach</div>
+  <div class="context">
+    These sketches represent early ideation — different structural approaches to the same problem:
+    "How should a translator look up a word without losing their place in the source text?"
+    Each concept makes different trade-offs between context preservation, information density,
+    screen real estate, and cognitive load. The goal is to explore the design space widely
+    before narrowing.
+  </div>
+</div>
+
+<div class="explorations">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT A: FLOATING POPOVER -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT A</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Floating Popover</div>
+    <div class="sketch-desc">No dedicated panel. Click a word and a floating card appears near the selection — like a dictionary tooltip on steroids. Source text stays 100% width.</div>
+  </div>
+  <div class="sketch-body" style="height: 440px;">
+    <!-- Full-width text area -->
+    <div class="box" style="left:20px; top:10px; right:20px; height:400px; border-radius:4px;">
+      <div class="label lg" style="left:16px; top:10px;">Source Text (full width)</div>
+    </div>
+
+    <!-- Text lines -->
+    <div class="squiggle" style="left:40px; top:50px; width:85%;"></div>
+    <div class="squiggle" style="left:40px; top:62px; width:78%;"></div>
+    <div class="squiggle" style="left:40px; top:74px; width:90%;"></div>
+    <div class="squiggle" style="left:40px; top:86px; width:65%;"></div>
+
+    <div class="squiggle" style="left:40px; top:110px; width:70%;"></div>
+    <div class="squiggle" style="left:40px; top:122px; width:88%;"></div>
+    <!-- Selected word inline -->
+    <div class="word-block selected" style="left:220px; top:118px; width:36px;"></div>
+    <div class="squiggle" style="left:264px; top:122px; width:30%;"></div>
+    <div class="squiggle" style="left:40px; top:134px; width:82%;"></div>
+    <div class="squiggle" style="left:40px; top:146px; width:60%;"></div>
+
+    <div class="squiggle" style="left:40px; top:170px; width:76%;"></div>
+    <div class="squiggle" style="left:40px; top:182px; width:84%;"></div>
+    <div class="squiggle" style="left:40px; top:194px; width:50%;"></div>
+
+    <!-- More text below popover area -->
+    <div class="squiggle" style="left:40px; top:320px; width:82%;"></div>
+    <div class="squiggle" style="left:40px; top:332px; width:74%;"></div>
+    <div class="squiggle" style="left:40px; top:344px; width:88%;"></div>
+    <div class="squiggle" style="left:40px; top:356px; width:55%;"></div>
+    <div class="squiggle" style="left:40px; top:380px; width:78%;"></div>
+
+    <!-- Floating popover card -->
+    <div class="box thick blue filled" style="left:180px; top:140px; width:340px; height:170px; border-radius:8px; box-shadow: 4px 4px 0 rgba(74,127,212,0.12);">
+    </div>
+    <!-- Popover content -->
+    <div class="label blue" style="left:196px; top:148px; font-size:11px; font-weight:600;">✦ AI TRANSLATION</div>
+    <div class="label xl" style="left:196px; top:164px;">resilience</div>
+    <div class="label sm light" style="left:310px; top:170px;">/rɪˈzɪl.i.əns/</div>
+    <div class="label sm" style="left:196px; top:192px; white-space:normal; width:300px; line-height:1.4; font-size:13px; color: var(--ink-light);">
+      "韧性" → resilience in this economic context. Emphasizes recovery + stability.
+    </div>
+
+    <!-- Mini translation options -->
+    <div class="squiggle dark" style="left:196px; top:248px; width:80px;"></div>
+    <div class="label sm green" style="left:284px; top:244px;">+ add</div>
+    <div class="squiggle" style="left:196px; top:264px; width:60px;"></div>
+    <div class="label sm" style="left:264px; top:260px; color: var(--pencil);">+ add</div>
+    <div class="squiggle" style="left:196px; top:280px; width:50px;"></div>
+    <div class="label sm" style="left:254px; top:276px; color: var(--pencil);">+ add</div>
+
+    <!-- Link to expand -->
+    <div class="label sm blue" style="left:196px; top:296px;">see all sources →</div>
+
+    <!-- Arrow from word to popover -->
+    <svg class="arrows-svg" viewBox="0 0 1140 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M238 130 Q 238 136, 220 145" stroke="#4A7FD4" stroke-width="1.5" stroke-dasharray="4 3" fill="none"/>
+    </svg>
+
+    <!-- Annotations -->
+    <div class="arrow-note" style="right:60px; top:160px; transform:rotate(-4deg);">← appears near<br>&nbsp;&nbsp;&nbsp;selected word</div>
+    <div class="arrow-note blue" style="left:540px; top:260px; transform:rotate(2deg);">"see all sources" opens<br>full panel if needed →</div>
+    <div class="arrow-note green" style="right:80px; top:60px; transform:rotate(-2deg);">text stays full width ✓<br>maximum reading space</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Maximum source text visibility<br>
+        No permanent screen split<br>
+        Feels lightweight / non-intrusive<br>
+        Fast for quick lookups
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Popover occludes surrounding text<br>
+        Limited space for multiple translations<br>
+        Can't show dictionary + TM + web simultaneously<br>
+        Positioning tricky near screen edges
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">? Questions</div>
+      <div class="verdict-items">
+        How does "see all sources" work — expand in place? Open a panel?<br>
+        What about long definitions or many alternatives?<br>
+        Does this scale to CJK text with dense character grids?
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT B: BOTTOM DRAWER -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT B</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Bottom Drawer</div>
+    <div class="sketch-desc">Source text fills the top portion. Results slide up from the bottom as a resizable drawer — like a mobile maps panel. Text scrolls independently above.</div>
+  </div>
+  <div class="sketch-body" style="height: 480px;">
+    <!-- Top text area -->
+    <div class="box" style="left:20px; top:10px; right:20px; height:200px;">
+      <div class="label lg" style="left:16px; top:10px;">Source Text</div>
+    </div>
+
+    <div class="squiggle" style="left:40px; top:48px; width:88%;"></div>
+    <div class="squiggle" style="left:40px; top:60px; width:75%;"></div>
+    <div class="squiggle" style="left:40px; top:72px; width:82%;"></div>
+    <div class="word-block selected" style="left:300px; top:68px; width:36px;"></div>
+    <div class="squiggle" style="left:40px; top:84px; width:90%;"></div>
+    <div class="squiggle" style="left:40px; top:96px; width:55%;"></div>
+
+    <div class="squiggle" style="left:40px; top:120px; width:78%;"></div>
+    <div class="squiggle" style="left:40px; top:132px; width:84%;"></div>
+    <div class="squiggle" style="left:40px; top:144px; width:68%;"></div>
+    <div class="squiggle" style="left:40px; top:156px; width:80%;"></div>
+    <div class="squiggle" style="left:40px; top:168px; width:45%;"></div>
+    <div class="squiggle" style="left:40px; top:180px; width:72%;"></div>
+
+    <!-- Drawer handle -->
+    <div style="position:absolute; left:20px; right:20px; top:218px; height:24px; background: #F0ECE4; border: 2px solid #D8D0C4; border-bottom: none; border-radius: 8px 8px 0 0; display:flex; align-items:center; justify-content:center;">
+      <div style="width:40px; height:4px; background:#C4BEB4; border-radius:2px;"></div>
+    </div>
+
+    <!-- Bottom drawer -->
+    <div class="box filled" style="left:20px; top:242px; right:20px; bottom:10px; border-color: var(--blue); border-width: 2px; border-radius: 0 0 4px 4px;">
+    </div>
+
+    <!-- Drawer content -->
+    <div class="label blue" style="left:36px; top:252px; font-size:11px; font-weight:600;">✦ AI TRANSLATION — 韧性</div>
+    <div class="label xl" style="left:36px; top:268px;">resilience</div>
+    <div class="label sm" style="left:150px; top:274px; color:var(--ink-light);">/rɪˈzɪl.i.əns/ · ZH→EN</div>
+
+    <!-- Horizontal scrolling tabs -->
+    <div class="box dashed" style="left:36px; top:298px; width:80px; height:22px; border-radius:12px;">
+      <div class="label sm blue" style="left:10px; top:3px;">AI Summary</div>
+    </div>
+    <div class="box dashed" style="left:124px; top:298px; width:72px; height:22px; border-radius:12px;">
+      <div class="label sm light" style="left:10px; top:3px;">Dictionary</div>
+    </div>
+    <div class="box dashed" style="left:204px; top:298px; width:60px; height:22px; border-radius:12px;">
+      <div class="label sm light" style="left:10px; top:3px;">History</div>
+    </div>
+    <div class="box dashed" style="left:272px; top:298px; width:72px; height:22px; border-radius:12px;">
+      <div class="label sm light" style="left:10px; top:3px;">Federated</div>
+    </div>
+
+    <!-- Results in drawer -->
+    <div class="box filled-gray" style="left:36px; top:332px; right:36px; height:36px; border-radius:4px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:3px; font-weight:600;">1. resilience</div>
+      <div class="label sm pencil" style="left:8px; top:18px;">capacity to recover from difficulties</div>
+      <div class="label sm green" style="right:8px; top:10px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:36px; top:376px; right:36px; height:36px; border-radius:4px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:3px; font-weight:600;">2. toughness</div>
+      <div class="label sm pencil" style="left:8px; top:18px;">strong under adverse conditions</div>
+      <div class="label sm" style="right:8px; top:10px; color:var(--pencil);">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:36px; top:420px; right:36px; height:36px; border-radius:4px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:3px; font-weight:600;">3. tenacity</div>
+      <div class="label sm pencil" style="left:8px; top:18px;">determined and persistent</div>
+      <div class="label sm" style="right:8px; top:10px; color:var(--pencil);">+ add</div>
+    </div>
+
+    <!-- Annotations -->
+    <div class="arrow-note" style="right:40px; top:222px; transform:rotate(-3deg);">↕ drag handle to resize</div>
+    <div class="arrow-note orange" style="right:40px; top:50px; transform:rotate(2deg);">text area shrinks as<br>drawer expands ↓</div>
+    <div class="arrow-note blue" style="right:40px; top:300px; transform:rotate(-1deg);">pill tabs scroll<br>horizontally →</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Full-width reading experience<br>
+        Familiar mobile pattern (maps, sheets)<br>
+        Drawer can expand to full screen<br>
+        Natural on tablet / touch devices
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Drawer pushes text up / hides context<br>
+        Selected word may scroll off screen<br>
+        Vertical space is precious on laptops<br>
+        Two independent scroll areas = confusing
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">? Questions</div>
+      <div class="verdict-items">
+        How do you keep the selected word visible while the drawer is open?<br>
+        Should the text auto-scroll to keep the word in view?<br>
+        What's the default drawer height — 40%? 50%?
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT C: THREE-COLUMN -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT C</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Three-Column Layout</div>
+    <div class="sketch-desc">Source text left, AI summary center, raw sources right. No tabs — everything visible at once. Maximum information density for power users.</div>
+  </div>
+  <div class="sketch-body" style="height: 440px;">
+    <!-- Column 1: Source text -->
+    <div class="box" style="left:20px; top:10px; width:32%; height:410px;">
+      <div class="label" style="left:10px; top:8px; font-weight:600; font-size:13px;">SOURCE TEXT</div>
+    </div>
+
+    <div class="squiggle" style="left:32px; top:40px; width:26%;"></div>
+    <div class="squiggle" style="left:32px; top:52px; width:22%;"></div>
+    <div class="word-block selected" style="left:130px; top:48px; width:30px;"></div>
+    <div class="squiggle" style="left:32px; top:64px; width:28%;"></div>
+    <div class="squiggle" style="left:32px; top:76px; width:20%;"></div>
+    <div class="squiggle" style="left:32px; top:88px; width:25%;"></div>
+    <div class="squiggle" style="left:32px; top:100px; width:28%;"></div>
+    <div class="squiggle" style="left:32px; top:112px; width:18%;"></div>
+    <div class="squiggle" style="left:32px; top:124px; width:24%;"></div>
+    <div class="squiggle" style="left:32px; top:136px; width:26%;"></div>
+    <div class="squiggle" style="left:32px; top:148px; width:20%;"></div>
+    <div class="squiggle" style="left:32px; top:172px; width:28%;"></div>
+    <div class="squiggle" style="left:32px; top:184px; width:22%;"></div>
+    <div class="squiggle" style="left:32px; top:196px; width:26%;"></div>
+
+    <!-- Column 2: AI Summary -->
+    <div class="box blue filled" style="left:35%; top:10px; width:32%; height:410px;">
+      <div class="label blue" style="left:10px; top:8px; font-weight:600; font-size:13px;">✦ AI SUMMARY</div>
+    </div>
+
+    <div class="label xl" style="left:36.5%; top:38px;">resilience</div>
+    <div class="label sm light" style="left:36.5%; top:62px;">/rɪˈzɪl.i.əns/ · ZH→EN</div>
+
+    <!-- AI contextual box -->
+    <div class="box dashed blue" style="left:36.5%; top:84px; width:28%; height:56px; border-radius:4px;">
+      <div class="label sm" style="left:8px; top:6px; width:90%; line-height:1.4; color:var(--ink-light); font-size:12px;">
+        In this economic context, "resilience" is the best fit — emphasizes recovery + stability under pressure.
+      </div>
+    </div>
+
+    <!-- Ranked options -->
+    <div class="box filled-gray" style="left:36.5%; top:152px; width:28%; height:30px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:6px;"><b>1.</b> resilience</div>
+      <div class="label sm green" style="right:8px; top:6px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:36.5%; top:190px; width:28%; height:30px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:6px;"><b>2.</b> toughness</div>
+      <div class="label sm pencil" style="right:8px; top:6px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:36.5%; top:228px; width:28%; height:30px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:6px;"><b>3.</b> tenacity</div>
+      <div class="label sm pencil" style="right:8px; top:6px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:36.5%; top:266px; width:28%; height:30px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:6px;"><b>4.</b> elasticity</div>
+      <div class="label sm pencil" style="right:8px; top:6px;">+ add</div>
+    </div>
+
+    <!-- Column 3: Raw Sources -->
+    <div class="box filled-gray" style="left:68.5%; top:10px; width:30%; height:410px; border-color:#D8D0C4;">
+      <div class="label" style="left:10px; top:8px; font-weight:600; font-size:13px; color:var(--ink-light);">RAW SOURCES</div>
+    </div>
+
+    <!-- Sub-tabs in right column -->
+    <div class="label sm blue" style="left:70%; top:36px; font-weight:600;">Dict</div>
+    <div class="label sm pencil" style="left:78%; top:36px;">TM</div>
+    <div class="label sm pencil" style="left:84%; top:36px;">Web</div>
+    <div class="label sm pencil" style="left:90%; top:36px;">Hist</div>
+
+    <div class="squiggle" style="left:70%; top:58px; width:20%;"></div>
+    <div class="squiggle" style="left:70%; top:68px; width:25%;"></div>
+    <div class="squiggle" style="left:70%; top:78px; width:18%;"></div>
+    <div class="squiggle" style="left:70%; top:96px; width:22%;"></div>
+    <div class="squiggle" style="left:70%; top:106px; width:25%;"></div>
+    <div class="squiggle" style="left:70%; top:116px; width:20%;"></div>
+    <div class="squiggle" style="left:70%; top:134px; width:24%;"></div>
+    <div class="squiggle" style="left:70%; top:144px; width:18%;"></div>
+    <div class="squiggle" style="left:70%; top:154px; width:22%;"></div>
+
+    <!-- Annotations -->
+    <div class="arrow-note red" style="left:70%; top:360px; transform:rotate(-1deg);">each column scrolls<br>independently!</div>
+    <div class="arrow-note purple" style="left:36.5%; top:310px; transform:rotate(2deg);">AI opinion is always<br>visible alongside<br>raw evidence</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Everything visible at once — no tab switching<br>
+        AI summary + raw sources side by side<br>
+        Power users can compare across columns<br>
+        Clear separation of concerns
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Each column is very narrow<br>
+        Overwhelming information density<br>
+        Doesn't work below ~1400px<br>
+        Three scroll areas = cognitive overload
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">? Questions</div>
+      <div class="verdict-items">
+        Is simultaneous visibility actually better than tabs?<br>
+        Do translators really need all three at once?<br>
+        Could column widths be user-adjustable?
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT D: COMMAND PALETTE -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT D</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Command Palette / Spotlight</div>
+    <div class="sketch-desc">Inspired by ⌘K interfaces. Double-click a word (or press a hotkey) and a centered overlay appears with results. Dismiss it and you're right back in the text. No persistent panels at all.</div>
+  </div>
+  <div class="sketch-body" style="height: 460px;">
+    <!-- Full background text (dimmed) -->
+    <div class="box" style="left:20px; top:10px; right:20px; height:430px; border-color: #E0DCD4;">
+    </div>
+
+    <!-- Dimmed text lines -->
+    <div class="squiggle" style="left:60px; top:40px; width:80%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:52px; width:72%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:64px; width:85%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:76px; width:68%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:100px; width:78%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:112px; width:82%; opacity:0.2;"></div>
+    <div class="word-block selected" style="left:260px; top:108px; width:36px;"></div>
+    <div class="squiggle" style="left:60px; top:124px; width:75%; opacity:0.2;"></div>
+
+    <div class="squiggle" style="left:60px; top:340px; width:80%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:352px; width:72%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:364px; width:85%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:376px; width:60%; opacity:0.2;"></div>
+    <div class="squiggle" style="left:60px; top:400px; width:78%; opacity:0.2;"></div>
+
+    <!-- Dimmed overlay -->
+    <div style="position:absolute; inset:0; background: rgba(44,42,38,0.25); z-index:3;"></div>
+
+    <!-- Centered modal -->
+    <div class="box thick blue" style="left:15%; top:60px; right:15%; height:330px; border-radius:12px; background:white; z-index:4; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+    </div>
+
+    <!-- Search bar at top of modal -->
+    <div class="box" style="left:17%; top:72px; right:17%; height:38px; border-radius:8px; border-color:#D8D0C4; z-index:5;">
+      <div class="label" style="left:12px; top:8px; font-weight:600;">韧性</div>
+      <div class="label sm pencil" style="right:12px; top:11px;">ESC to close</div>
+    </div>
+
+    <!-- Language pill -->
+    <div style="position:absolute; left:17%; top:118px; z-index:5;">
+      <span class="label sm blue" style="position:relative; background: rgba(74,127,212,0.1); padding:2px 8px; border-radius:10px;">ZH → EN</span>
+    </div>
+
+    <!-- Results list -->
+    <div class="box filled" style="left:17%; top:142px; right:17%; height:42px; border-radius:6px; border-color:var(--blue); z-index:5;">
+      <div class="label" style="left:12px; top:3px; font-weight:600; font-size:15px;">resilience</div>
+      <div class="label sm light" style="left:12px; top:22px;">capacity to recover from difficulties</div>
+      <div class="label sm blue" style="right:12px; top:12px;">⏎ select</div>
+    </div>
+
+    <div class="box filled-gray" style="left:17%; top:192px; right:17%; height:36px; border-radius:6px; border-color:#E0DCD4; z-index:5;">
+      <div class="label" style="left:12px; top:3px; font-size:14px;">toughness</div>
+      <div class="label sm light" style="left:12px; top:20px;">strong under adverse conditions</div>
+    </div>
+
+    <div class="box filled-gray" style="left:17%; top:236px; right:17%; height:36px; border-radius:6px; border-color:#E0DCD4; z-index:5;">
+      <div class="label" style="left:12px; top:3px; font-size:14px;">tenacity</div>
+      <div class="label sm light" style="left:12px; top:20px;">determined and persistent</div>
+    </div>
+
+    <div class="box filled-gray" style="left:17%; top:280px; right:17%; height:36px; border-radius:6px; border-color:#E0DCD4; z-index:5;">
+      <div class="label" style="left:12px; top:3px; font-size:14px;">elasticity</div>
+      <div class="label sm light" style="left:12px; top:20px;">ability to return to original form</div>
+    </div>
+
+    <!-- Keyboard hints -->
+    <div class="label sm pencil" style="left:17%; top:328px; z-index:5;">↑↓ navigate &nbsp;&nbsp; ⏎ add to lexicon &nbsp;&nbsp; TAB see sources &nbsp;&nbsp; ESC dismiss</div>
+
+    <!-- Annotations -->
+    <div class="arrow-note" style="right:40px; top:20px; z-index:6; transform:rotate(-3deg);">background dims<br>to focus attention</div>
+    <div class="arrow-note orange" style="left:50px; top:140px; z-index:6; transform:rotate(3deg);">⌘K or double-click<br>triggers this</div>
+    <div class="arrow-note green" style="right:40px; top:370px; z-index:6; transform:rotate(-2deg);">fully keyboard-<br>navigable ✓</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Zero persistent UI — text stays clean<br>
+        Keyboard-first / power-user friendly<br>
+        Familiar ⌘K pattern from dev tools<br>
+        Fast: invoke, select, dismiss — done
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Loses source sentence context while modal is open<br>
+        Can't browse raw sources without extra interaction<br>
+        Modal blocks the entire view<br>
+        Less discoverable for non-technical users
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">? Questions</div>
+      <div class="verdict-items">
+        Can we show the source sentence inside the modal?<br>
+        Is this too developer-centric for translator audience?<br>
+        How to handle the "deep dive" use case?
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT E: INLINE EXPANSION -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT E</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Inline Expansion</div>
+    <div class="sketch-desc">No panels, no modals. Click a word and the results expand directly below the paragraph — pushing the next paragraph down. The lookup lives inside the reading flow itself.</div>
+  </div>
+  <div class="sketch-body" style="height: 520px;">
+    <!-- Single column text -->
+    <div class="box" style="left:80px; top:10px; right:80px; height:490px;">
+    </div>
+
+    <!-- Paragraph 1 -->
+    <div class="squiggle" style="left:100px; top:30px; width:70%;"></div>
+    <div class="squiggle" style="left:100px; top:42px; width:65%;"></div>
+    <div class="squiggle" style="left:100px; top:54px; width:72%;"></div>
+    <div class="word-block selected" style="left:320px; top:50px; width:36px;"></div>
+    <div class="squiggle" style="left:100px; top:66px; width:58%;"></div>
+
+    <!-- INLINE EXPANSION BLOCK -->
+    <div class="box blue filled" style="left:100px; top:86px; right:100px; height:200px; border-radius:8px; border-width:2px;">
+    </div>
+
+    <div class="label blue" style="left:116px; top:94px; font-size:10px; font-weight:600;">✦ TRANSLATION: 韧性</div>
+    <div class="label xl" style="left:116px; top:110px;">resilience</div>
+    <div class="label sm light" style="left:116px; top:136px; width:60%; line-height:1.4; font-size:12px;">
+      In this context: capacity to withstand economic shocks while maintaining stability.
+    </div>
+
+    <!-- Mini horizontal cards -->
+    <div class="box" style="left:116px; top:176px; width:130px; height:44px; border-radius:4px; background:white; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:4px; font-weight:600;">1. resilience</div>
+      <div class="label sm pencil" style="left:8px; top:20px;">recovery ability</div>
+      <div class="label sm green" style="right:6px; top:4px; font-size:10px;">+</div>
+    </div>
+    <div class="box" style="left:256px; top:176px; width:130px; height:44px; border-radius:4px; background:white; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:4px; font-weight:600;">2. toughness</div>
+      <div class="label sm pencil" style="left:8px; top:20px;">strength</div>
+      <div class="label sm pencil" style="right:6px; top:4px; font-size:10px;">+</div>
+    </div>
+    <div class="box" style="left:396px; top:176px; width:130px; height:44px; border-radius:4px; background:white; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:4px; font-weight:600;">3. tenacity</div>
+      <div class="label sm pencil" style="left:8px; top:20px;">persistence</div>
+      <div class="label sm pencil" style="right:6px; top:4px; font-size:10px;">+</div>
+    </div>
+
+    <!-- Expand link -->
+    <div class="label sm blue" style="left:116px; top:234px;">show dictionary · TM · web sources ▾</div>
+    <div class="label sm pencil" style="right:116px; top:234px;">× close</div>
+
+    <!-- Paragraph 2 pushed down -->
+    <div class="label sm orange" style="left:100px; top:296px; font-weight:600;">↓ paragraph 2 pushed down</div>
+    <div class="squiggle" style="left:100px; top:318px; width:70%;"></div>
+    <div class="squiggle" style="left:100px; top:330px; width:65%;"></div>
+    <div class="squiggle" style="left:100px; top:342px; width:72%;"></div>
+    <div class="squiggle" style="left:100px; top:354px; width:50%;"></div>
+
+    <!-- Paragraph 3 -->
+    <div class="squiggle" style="left:100px; top:380px; width:68%;"></div>
+    <div class="squiggle" style="left:100px; top:392px; width:72%;"></div>
+    <div class="squiggle" style="left:100px; top:404px; width:60%;"></div>
+    <div class="squiggle" style="left:100px; top:416px; width:74%;"></div>
+    <div class="squiggle" style="left:100px; top:428px; width:45%;"></div>
+
+    <!-- Annotations -->
+    <div class="arrow-note" style="right:40px; top:80px; transform:rotate(-3deg);">results appear IN the<br>reading flow, not beside it</div>
+    <div class="arrow-note purple" style="right:40px; top:180px; transform:rotate(2deg);">horizontal card layout<br>saves vertical space</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Results appear in reading context<br>
+        No panel = full-width reading<br>
+        Natural document annotation feel<br>
+        Works great for occasional lookups
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Disrupts reading flow / pushes text down<br>
+        Multiple open expansions = chaos<br>
+        Limited space for detailed results<br>
+        Heavy lookups (10+ per page) = messy
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">? Questions</div>
+      <div class="verdict-items">
+        Should only one expansion be open at a time?<br>
+        Can you leave a collapsed "bookmark" after closing?<br>
+        How does this work with very long AI summaries?
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- CONCEPT F: SIDE-BY-SIDE (FINAL) -->
+<!-- ═══════════════════════════════════════ -->
+<div class="sketch-card">
+  <div class="sketch-label">CONCEPT F ★</div>
+  <div class="sketch-top">
+    <div class="sketch-title">Side-by-Side Split Panel <span style="color:var(--green); font-size:22px;">(chosen)</span></div>
+    <div class="sketch-desc">The approach selected for the final mockup. Source text left, lookup panel right, resizable divider. Tabs organize evidence layers. This sketch shows the earliest version of what became the HTML prototype.</div>
+  </div>
+  <div class="sketch-body" style="height: 440px;">
+    <!-- Left panel -->
+    <div class="box" style="left:20px; top:10px; width:48%; height:410px;">
+      <div class="label" style="left:12px; top:8px; font-weight:600; font-size:12px;">SOURCE TEXT</div>
+    </div>
+
+    <div class="squiggle dark" style="left:36px; top:40px; width:36%; height:5px;"></div>
+    <div class="squiggle" style="left:36px; top:60px; width:40%;"></div>
+    <div class="squiggle" style="left:36px; top:72px; width:36%;"></div>
+    <div class="word-block selected" style="left:180px; top:68px; width:34px;"></div>
+    <div class="squiggle" style="left:36px; top:84px; width:42%;"></div>
+    <div class="squiggle" style="left:36px; top:96px; width:30%;"></div>
+    <div class="squiggle" style="left:36px; top:120px; width:38%;"></div>
+    <div class="squiggle" style="left:36px; top:132px; width:42%;"></div>
+    <div class="squiggle" style="left:36px; top:144px; width:34%;"></div>
+    <div class="squiggle" style="left:36px; top:156px; width:40%;"></div>
+    <div class="squiggle" style="left:36px; top:168px; width:28%;"></div>
+    <div class="squiggle" style="left:36px; top:192px; width:36%;"></div>
+    <div class="squiggle" style="left:36px; top:204px; width:42%;"></div>
+    <div class="squiggle" style="left:36px; top:216px; width:32%;"></div>
+
+    <!-- Divider -->
+    <div style="position:absolute; left:49.5%; top:10px; width:3px; height:410px; background: repeating-linear-gradient(0deg, var(--pencil), var(--pencil) 3px, transparent 3px, transparent 7px); opacity:0.4;"></div>
+
+    <!-- Right panel -->
+    <div class="box" style="left:51%; top:10px; right:20px; height:410px;">
+      <div class="label" style="left:12px; top:8px; font-weight:600; font-size:12px;">LEXI LOOKUP</div>
+    </div>
+
+    <!-- Search -->
+    <div class="box" style="left:53%; top:34px; right:32px; height:26px; border-radius:4px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:4px; font-weight:600;">韧性</div>
+      <div class="label sm pencil" style="right:8px; top:4px;">⌕</div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="label sm blue" style="left:53%; top:70px; font-weight:600;">AI</div>
+    <div class="label sm pencil" style="left:59%; top:70px;">Dict</div>
+    <div class="label sm pencil" style="left:65%; top:70px;">Hist</div>
+    <div class="label sm pencil" style="left:71%; top:70px;">Fed</div>
+    <div class="squiggle" style="left:53%; top:84px; width:38%; opacity:0.3;"></div>
+
+    <!-- Word display -->
+    <div class="label xl" style="left:53%; top:92px;">resilience</div>
+    <div class="label sm light" style="left:53%; top:116px;">/rɪˈzɪl.i.əns/ · ZH→EN</div>
+
+    <!-- AI box -->
+    <div class="box dashed blue" style="left:53%; top:136px; right:32px; height:46px; border-radius:4px;">
+      <div class="label sm blue" style="left:8px; top:4px; font-size:9px; font-weight:600;">✦ AI CONTEXT</div>
+      <div class="label sm" style="left:8px; top:20px; font-size:11px; color:var(--ink-light);">resilience fits this economic context...</div>
+    </div>
+
+    <!-- Results -->
+    <div class="box filled-gray" style="left:53%; top:194px; right:32px; height:28px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:5px;"><b>1.</b> resilience</div>
+      <div class="label sm green" style="right:8px; top:5px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:53%; top:230px; right:32px; height:28px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:5px;"><b>2.</b> toughness</div>
+      <div class="label sm pencil" style="right:8px; top:5px;">+ add</div>
+    </div>
+    <div class="box filled-gray" style="left:53%; top:266px; right:32px; height:28px; border-radius:3px; border-color:#D8D0C4;">
+      <div class="label sm" style="left:8px; top:5px;"><b>3.</b> tenacity</div>
+      <div class="label sm pencil" style="right:8px; top:5px;">+ add</div>
+    </div>
+
+    <!-- Annotations -->
+    <div class="arrow-note green" style="left:53%; top:340px; transform:rotate(1deg);">source text always<br>visible alongside results ✓</div>
+    <div class="arrow-note blue" style="left:36px; top:260px; transform:rotate(-2deg);">text doesn't move<br>when lookup happens</div>
+    <div class="arrow-note" style="left:45%; top:200px; transform:rotate(90deg); font-size:11px;">↕ drag</div>
+  </div>
+
+  <div class="verdict">
+    <div class="verdict-col">
+      <div class="verdict-label pro">+ Pros</div>
+      <div class="verdict-items">
+        Source text always visible — no context loss<br>
+        Rich space for results (tabs, definitions, sources)<br>
+        Resizable divider adapts to user preference<br>
+        Clean separation: reading vs. researching
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label con">– Cons</div>
+      <div class="verdict-items">
+        Source text only gets 50% width<br>
+        Always-visible panel feels heavier<br>
+        Doesn't work well on narrow screens<br>
+        Two independent scroll contexts
+      </div>
+    </div>
+    <div class="verdict-col">
+      <div class="verdict-label note">Why this won</div>
+      <div class="verdict-items">
+        Translators do heavy, repeated lookups — the persistent panel eliminates invoke/dismiss overhead. Source visibility was the #1 priority from contextual inquiry. The trade-off (less text width) is acceptable because professional translation is already a narrow-column workflow.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end explorations -->
+
+
+<!-- ═══════════════════════════════════════ -->
+<!-- COMPARISON MATRIX -->
+<!-- ═══════════════════════════════════════ -->
+<div class="comparison-strip">
+  <h2>Concept Comparison</h2>
+  <div class="comparison-grid">
+    <div class="comp-cell">
+      <div class="comp-name" style="color:var(--blue);">Context Preservation</div>
+      <div class="comp-score">Can you still see the source sentence?</div>
+      <div style="margin-top:12px;">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin-bottom:3px;"><span>A Popover</span><span>★★★☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:75%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>B Drawer</span><span>★★☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:50%; background:var(--yellow);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>C Three-Col</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>D Spotlight</span><span>★☆☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:25%; background:var(--red);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>E Inline</span><span>★★★☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:75%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink); font-weight:600; margin:6px 0 3px;"><span>F Split ★</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--blue);"></div></div>
+      </div>
+    </div>
+
+    <div class="comp-cell">
+      <div class="comp-name" style="color:var(--blue);">Information Depth</div>
+      <div class="comp-score">How much detail fits in the result view?</div>
+      <div style="margin-top:12px;">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin-bottom:3px;"><span>A Popover</span><span>★★☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:50%; background:var(--yellow);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>B Drawer</span><span>★★★☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:75%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>C Three-Col</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>D Spotlight</span><span>★★☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:50%; background:var(--yellow);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>E Inline</span><span>★★☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:50%; background:var(--yellow);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink); font-weight:600; margin:6px 0 3px;"><span>F Split ★</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--blue);"></div></div>
+      </div>
+    </div>
+
+    <div class="comp-cell">
+      <div class="comp-name" style="color:var(--blue);">Lightweight Feel</div>
+      <div class="comp-score">Does it feel fast and non-intrusive?</div>
+      <div style="margin-top:12px;">
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin-bottom:3px;"><span>A Popover</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>B Drawer</span><span>★★★☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:75%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>C Three-Col</span><span>★☆☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:25%; background:var(--red);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>D Spotlight</span><span>★★★★</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:100%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink-light); margin:6px 0 3px;"><span>E Inline</span><span>★★★☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:75%; background:var(--green);"></div></div>
+        <div style="display:flex; justify-content:space-between; font-size:11px; font-family:var(--hand2); color:var(--ink); font-weight:600; margin:6px 0 3px;"><span>F Split ★</span><span>★★☆☆</span></div>
+        <div class="score-bar"><div class="score-fill" style="width:50%; background:var(--yellow);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:24px; padding:20px; background:white; border:2px solid #D8D0C4; border-radius:4px;">
+    <div style="font-family:var(--hand); font-size:20px; font-weight:700; margin-bottom:8px; color:var(--ink);">Why F won the trade-off</div>
+    <div style="font-family:var(--hand2); font-size:14px; color:var(--ink-light); line-height:1.7;">
+      The split panel (F) isn't the lightest or the most elegant — the Popover (A) and Spotlight (D) both feel more graceful. But translators don't do occasional lookups; they do <b>dozens per session</b>. The persistent panel eliminates the invoke/dismiss cycle entirely. And the #1 finding from contextual inquiry was that translators lose their place when they switch tools — F is the only layout (alongside C) that keeps the source sentence permanently visible while providing deep results. The Three-Column (C) has the same strength but collapses at normal screen widths. So F wins: it trades some reading width for maximum lookup throughput and context preservation.
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
