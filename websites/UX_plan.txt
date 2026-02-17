@@ -1,0 +1,5 @@
+Phase 1 — Discover: User interviews (with specific questions about translator lookup workflows), contextual inquiry (observing real translation sessions), competitive analysis of Pleco/Trados/DeepL/Linguee/MDBG, quantitative surveys, and a content inventory of all federated data sources.
+Phase 2 — Define: Design workshops/co-design sessions (to align on the split-panel model and tab hierarchy), card sorting (to validate or restructure the 4-tab grouping), and user flow diagrams for every core task path.
+Phase 3 — Design: Mood board, wireframes for every screen state (empty, loading, active across all tabs, responsive), prototyping (your HTML mockup lives here), and a design system/style guide extracting the visual tokens already implicit in the mockup.
+Phase 4 — Validate: Usability testing with 5 specific tasks mapped to Lexi's interactions, A/B testing candidates for key design decisions (default tab, button placement, click trigger), and funnel analysis with a 5-stage lookup funnel.
+Phase 5 — Iterate: Heuristic evaluation against Nielsen's heuristics (with Lexi-specific questions), and a severity-based prioritization framework for the backlog.
