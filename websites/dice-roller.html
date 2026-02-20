@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roll the Dice</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --felt: #1a4a2e;
+    --felt-light: #225c38;
+    --gold: #d4a843;
+    --gold-light: #f0c96a;
+    --cream: #f5ead6;
+    --shadow: rgba(0,0,0,0.6);
+    --dice-face: #f9f4ea;
+    --pip: #1a1a1a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    background: var(--felt);
+    background-image:
+      radial-gradient(ellipse at 50% 0%, #2a6040 0%, transparent 70%),
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(255,255,255,0.015) 10px,
+        rgba(255,255,255,0.015) 20px
+      );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier Prime', monospace;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .border-frame {
+    position: fixed;
+    inset: 16px;
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0.4;
+  }
+  .border-frame::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px solid var(--gold);
+    border-radius: 2px;
+    opacity: 0.5;
+  }
+
+  .corner {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    border-color: var(--gold);
+    border-style: solid;
+    opacity: 0.7;
+  }
+  .corner.tl { top: 10px; left: 10px; border-width: 2px 0 0 2px; }
+  .corner.tr { top: 10px; right: 10px; border-width: 2px 2px 0 0; }
+  .corner.bl { bottom: 10px; left: 10px; border-width: 0 0 2px 2px; }
+  .corner.br { bottom: 10px; right: 10px; border-width: 0 2px 2px 0; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.2em;
+    text-shadow: 0 2px 12px rgba(212,168,67,0.4);
+    position: relative;
+  }
+  h1::before, h1::after {
+    content: '✦';
+    font-size: 0.4em;
+    vertical-align: middle;
+    margin: 0 0.5em;
+    opacity: 0.7;
+  }
+
+  .subtitle {
+    color: var(--cream);
+    font-size: 0.8rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 3rem;
+  }
+
+  .dice-container {
+    display: flex;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    perspective: 800px;
+  }
+
+  .die-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .die {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.1s;
+  }
+
+  .die.rolling {
+    animation: tumble 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  @keyframes tumble {
+    0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    20%  { transform: rotateX(180deg) rotateY(90deg) rotateZ(45deg) scale(1.15); }
+    40%  { transform: rotateX(360deg) rotateY(180deg) rotateZ(90deg); }
+    60%  { transform: rotateX(270deg) rotateY(360deg) rotateZ(135deg) scale(0.95); }
+    80%  { transform: rotateX(90deg) rotateY(270deg) rotateZ(180deg) scale(1.05); }
+    100% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); }
+  }
+
+  .die-face {
+    width: 120px;
+    height: 120px;
+    background: var(--dice-face);
+    border-radius: 18px;
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,0.9),
+      inset 0 -3px 6px rgba(0,0,0,0.15),
+      0 8px 30px rgba(0,0,0,0.5),
+      0 2px 6px rgba(0,0,0,0.3);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 16px;
+    gap: 4px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .die-face::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 45%;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.35), transparent);
+    border-radius: 18px 18px 0 0;
+    pointer-events: none;
+  }
+
+  .pip {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--pip);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.4), 0 1px 1px rgba(255,255,255,0.1);
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .pip.visible { opacity: 1; }
+
+  .die-shadow {
+    width: 100px;
+    height: 12px;
+    background: radial-gradient(ellipse, rgba(0,0,0,0.4) 0%, transparent 70%);
+    margin-top: -4px;
+    transition: transform 0.3s;
+  }
+
+  .die.rolling ~ .die-shadow {
+    animation: shadow-pulse 0.6s ease-in-out;
+  }
+
+  @keyframes shadow-pulse {
+    50% { transform: scaleX(1.3); opacity: 0.2; }
+  }
+
+  .total-display {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    color: var(--gold-light);
+    font-weight: 900;
+    text-shadow: 0 0 30px rgba(212,168,67,0.5);
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s;
+  }
+
+  .total-display.pop {
+    animation: pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+
+  .instruction {
+    color: var(--cream);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.35;
+    margin-top: 1rem;
+    transition: opacity 0.3s;
+  }
+
+  body:hover .instruction { opacity: 0.55; }
+
+  .streak {
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    color: var(--gold);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: right;
+    opacity: 0.6;
+  }
+
+  .streak span {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  /* Particle burst */
+  .particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: burst 0.8s ease-out forwards;
+  }
+
+  @keyframes burst {
+    0% { transform: translate(0,0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="border-frame"></div>
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
+
+<div class="streak">
+  Rolls
+  <span id="rollCount">0</span>
+</div>
+
+<h1>Roll the Dice</h1>
+<p class="subtitle">Click anywhere to roll</p>
+
+<div class="dice-container" id="diceContainer">
+  <div class="die-wrapper">
+    <div class="die" id="die1">
+      <div class="die-face" id="face1"></div>
+    </div>
+    <div class="die-shadow"></div>
+  </div>
+  <div class="die-wrapper">
+    <div class="die" id="die2">
+      <div class="die-face" id="face2"></div>
+    </div>
+    <div class="die-shadow"></div>
+  </div>
+</div>
+
+<div class="total-display" id="total">—</div>
+<p class="instruction">Click anywhere · Press space</p>
+
+<script>
+const pipLayouts = {
+  1: [[1,1]],
+  2: [[0,0],[2,2]],
+  3: [[0,0],[1,1],[2,2]],
+  4: [[0,0],[0,2],[2,0],[2,2]],
+  5: [[0,0],[0,2],[1,1],[2,0],[2,2]],
+  6: [[0,0],[0,2],[1,0],[1,2],[2,0],[2,2]]
+};
+
+let rolling = false;
+let rollCount = 0;
+
+function renderFace(faceEl, value) {
+  faceEl.innerHTML = '';
+  // Create 3x3 grid cells
+  const cells = [];
+  for (let r = 0; r < 3; r++) {
+    for (let c = 0; c < 3; c++) {
+      const pip = document.createElement('div');
+      pip.className = 'pip';
+      faceEl.appendChild(pip);
+      cells.push({ el: pip, r, c });
+    }
+  }
+  const layout = pipLayouts[value];
+  layout.forEach(([r,c]) => {
+    const cell = cells.find(x => x.r === r && x.c === c);
+    if (cell) cell.el.classList.add('visible');
+  });
+}
+
+function spawnParticles(x, y) {
+  const colors = ['#d4a843','#f0c96a','#f5ead6','#a8d4a8'];
+  for (let i = 0; i < 12; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    const angle = (i / 12) * Math.PI * 2;
+    const dist = 60 + Math.random() * 80;
+    p.style.cssText = `
+      left: ${x}px; top: ${y}px;
+      background: ${colors[Math.floor(Math.random()*colors.length)]};
+      --tx: ${Math.cos(angle)*dist}px;
+      --ty: ${Math.sin(angle)*dist}px;
+      animation-duration: ${0.5 + Math.random()*0.4}s;
+    `;
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 1000);
+  }
+}
+
+function roll(e) {
+  if (rolling) return;
+  rolling = true;
+
+  const die1 = document.getElementById('die1');
+  const die2 = document.getElementById('die2');
+  const totalEl = document.getElementById('total');
+  const rollCountEl = document.getElementById('rollCount');
+
+  const v1 = Math.ceil(Math.random() * 6);
+  const v2 = Math.ceil(Math.random() * 6);
+
+  // Trigger animation
+  die1.classList.remove('rolling');
+  die2.classList.remove('rolling');
+  void die1.offsetWidth; // reflow
+  void die2.offsetWidth;
+  die1.classList.add('rolling');
+  die2.classList.add('rolling');
+
+  // Show result after animation
+  setTimeout(() => {
+    renderFace(document.getElementById('face1'), v1);
+    renderFace(document.getElementById('face2'), v2);
+
+    const total = v1 + v2;
+    totalEl.textContent = total;
+    totalEl.classList.remove('pop');
+    void totalEl.offsetWidth;
+    totalEl.classList.add('pop');
+
+    rollCount++;
+    rollCountEl.textContent = rollCount;
+
+    // Particles at click or center
+    const cx = e ? e.clientX : window.innerWidth / 2;
+    const cy = e ? e.clientY : window.innerHeight / 2;
+    spawnParticles(cx, cy);
+
+    die1.classList.remove('rolling');
+    die2.classList.remove('rolling');
+    rolling = false;
+  }, 600);
+}
+
+document.body.addEventListener('click', roll);
+document.addEventListener('keydown', e => {
+  if (e.code === 'Space') { e.preventDefault(); roll(null); }
+});
+
+// Initial render
+renderFace(document.getElementById('face1'), 1);
+renderFace(document.getElementById('face2'), 1);
+</script>
+</body>
+</html>
