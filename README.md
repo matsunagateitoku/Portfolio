@@ -32,7 +32,7 @@
 - Convert a url to a wordcloud (Coming Soon)
   
   Class website projects:
-- Dice game (Coming Soon)
+- [Dice roll](https://matsunagateitoku.github.io/Portfolio/websites/dice-roller.html)
 - qr code (Coming Soon)
 
 ## Python & Data science 
