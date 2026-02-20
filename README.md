@@ -2,9 +2,6 @@
 [My resume (removed for now)](https://#)
 
 
-- [LEXI plan](./websites/lexi.pdf)
-- [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi4.html)
-
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
@@ -16,6 +13,8 @@
 - [Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi_mockups.html)
 - [Wireframing](https://matsunagateitoku.github.io/Portfolio/websites/lexi-wireframes.html)
 - [Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
+- [LEXI plan](./websites/lexi.pdf)
+- [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi4.html)
    
 ## Websites
 ![## UX Process](./images/free-website-builder.webp)
