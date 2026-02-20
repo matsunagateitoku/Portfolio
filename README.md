@@ -29,12 +29,12 @@
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 - [NLP Toolkit](https://dolphin-app-kjvwi.ondigitalocean.app/)
 - [Federated Search Tool (Coming Soon)](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
-- [Generate a QR code for Website URL](https://matsunagateitoku.github.io/Portfolio/websites/qr.html)
+
 
   
   Class website projects:
 - [Dice roll](https://matsunagateitoku.github.io/Portfolio/websites/dice-roller.html)
-- qr code (Coming Soon)
+- [Generate a QR code for Website URL](https://matsunagateitoku.github.io/Portfolio/websites/url.html)
 
 ## Python & Data science 
 ![## UX Process](./images/small.jpg)
