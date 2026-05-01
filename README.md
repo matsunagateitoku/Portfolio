@@ -10,7 +10,7 @@
 
 
 ## UX Process
--[## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
+![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
 -[Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
 - Sketches (Coming soon)
 - Mockups (Coming soon)
