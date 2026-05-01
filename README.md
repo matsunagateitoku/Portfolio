@@ -11,6 +11,8 @@
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
+
+This section is an example the UX process I use to design tools and apps.
 - [Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
 - Sketches (Coming soon)
 - Mockups (Coming soon)
