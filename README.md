@@ -11,6 +11,7 @@
 
 ## UX Process
 ![## UX Process](./images/ux-indonesia-qC2n6RQU4Vw-unsplash.jpg)
+-[Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
 - Sketches (Coming soon)
 - Mockups (Coming soon)
 - Wireframing & Prototyping (Coming soon)
@@ -18,7 +19,6 @@
 - [Lo-Fi Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi_wire.html)
 - [Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi_mockups.html)
 - [Wireframing](https://matsunagateitoku.github.io/Portfolio/websites/lexi-wireframes.html)
-- [Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
 - [LEXI plan](./websites/lexi.pdf)
 - [LEXI demo](https://matsunagateitoku.github.io/Portfolio/websites/lexi4.html)
    
