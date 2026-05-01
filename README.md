@@ -15,10 +15,8 @@
 This section is an example the UX process I use to design tools and apps.
 - [Step 1: Ideation](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
 - [Step 2: Research](https://matsunagateitoku.github.io/Portfolio/websites/UX_plan.txt)
-- Sketches (Coming soon)
-- Mockups (Coming soon)
+- Step 3: Sketches (Coming soon)
 - Wireframing & Prototyping (Coming soon)
-- Research (Coming soon)
 - [Lo-Fi Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi_wire.html)
 - [Mockups](https://matsunagateitoku.github.io/Portfolio/websites/lexi_mockups.html)
 - [Wireframing](https://matsunagateitoku.github.io/Portfolio/websites/lexi-wireframes.html)
