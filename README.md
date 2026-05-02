@@ -2,8 +2,6 @@
 
 
 
-
-
 # Scott Lineberger 
 [My resume (removed for now)](https://#)
 
