@@ -215,7 +215,7 @@ A federated lookup tool for translators featuring contextual translation recomme
 
 # Scott Lineberger
 
-**AI Integration Lead · NLP · Translation Technology · Analyst Workflow Tooling**
+**AI Integration expert · NLP · Translation Technology · Analyst Workflow Tooling**
 
 [![Profile Views](https://komarev.com/ghpvc/?username=matsunagateitoku&color=4e9fff&style=flat-square&label=profile+views)](https://github.com/matsunagateitoku)
 
