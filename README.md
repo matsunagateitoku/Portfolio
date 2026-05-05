@@ -42,6 +42,7 @@ This section is an example the UX process I use to design tools and apps.
 
 ## Class website projects:
 - [Dice roll](https://matsunagateitoku.github.io/Portfolio/websites/dice-roller.html)
+- [Dice roll](https://dice-game-site.s3.us-east-1.amazonaws.com/index.html) AWS Hosted version
 - [Generate a QR code for Website URL](https://matsunagateitoku.github.io/Portfolio/websites/url.html)
 
 ## Python & Data science 
