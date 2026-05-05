@@ -24,7 +24,7 @@ This section is an example the UX process I use to design tools and apps.
 ## Websites
 ![## UX Process](./images/free-website-builder.webp)
 
-- [News Website,version1.0](https://matsunagateitoku.github.io/news/)
+- [News Website,version1.0](https://matsunagateitoku.github.io/news/) First draft
 - [News Website,version2.0](https://matsunagateitoku.github.io/STDP_News/)
 - [News Website,version3.0](https://matsunagateitoku.github.io/AI_News/)
 - [Haiku Website](https://matsunagateitoku.github.io/Haiku-Website/)
