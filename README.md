@@ -34,8 +34,8 @@ This section is an example the UX process I use to design tools and apps.
 - [Family Album](https://matsunagateitoku.github.io/family/)
 - [Wordcloud](https://matsunagateitoku.github.io/news/wordcloud.html?)
 - [NLP Toolkit](https://dolphin-app-kjvwi.ondigitalocean.app/)
+- [NLP Toolkit](http://my-flask-env.eba-rwazrk8d.us-east-1.elasticbeanstalk.com/) AWS Elasticbeanstalk version
 - [Federated Search Tool (Coming Soon)](https://matsunagateitoku.github.io/Portfolio/websites/fed_search.html)
-
 - [Portfolio](https://matsunagateitoku.github.io/Portfolio/websites/haiku.html)
 
 
